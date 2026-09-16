@@ -1,0 +1,110 @@
+[
+  {
+    "id": "USR-000",
+    "name": "System Administrator",
+    "email": "admin@virtualca.internal",
+    "company": "Virtual CA Cloud Infrastructure",
+    "gstin": "27ADMIN0000A1Z0",
+    "stateCode": "27",
+    "stateName": "Maharashtra",
+    "role": "Admin",
+    "initials": "AD",
+    "createdAt": "2026-09-01T00:00:00Z"
+  },
+  {
+    "id": "USR-001",
+    "name": "Atharva Patrikar",
+    "email": "atharva@apexinfotech.in",
+    "company": "Apex Infotech Solutions",
+    "gstin": "27AABCA1234F1Z5",
+    "stateCode": "27",
+    "stateName": "Maharashtra",
+    "role": "Owner",
+    "initials": "AP",
+    "createdAt": "2026-09-01T10:00:00Z"
+  },
+  {
+    "id": "USR-002",
+    "name": "Atharva Patrikar",
+    "email": "atharva@apexinfotech.in",
+    "company": "Apex Cloud Labs SEZ",
+    "gstin": "29AABCA9876E1Z4",
+    "stateCode": "29",
+    "stateName": "Karnataka",
+    "role": "Owner",
+    "initials": "AP",
+    "createdAt": "2026-09-02T11:00:00Z"
+  },
+  {
+    "id": "USR-003",
+    "name": "CA Sharma",
+    "email": "sharma@ca-auditors.in",
+    "company": "Patrikar & Associates CA Firm",
+    "gstin": "27AAACP9988E1Z1",
+    "stateCode": "27",
+    "stateName": "Maharashtra",
+    "role": "Chartered Accountant",
+    "initials": "CS",
+    "createdAt": "2026-09-05T14:30:00Z"
+  },
+  {
+    "id": "USR-004",
+    "name": "Rajesh Kumar",
+    "email": "rajesh@kumartech.in",
+    "company": "Kumar Tech Solutions",
+    "gstin": "29AABCK9999K1Z5",
+    "stateCode": "29",
+    "stateName": "Karnataka",
+    "role": "Owner",
+    "initials": "RK",
+    "createdAt": "2026-09-13T00:00:00Z"
+  },
+  {
+    "id": "USR-005",
+    "name": "Omkar",
+    "email": "omkarpatrikar@gmail.com",
+    "company": "Infotech Services",
+    "gstin": "27BCCC267C123R4",
+    "stateCode": "27",
+    "stateName": "Maharashtra",
+    "role": "Owner",
+    "initials": "OM",
+    "createdAt": "2026-09-13T00:00:00Z"
+  },
+  {
+    "id": "USR-006",
+    "name": "Omkar",
+    "email": "omkarpatrikar@gmail.com",
+    "company": "Omkar Digital Media",
+    "gstin": "29BCCC267C123R9",
+    "stateCode": "29",
+    "stateName": "Karnataka",
+    "role": "Owner",
+    "initials": "OM",
+    "createdAt": "2026-09-13T00:05:00Z"
+  },
+  {
+    "id": "USR-007",
+    "name": "Omkar",
+    "email": "omkarpatrikar@gmail.com",
+    "company": "Infotech",
+    "gstin": "28BCCC267C123R4",
+    "stateCode": "28",
+    "stateName": "India",
+    "role": "Owner",
+    "initials": "OM",
+    "createdAt": "2026-09-13T00:00:00Z"
+  },
+  {
+    "id": "USR-008",
+    "name": "Atharvat",
+    "email": "atharvapatrikar@gmail.com",
+    "company": "Awt",
+    "gstin": "28BCCC267C145R3",
+    "stateCode": "28",
+    "stateName": "India",
+    "role": "Owner",
+    "initials": "AT",
+    "createdAt": "2026-09-13T00:00:00Z"
+  }
+]

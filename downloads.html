@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual CA System — Multi-Color Download Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #faf9f6;
+      --bg-surface: #ffffff;
+      --border-subtle: #e7e2d6;
+      --border-strong: #d4ccc0;
+      
+      --accent-coral: #ea580c;
+      --accent-coral-subtle: #fff7ed;
+      --accent-coral-border: #fed7aa;
+      
+      --accent-violet: #7c3aed;
+      --accent-violet-subtle: #f5f3ff;
+      --accent-violet-border: #ddd6fe;
+
+      --accent-amber: #d97706;
+      --accent-amber-subtle: #fffbeb;
+      --accent-amber-border: #fde68a;
+
+      --accent-rose: #e11d48;
+      --accent-rose-subtle: #fff1f2;
+      --accent-rose-border: #fecdd3;
+
+      --text-main: #1c1917;
+      --text-muted: #78716c;
+      --text-secondary: #44403c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      padding: 48px 24px;
+      min-height: 100vh;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ea580c, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    header p { color: var(--text-muted); font-size: 16px; }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: var(--border-subtle);
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-zip {
+      background: var(--accent-coral-subtle);
+      color: var(--accent-coral);
+      border: 1px solid var(--accent-coral-border);
+    }
+    .badge-pdf {
+      background: var(--accent-violet-subtle);
+      color: var(--accent-violet);
+      border: 1px solid var(--accent-violet-border);
+    }
+
+    .card-list { display: flex; flex-direction: column; gap: 18px; }
+    .download-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 6px rgba(28, 25, 23, 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.2s ease;
+    }
+    .download-card:hover {
+      border-color: var(--accent-coral);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(234, 88, 12, 0.12);
+    }
+    .download-card.highlight {
+      border-color: var(--accent-amber-border);
+      background: linear-gradient(180deg, #ffffff 70%, #fffdf7 100%);
+    }
+
+    .card-info h3 { font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .card-info p { color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; line-height: 1.5; }
+    .card-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent-violet);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-group { display: flex; gap: 10px; flex-shrink: 0; }
+    .btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13.5px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent-coral);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+    }
+    .btn-primary:hover {
+      background: #c2410c;
+      transform: translateY(-1px);
+    }
+    .btn-violet {
+      background: var(--accent-violet);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+    .btn-violet:hover {
+      background: #6d28d9;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover { background: var(--border-subtle); color: var(--text-main); }
+    .footer-nav {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+    .footer-nav a {
+      color: var(--accent-coral);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 12px;
+    }
+    .footer-nav a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Virtual CA System — Download Center</h1>
+      <p>Download the frontend & backend source code archives and technical architectural blueprints.</p>
+    </header>
+
+    <!-- SECTION 1: SOURCE CODE ARCHIVES -->
+    <div class="section-title">
+      <span>📦</span> Source Code & Application Packages
+    </div>
+
+    <div class="card-list">
+      <!-- ZIP 1: FRONTEND -->
+      <div class="download-card highlight">
+        <div class="card-info">
+          <h3>
+            Frontend Application
+            <span class="badge badge-zip">ZIP</span>
+          </h3>
+          <p>Complete multi-color single-page web app with interactive MSME dashboard, ledger explorer, All-India 36 States GST directory, All-India Banks directory, and real-time calculation engine.</p>
+          <div class="card-meta">
+            <span>File: virtual_ca_frontend.zip</span>
+            <span>Size: ~16.5 KB</span>
+            <span>Includes: frontend/index.html</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="/virtual_ca_frontend.zip" download class="btn btn-primary">
+            <span>⬇</span> Download Frontend (ZIP)
+          </a>
+        </div>
+      </div>
+
+      <!-- ZIP 2: BACKEND -->
+      <div class="download-card highlight">
+        <div class="card-info">
+          <h3>
+            Backend Application & PostgreSQL Engine
+            <span class="badge badge-zip">ZIP</span>
+          </h3>
+          <p>Full backend stack including Java Spring double-entry services, GST calculation engine, Python REST API server (<code>server.py</code>), and PostgreSQL schema & database manager (<code>database/</code>).</p>
+          <div class="card-meta">
+            <span>File: virtual_ca_backend.zip</span>
+            <span>Size: ~9.2 KB</span>
+            <span>Includes: backend/, database/, server.py</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="/virtual_ca_backend.zip" download class="btn btn-primary">
+            <span>⬇</span> Download Backend (ZIP)
+          </a>
+        </div>
+      </div>
+
+      <!-- ZIP 3: COMPLETE REPOSITORY BUNDLE -->
+      <div class="download-card highlight">
+        <div class="card-info">
+          <h3>
+            Complete Virtual CA System (Full Bundle)
+            <span class="badge badge-zip">ZIP</span>
+          </h3>
+          <p>Everything in one consolidated archive: Frontend UI, Backend Java & Python services, Database schemas, setup scripts, and all vector PDF architectural blueprints.</p>
+          <div class="card-meta">
+            <span>File: virtual_ca_system_full.zip</span>
+            <span>Size: ~74.2 KB</span>
+            <span>Everything Included</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="/virtual_ca_system_full.zip" download class="btn btn-primary">
+            <span>⬇</span> Download Full Project (ZIP)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: ARCHITECTURE & SPECIFICATION PDFS -->
+    <div class="section-title">
+      <span>📄</span> Architecture Specifications & Deep Dives
+    </div>
+
+    <div class="card-list">
+      <!-- PDF 1 -->
+      <div class="download-card">
+        <div class="card-info">
+          <h3>
+            1. Technology Stack & Programming Languages Deep Dive
+            <span class="badge badge-pdf">PDF</span>
+          </h3>
+          <p>Comprehensive breakdown of all languages used with architectural rationale, code snippets, and execution flow.</p>
+          <div class="card-meta">
+            <span>Size: ~16.6 KB</span>
+            <span>Pages: 4 Pages (A4)</span>
+            <span>Format: Vector PDF</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="Virtual_CA_Technology_Stack_and_Languages.pdf" target="_blank" class="btn btn-secondary">Preview</a>
+          <a href="Virtual_CA_Technology_Stack_and_Languages.pdf" download class="btn btn-violet">Download PDF</a>
+        </div>
+      </div>
+
+      <!-- PDF 2 -->
+      <div class="download-card">
+        <div class="card-info">
+          <h3>
+            2. Virtual CA System Architecture Blueprint
+            <span class="badge badge-pdf">PDF</span>
+          </h3>
+          <p>Complete end-to-end system design covering Double-Entry Ledger, Indian GST Engine, Statutory Calendar, and AI Anomaly Engine.</p>
+          <div class="card-meta">
+            <span>Size: ~11.0 KB</span>
+            <span>Pages: 3 Pages (A4)</span>
+            <span>Format: Vector PDF</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="Virtual_CA_System_Blueprint.pdf" target="_blank" class="btn btn-secondary">Preview</a>
+          <a href="Virtual_CA_System_Blueprint.pdf" download class="btn btn-violet">Download PDF</a>
+        </div>
+      </div>
+
+      <!-- PDF 3 -->
+      <div class="download-card">
+        <div class="card-info">
+          <h3>
+            3. Recommended Changes, UI/UX Enhancements & Feature Expansion
+            <span class="badge badge-pdf">PDF</span>
+          </h3>
+          <p>Detailed usability review, UI/UX upgrades for non-accountant MSME owners, purchase/expense entry enhancements, and ITC tracking.</p>
+          <div class="card-meta">
+            <span>Size: ~10.1 KB</span>
+            <span>Pages: 3 Pages (A4)</span>
+            <span>Format: Vector PDF</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="Virtual_CA_Recommended_Changes_and_Features.pdf" target="_blank" class="btn btn-secondary">Preview</a>
+          <a href="Virtual_CA_Recommended_Changes_and_Features.pdf" download class="btn btn-violet">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <a href="/frontend/index.html">← Back to Interactive Dashboard</a>
+      <a href="/Virtual_CA_Technology_Stack_and_Languages.html">Languages HTML Guide</a>
+      <a href="/Virtual_CA_System_Blueprint.html">Architecture Blueprint HTML</a>
+    </div>
+  </div>
+</body>
+</html>

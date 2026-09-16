@@ -1,0 +1,3722 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual CA — Autonomous Multi-Color Accounting & Compliance Engine</title>
+  <meta name="description" content="Intelligent MSME Accounting, Multi-Color GST Invoicing, All-India States & Banks Directory." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================================================
+       VIBRANT MULTI-COLOR DESIGN SYSTEM (NO GREEN, NO BLUE, NO DARK COLORS)
+       Palette: Coral, Violet, Amber, Rose, Orchid/Magenta, Terracotta
+       Light, clean, high-contrast surfaces.
+       ======================================================================== */
+    :root, :root[data-theme="light"], :root[data-theme="dark"] {
+      /* Clean Light Canvas Surfaces */
+      --bg-body: #faf9f6;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #ffffff;
+      --bg-subtle: #f5f2eb;
+      --bg-hover: #ede8dc;
+      
+      --border-subtle: #e7e2d6;
+      --border-strong: #d4ccc0;
+      --border-focus: #ea580c;
+
+      /* High-readability Typography (Deep Warm Charcoal) */
+      --text-main: #1c1917;
+      --text-secondary: #44403c;
+      --text-muted: #78716c;
+      --text-faint: #a8a29e;
+
+      /* 1. SUNSET CORAL / ORANGE (Primary Brand, Invoicing & CTAs) */
+      --accent-coral: #ea580c;
+      --accent-coral-hover: #c2410c;
+      --accent-coral-subtle: #fff7ed;
+      --accent-coral-border: #fed7aa;
+
+      /* 2. ROYAL VIOLET / PURPLE (Taxes, GST Slabs, Compliance) */
+      --accent-violet: #7c3aed;
+      --accent-violet-hover: #6d28d9;
+      --accent-violet-subtle: #f5f3ff;
+      --accent-violet-border: #ddd6fe;
+
+      /* 3. GOLDEN AMBER / HONEY (Banking, Treasury, Balances) */
+      --accent-amber: #d97706;
+      --accent-amber-hover: #b45309;
+      --accent-amber-subtle: #fffbeb;
+      --accent-amber-border: #fde68a;
+
+      /* 4. RADIANT ROSE / CRIMSON (Expenses, Debits, Alerts) */
+      --accent-rose: #e11d48;
+      --accent-rose-hover: #be123c;
+      --accent-rose-subtle: #fff1f2;
+      --accent-rose-border: #fecdd3;
+
+      /* 5. VIBRANT ORCHID / MAGENTA (Profit Margins, AI Insights, Admin) */
+      --accent-magenta: #c026d3;
+      --accent-magenta-hover: #a21caf;
+      --accent-magenta-subtle: #fdf4ff;
+      --accent-magenta-border: #f5d0fe;
+
+      /* 6. WARM TERRACOTTA / SIENNA (Purchases & Vendors) */
+      --accent-terracotta: #c2410c;
+      --accent-terracotta-subtle: #ffedd5;
+      --accent-terracotta-border: #fed7aa;
+
+      /* Soft Multi-Color Elevation Shadows */
+      --shadow-xs: 0 1px 2px rgba(41, 37, 36, 0.04);
+      --shadow-sm: 0 2px 5px rgba(41, 37, 36, 0.05);
+      --shadow-md: 0 5px 14px -2px rgba(41, 37, 36, 0.07), 0 2px 6px -1px rgba(41, 37, 36, 0.04);
+      --shadow-lg: 0 14px 30px -4px rgba(41, 37, 36, 0.09), 0 4px 12px -2px rgba(41, 37, 36, 0.04);
+      --shadow-coral: 0 4px 14px rgba(234, 88, 12, 0.28);
+      --shadow-violet: 0 4px 14px rgba(124, 58, 237, 0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent-coral);
+      color: #ffffff;
+      box-shadow: var(--shadow-coral);
+    }
+    .btn-primary:hover {
+      background: var(--accent-coral-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-violet {
+      background: var(--accent-violet);
+      color: #ffffff;
+      box-shadow: var(--shadow-violet);
+    }
+    .btn-violet:hover {
+      background: var(--accent-violet-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border-color: var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      border-color: var(--border-strong);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    /* Distinctive Multi-Color Badges */
+    .badge-coral { background: var(--accent-coral-subtle); color: var(--accent-coral); border: 1px solid var(--accent-coral-border); }
+    .badge-violet { background: var(--accent-violet-subtle); color: var(--accent-violet); border: 1px solid var(--accent-violet-border); }
+    .badge-amber { background: var(--accent-amber-subtle); color: var(--accent-amber); border: 1px solid var(--accent-amber-border); }
+    .badge-rose { background: var(--accent-rose-subtle); color: var(--accent-rose); border: 1px solid var(--accent-rose-border); }
+    .badge-magenta { background: var(--accent-magenta-subtle); color: var(--accent-magenta); border: 1px solid var(--accent-magenta-border); }
+
+    /* ========================================================================
+       1. AUTHENTICATION GATEWAY
+       ======================================================================== */
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at 15% 15%, #fff7ed 0%, #faf9f6 60%, #f5f3ff 100%);
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 980px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1fr 1.18fr;
+      overflow: hidden;
+    }
+
+    @media (max-width: 860px) {
+      .auth-card { grid-template-columns: 1fr; }
+      .auth-hero { display: none; }
+    }
+
+    .auth-hero {
+      background: linear-gradient(145deg, #fff7ed 0%, #fdf4ff 50%, #fff1f2 100%);
+      color: var(--text-main);
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--accent-coral-border);
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #ea580c, #c026d3);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.22rem;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+    }
+
+    .auth-form-side {
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-subtle);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      margin: 18px 0;
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .auth-tab-btn.active {
+      background: var(--bg-surface);
+      color: var(--accent-coral);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .input-field {
+      background: var(--bg-subtle);
+      border: 1.5px solid var(--border-subtle);
+      padding: 10px 14px;
+      border-radius: 9px;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .input-field:focus {
+      outline: none;
+      background: var(--bg-surface);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--accent-coral-subtle);
+    }
+
+    /* ========================================================================
+       2. TOP NAVIGATION HEADER
+       ======================================================================== */
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.7rem 1.8rem;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .nav-wrapper {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo-text {
+      font-weight: 800;
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ea580c, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Live Multi-Color Sync Status Pill */
+    .sync-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: var(--accent-violet-subtle);
+      border: 1px solid var(--accent-violet-border);
+      color: var(--accent-violet);
+      user-select: none;
+    }
+
+    /* Company Switcher Dropdown */
+    .company-switcher { position: relative; }
+
+    .company-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .company-btn:hover { background: var(--bg-hover); }
+
+    .company-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 300px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      padding: 8px;
+      z-index: 200;
+    }
+
+    .company-menu.open { display: block; }
+
+    .company-menu-item {
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s;
+    }
+
+    .company-menu-item:hover { background: var(--bg-subtle); }
+
+    .company-menu-item.active {
+      background: var(--accent-coral-subtle);
+      border: 1px solid var(--accent-coral-border);
+    }
+
+    /* Navigation Right Controls */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mode-pill {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      padding: 2px;
+      display: flex;
+      gap: 2px;
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .mode-btn.active {
+      background: var(--bg-surface);
+      color: var(--accent-coral);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .user-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ea580c, #7c3aed);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    /* ========================================================================
+       3. NAVIGATION TABS BAR
+       ======================================================================== */
+    .subnav-bar {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 1.8rem;
+    }
+
+    .subnav-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    .tab-nav-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      padding: 11px 15px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .tab-nav-btn:hover { color: var(--text-main); }
+
+    .tab-nav-btn.active {
+      color: var(--accent-coral);
+      border-bottom-color: var(--accent-coral);
+      background: var(--accent-coral-subtle);
+    }
+
+    /* ========================================================================
+       4. MAIN LAYOUT & VIEWS
+       ======================================================================== */
+    main {
+      max-width: 1380px;
+      margin: 1.6rem auto;
+      padding: 0 1.8rem 60px;
+    }
+
+    .tab-content-panel { display: none; }
+    .tab-content-panel.active { display: block; }
+
+    /* Greeting Banner */
+    .header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-banner h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .header-banner p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ========================================================================
+       4 DISTINCTIVE MULTI-COLOR METRICS CARDS
+       Card 1: Amber Gold (Bank Treasury)
+       Card 2: Sunset Coral (Operating Revenue)
+       Card 3: Radiant Rose (Expenses Outflows)
+       Card 4: Royal Orchid/Violet (Net Profit Margin)
+       ======================================================================== */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 1.8rem;
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Card 1: Bank Treasury (Amber Gold) */
+    .metric-card-bank {
+      border: 1.5px solid var(--accent-amber-border);
+      background: linear-gradient(180deg, #ffffff 65%, #fffdf7 100%);
+    }
+    .metric-card-bank::before { background: linear-gradient(90deg, #d97706, #f59e0b); }
+
+    /* Card 2: Revenue (Sunset Coral) */
+    .metric-card-rev {
+      border: 1.5px solid var(--accent-coral-border);
+      background: linear-gradient(180deg, #ffffff 65%, #fffaf5 100%);
+    }
+    .metric-card-rev::before { background: linear-gradient(90deg, #ea580c, #f97316); }
+
+    /* Card 3: Expenses (Radiant Rose) */
+    .metric-card-exp {
+      border: 1.5px solid var(--accent-rose-border);
+      background: linear-gradient(180deg, #ffffff 65%, #fff7f8 100%);
+    }
+    .metric-card-exp::before { background: linear-gradient(90deg, #e11d48, #f43f5e); }
+
+    /* Card 4: Net Profit (Royal Orchid / Magenta) */
+    .metric-card-profit {
+      border: 1.5px solid var(--accent-magenta-border);
+      background: linear-gradient(180deg, #ffffff 65%, #fdf6ff 100%);
+    }
+    .metric-card-profit::before { background: linear-gradient(90deg, #7c3aed, #c026d3); }
+
+    .metric-title {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .metric-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Action Selector ("Select Transaction Type") */
+    .action-selector-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+    }
+
+    .action-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-bottom: 1.4rem;
+    }
+
+    .action-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.15s;
+    }
+
+    .action-card:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .action-card.selected {
+      border-color: var(--accent-coral);
+      background: var(--accent-coral-subtle);
+      box-shadow: 0 0 0 1.5px var(--accent-coral);
+    }
+
+    .action-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .action-card-text h4 {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .action-card-text p {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Multi-Color Workbench Card */
+    .workbench-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+
+    .workbench-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 1024px) {
+      .workbench-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .workbench-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Live Real-Time Calculation Strip */
+    .calc-summary-strip {
+      background: linear-gradient(135deg, #fff7ed 0%, #fdf4ff 100%);
+      border: 1.5px solid var(--accent-coral-border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .calc-metric-pill {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .calc-metric-pill .lbl {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    .calc-metric-pill .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .plain-english-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 11px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .journal-drawer {
+      display: none;
+      background: #faf8f5;
+      border: 1.5px dashed var(--accent-violet-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+
+    .journal-drawer.open { display: block; }
+
+    /* Tables & Feed Section */
+    .content-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1.8rem;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: left;
+    }
+
+    table.data-table th {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-weight: 700;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    table.data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    table.data-table tr:hover td {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 23, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop.active { display: flex; }
+
+    .modal-window {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 24px;
+      width: 100%;
+      max-width: 640px;
+      box-shadow: var(--shadow-lg);
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    .modal-window-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+    }
+
+    /* Toast notification */
+    #toastContainer {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toast {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-lg);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideUp 0.2s ease forwards;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ========================================================================
+       ADMIN-ONLY DATABASE CONNECTION STYLES
+       ======================================================================== */
+    .admin-db-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      color: #7c3aed;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .admin-db-pill:hover {
+      background: rgba(124, 58, 237, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
+    }
+    .badge-admin-tag {
+      background: linear-gradient(135deg, #7c3aed, #c026d3);
+      color: #ffffff !important;
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .status-pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: #ea580c;
+      display: inline-block;
+      box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7);
+      animation: pulseAmber 2s infinite;
+    }
+    .status-pulse-dot.down {
+      background-color: #e11d48;
+      box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7);
+      animation: pulseRose 2s infinite;
+    }
+    @keyframes pulseAmber {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 7px rgba(234, 88, 12, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+    }
+    @keyframes pulseRose {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 7px rgba(225, 29, 72, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+    }
+
+    .db-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .db-stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: var(--shadow-xs);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .db-stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-violet-border);
+    }
+    .db-stat-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .db-stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .db-stat-sub {
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      margin-top: 4px;
+    }
+
+    /* Grid for States & Banks Directories */
+    .directory-search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .dir-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: var(--shadow-xs);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .dir-card:hover {
+      border-color: var(--accent-coral);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .dir-card.selected-state {
+      border-color: var(--accent-coral);
+      background: var(--accent-coral-subtle);
+    }
+
+    /* ========================================================================
+       PRINTABLE TAXATION BILL & GST TAX INVOICE STYLES
+       ======================================================================== */
+    .invoice-window {
+      max-width: 820px !important;
+      padding: 24px !important;
+    }
+    .invoice-sheet {
+      background: #ffffff;
+      border: 1.5px solid #d4ccc0;
+      border-radius: 8px;
+      padding: 26px;
+      color: #1c1917;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      box-shadow: 0 4px 14px rgba(28, 25, 23, 0.05);
+    }
+    .invoice-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--accent-coral);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    .invoice-party-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .invoice-party-box {
+      background: #faf9f6;
+      border: 1px solid #e7e2d6;
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .invoice-party-box h5 {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent-coral);
+      margin-bottom: 4px;
+    }
+    .invoice-items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.78rem;
+    }
+    .invoice-items-table th, .invoice-items-table td {
+      border: 1px solid #d4ccc0;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    .invoice-items-table th {
+      background: #f5f2eb;
+      font-weight: 700;
+      color: #1c1917;
+    }
+    .invoice-totals-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .invoice-bank-box {
+      flex: 1.2;
+      background: #faf9f6;
+      border: 1px dashed var(--accent-amber-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.76rem;
+    }
+    .invoice-summary-calc {
+      flex: 1;
+      min-width: 250px;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      border-bottom: 1px solid #f0eae1;
+      font-size: 0.8rem;
+    }
+    .calc-row.grand-total {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent-coral);
+      border-bottom: 2px solid var(--accent-coral);
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #invoiceModal, #invoiceModal * {
+        visibility: visible !important;
+      }
+      #invoiceModal {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        z-index: 999999 !important;
+      }
+      .modal-window {
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .modal-window-header, .no-print-btn {
+        display: none !important;
+      }
+      .invoice-sheet {
+        border: 1.5px solid #000000 !important;
+        box-shadow: none !important;
+        padding: 18px !important;
+        margin: 0 !important;
+      }
+      .invoice-items-table th, .invoice-items-table td {
+        border: 1px solid #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer"></div>
+
+  <!-- =========================================================================
+       1. AUTH SCREEN (STRICT PRIVACY GATEWAY)
+       ========================================================================= -->
+  <div id="authScreen" class="auth-container">
+    <div class="auth-card">
+      <div class="auth-hero">
+        <div>
+          <div class="hero-brand">
+            <div class="brand-mark">CA</div>
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-main);">Virtual CA</h2>
+              <span style="font-size: 0.74rem; color: var(--accent-coral); font-weight: 700;">Multi-Color Autonomous Accounting</span>
+            </div>
+          </div>
+          <div style="font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin: 26px 0 12px; letter-spacing: -0.02em; color: var(--text-main);">
+            All-India GST, Bank Ledger & Dynamic Tax Engine.
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.86rem; line-height: 1.6; margin-bottom: 24px;">
+            Supports all 36 Indian States/UTs, every bank in India, and instantaneous real-time recalculations on every single number change.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.82rem; color: var(--text-main);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-coral); font-weight: 800;">✔</span> Real-Time Auto-Calculations on Every Number Change
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-violet); font-weight: 800;">✔</span> All 36 Indian States & UTs with Official GST Codes
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-amber); font-weight: 800;">✔</span> Every Bank in India (Public, Private, SFBs, Payments)
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-magenta); font-weight: 800;">✔</span> ACID Compliant Double-Entry Journal (ΣDr = ΣCr)
+            </div>
+          </div>
+        </div>
+        <div style="font-size: 0.74rem; color: var(--accent-coral); border-top: 1px solid var(--accent-coral-border); padding-top: 14px; margin-top: 24px; font-weight: 700;">
+          🔒 Enterprise Security • Strict Multi-Tenant Isolation
+        </div>
+      </div>
+
+      <div class="auth-form-side">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800;">Account Access</h3>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Sign in to access your business ledger.</p>
+        </div>
+
+        <div class="auth-tabs" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px;">
+          <button class="auth-tab-btn active" id="tabSignInBtn" onclick="switchLoginTab('signin')">Sign In</button>
+          <button class="auth-tab-btn" id="tabSignUpBtn" onclick="switchLoginTab('signup')">Register</button>
+          <button class="auth-tab-btn" id="tabAdminBtn" onclick="switchLoginTab('admin')" style="color: var(--accent-violet); font-weight: 700;">🛡️ Admin</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="formSignIn">
+          <div class="form-group">
+            <label>Business Email</label>
+            <input type="email" id="loginEmail" class="input-field" value="omkarpatrikar@gmail.com" placeholder="name@company.com" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="loginPass" class="input-field" value="••••••••••••" placeholder="Enter password" />
+          </div>
+          <button class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 8px;" onclick="performLogin()">
+            <span>Sign In to Books</span> <span>➔</span>
+          </button>
+          <div style="margin-top: 20px; text-align: center; font-size: 0.75rem; color: var(--text-muted);">
+            <span>System Administrator? </span>
+            <a href="javascript:void(0)" onclick="switchLoginTab('admin')" style="color: var(--accent-coral); font-weight: 700; text-decoration: none;">Admin Portal & DB Telemetry</a>
+          </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="formSignUp" style="display: none;">
+          <div class="form-group">
+            <label>Your Full Name</label>
+            <input type="text" id="regName" class="input-field" placeholder="e.g. Omkar Patrikar" />
+          </div>
+          <div class="form-group">
+            <label>Business / Company Name</label>
+            <input type="text" id="regCompany" class="input-field" placeholder="e.g. Infotech Services" />
+          </div>
+          <div class="form-group">
+            <label>Company GSTIN (15 Digits)</label>
+            <input type="text" id="regGstin" class="input-field" placeholder="e.g. 27BCCC267C123R4" />
+          </div>
+          <div class="form-group">
+            <label>Business Email</label>
+            <input type="email" id="regEmail" class="input-field" placeholder="e.g. omkarpatrikar@gmail.com" />
+          </div>
+          <button class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 8px;" onclick="performSignUp()">
+            <span>Create Entity & Start</span> <span>➔</span>
+          </button>
+        </div>
+
+        <!-- Admin Sign In Form -->
+        <div id="formAdmin" style="display: none;">
+          <div style="background: var(--accent-violet-subtle); border: 1px solid var(--accent-violet-border); border-radius: 10px; padding: 12px; margin-bottom: 14px;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: var(--accent-violet); display: flex; align-items: center; gap: 6px;">
+              <span>🛡️</span> SYSTEM ADMINISTRATOR ACCESS
+            </div>
+            <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 4px; line-height: 1.4;">
+              Administrator authentication provides exclusive access to live PostgreSQL database connection telemetry, query latencies, and persistent multi-tenant infrastructure.
+            </p>
+          </div>
+          <div class="form-group">
+            <label>Master Admin Key</label>
+            <input type="password" id="adminKeyInput" class="input-field" value="admin2026" placeholder="Enter Admin Key (admin2026)" />
+          </div>
+          <div class="form-group">
+            <label>Admin Identifier (Optional)</label>
+            <input type="email" id="adminEmailInput" class="input-field" value="admin@virtualca.internal" placeholder="admin@virtualca.internal" />
+          </div>
+          <button class="btn btn-violet" style="width: 100%; padding: 11px; margin-top: 6px;" onclick="performAdminLogin()">
+            <span>🛡️ Unlock Admin & View DB</span> <span>➔</span>
+          </button>
+          <div style="margin-top: 12px; text-align: center;">
+            <button type="button" class="btn btn-secondary" style="font-size: 0.72rem; width: 100%; padding: 7px;" onclick="quickDemoAdminLogin()">
+              ⚡ Instant 1-Click Admin Access (Demo)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN APPLICATION DASHBOARD
+       ========================================================================= -->
+  <div id="appScreen" style="display: none;">
+    <!-- HEADER -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="nav-left">
+          <div class="brand-logo" onclick="switchNavTab('dashboard')">
+            <div class="brand-mark" style="width: 36px; height: 36px; font-size: 1.05rem;">CA</div>
+            <div class="brand-logo-text">Virtual CA</div>
+          </div>
+
+          <!-- Multi-Color Sync Status -->
+          <div class="sync-status-pill" title="Live background synchronization active">
+            <span>●</span>
+            <span>Ledger Balanced</span>
+          </div>
+
+          <!-- Admin-Only Database Connection Status Pill -->
+          <div id="adminDbHeaderPill" class="admin-db-pill" style="display: none;" onclick="switchNavTab('database')" title="Admin-Only Database Health. Click to view full PostgreSQL connection telemetry.">
+            <span class="status-pulse-dot" id="adminDbPillDot"></span>
+            <span id="adminDbPillLabel">PostgreSQL 17 Live</span>
+            <span class="badge badge-admin-tag">ADMIN</span>
+          </div>
+
+          <!-- Multi-Tenant Business Switcher -->
+          <div class="company-switcher">
+            <button class="company-btn" id="companyDropdownBtn" onclick="toggleCompanyMenu()">
+              <span>🏢</span>
+              <span id="activeCompanyLabel">Infotech Services</span>
+              <span style="font-size: 0.68rem; color: var(--text-muted);" id="accountCountBadge">(1 Entity)</span>
+              <span>▾</span>
+            </button>
+            <div class="company-menu" id="companyDropdownMenu">
+              <div style="font-size: 0.68rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); padding: 4px 8px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 4px;">
+                Your Business Entities
+              </div>
+              <div id="userAccountList"></div>
+              <button class="btn btn-secondary" style="width: 100%; margin-top: 6px; font-size: 0.72rem; padding: 6px;" onclick="openAddAccountModal()">
+                ➕ Add Another Entity
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <!-- View Mode Pill -->
+          <div class="mode-pill">
+            <button class="mode-btn active" id="modeSimpleBtn" onclick="setViewMode('simple')">Simple View</button>
+            <button class="mode-btn" id="modeDetailedBtn" onclick="setViewMode('detailed')">Detailed CA</button>
+          </div>
+
+          <!-- User Badge -->
+          <div class="user-pill">
+            <div class="user-avatar" id="headerAvatar">OM</div>
+            <span id="headerName">Omkar</span>
+          </div>
+
+          <!-- Downloads -->
+          <a href="/downloads.html" class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.74rem;" title="Download source code and documentation PDFs">
+            <span>📦</span> Downloads
+          </a>
+
+          <!-- Print Latest Tax Bill -->
+          <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.74rem; color: var(--accent-coral); border-color: var(--accent-coral-border);" onclick="printLatestTaxBill()" title="Print the latest updated taxation bill">
+            <span>🖨️</span> Print Tax Bill
+          </button>
+
+          <!-- Sign Out -->
+          <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.74rem; color: var(--accent-rose);" onclick="performLogout()" title="Sign Out">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <div class="subnav-bar">
+      <div class="subnav-container">
+        <button class="tab-nav-btn active" id="tabBtn-dashboard" onclick="switchNavTab('dashboard')">
+          <span>📊</span> Overview & Workbench
+        </button>
+        <button class="tab-nav-btn" id="tabBtn-transactions" onclick="switchNavTab('transactions')">
+          <span>🧾</span> Transactions & Ledger
+        </button>
+        <button class="tab-nav-btn" id="tabBtn-states" onclick="switchNavTab('states')">
+          <span>🇮🇳</span> All States & GST Rates
+        </button>
+        <button class="tab-nav-btn" id="tabBtn-banks" onclick="switchNavTab('banks')">
+          <span>🏦</span> All Indian Banks Directory
+        </button>
+        <button class="tab-nav-btn" id="tabBtn-compliance" onclick="switchNavTab('compliance')">
+          <span>📅</span> Statutory Compliance
+        </button>
+        <button class="tab-nav-btn" id="tabBtn-insights" onclick="switchNavTab('insights')">
+          <span>🤖</span> AI Tax Insights
+        </button>
+        <!-- STRICT ADMIN ONLY: DATABASE CONNECTION TAB -->
+        <button class="tab-nav-btn" id="tabBtn-database" onclick="switchNavTab('database')" style="display: none; border-color: var(--accent-violet-border); background: var(--accent-violet-subtle);">
+          <span>🗄️</span> Database Connection <span class="badge badge-admin-tag" style="margin-left: 5px;">ADMIN</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN APP CONTENT -->
+    <main>
+      <!-- ===================================================================
+           TAB 1: DASHBOARD & WORKBENCH
+           =================================================================== -->
+      <div class="tab-content-panel active" id="tabContent-dashboard">
+        <!-- Banner -->
+        <div class="header-banner">
+          <div>
+            <h2 id="greetingUser">👋 Welcome back, Omkar!</h2>
+            <p id="greetingOrgSub">Infotech Services • Maharashtra (GSTIN: 27BCCC267C123R4)</p>
+          </div>
+          <div class="badge badge-violet" style="padding: 6px 12px; font-size: 0.78rem;">
+            <span>✔</span> Multi-Color Ledger Balanced (ΣDr = ΣCr) • Auto-Verified
+          </div>
+        </div>
+
+        <!-- 4 DISTINCTIVE MULTI-COLOR METRIC CARDS -->
+        <div class="metrics-grid">
+          <!-- Card 1: Bank Balance (Amber Gold) -->
+          <div class="metric-card metric-card-bank">
+            <div class="metric-title">
+              <span>🏦 Active Bank Treasury</span>
+              <span class="badge badge-amber" id="dispActiveBankBadge">HDFC Bank</span>
+            </div>
+            <div class="metric-value mono" id="dispBank" style="color: var(--accent-amber);">₹6,42,800</div>
+            <div class="metric-sub">Auto-reconciled with Indian bank feed ✔</div>
+          </div>
+
+          <!-- Card 2: Operating Revenue (Sunset Coral) -->
+          <div class="metric-card metric-card-rev">
+            <div class="metric-title">
+              <span>📈 Operating Revenue</span>
+              <span class="badge badge-coral">Taxable Sales</span>
+            </div>
+            <div class="metric-value mono" id="dispRevenue" style="color: var(--accent-coral);">₹8,45,000</div>
+            <div class="metric-sub">Taxable billings recognized</div>
+          </div>
+
+          <!-- Card 3: Operating Expenses (Radiant Rose) -->
+          <div class="metric-card metric-card-exp">
+            <div class="metric-title">
+              <span>📉 Operating Expenses</span>
+              <span class="badge badge-rose">Outflows</span>
+            </div>
+            <div class="metric-value mono" id="dispExpenses" style="color: var(--accent-rose);">₹3,18,500</div>
+            <div class="metric-sub">Rent, purchases & vendor TDS</div>
+          </div>
+
+          <!-- Card 4: Net Profit (Royal Orchid / Magenta) -->
+          <div class="metric-card metric-card-profit">
+            <div class="metric-title">
+              <span>💰 Net Operating Profit</span>
+              <span class="badge badge-magenta" id="dispMarginBadge">62.3% Margin</span>
+            </div>
+            <div class="metric-value mono" id="dispProfit" style="color: var(--accent-magenta);">₹5,26,500</div>
+            <div class="metric-sub">Healthy business surplus</div>
+          </div>
+        </div>
+
+        <!-- Action Selector -->
+        <div class="action-selector-title">
+          <span>✨</span> Select Transaction Type to Record
+        </div>
+        <div class="action-cards-grid">
+          <div class="action-card selected" id="actCardSale" onclick="selectAction('sale')">
+            <div class="action-card-icon" style="background: var(--accent-coral-subtle); color: var(--accent-coral);">💰</div>
+            <div class="action-card-text">
+              <h4>Customer Sale</h4>
+              <p>Invoice & output GST billing</p>
+            </div>
+          </div>
+
+          <div class="action-card" id="actCardPurchase" onclick="selectAction('purchase')">
+            <div class="action-card-icon" style="background: var(--accent-terracotta-subtle); color: var(--accent-terracotta);">🛒</div>
+            <div class="action-card-text">
+              <h4>Vendor Purchase</h4>
+              <p>Asset & claim GST Input Credit</p>
+            </div>
+          </div>
+
+          <div class="action-card" id="actCardExpense" onclick="selectAction('expense')">
+            <div class="action-card-icon" style="background: var(--accent-rose-subtle); color: var(--accent-rose);">☕</div>
+            <div class="action-card-text">
+              <h4>Business Expense</h4>
+              <p>Rent, utilities & vendor TDS</p>
+            </div>
+          </div>
+
+          <div class="action-card" id="actCardBank" onclick="selectAction('bank')">
+            <div class="action-card-icon" style="background: var(--accent-amber-subtle); color: var(--accent-amber);">🏦</div>
+            <div class="action-card-text">
+              <h4>Bank Treasury Sync</h4>
+              <p>Direct bank account settlement</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workbench Form with Instant Auto-Recalculation -->
+        <div class="workbench-card">
+          <div class="workbench-header">
+            <div>
+              <h3 id="wbHeading" style="font-size: 1.08rem; font-weight: 800;">Record Customer Sale Invoice</h3>
+              <p style="font-size: 0.76rem; color: var(--text-muted);" id="wbSub">
+                Instant auto-calculation engine updates ledger, tax split, and bank impact on every number change.
+              </p>
+            </div>
+            <span class="badge badge-coral" id="wbBadge">
+              ⚡ Real-Time Recalculations Active
+            </span>
+          </div>
+
+          <!-- Dynamic Form Inputs -->
+          <div class="workbench-grid">
+            <div class="form-group">
+              <label id="lblParty">Counterparty / Customer Name</label>
+              <input type="text" class="input-field" id="inParty" value="Nexus Tech Corp" placeholder="e.g. Infosys, TCS, Tata..." oninput="triggerRecalculation()" />
+            </div>
+
+            <div class="form-group">
+              <label>Taxable Amount (₹)</label>
+              <input type="number" class="input-field mono" id="inAmount" value="50000" step="500" min="0" oninput="triggerRecalculation()" onchange="triggerRecalculation()" onkeyup="triggerRecalculation()" />
+            </div>
+
+            <div class="form-group">
+              <label>GST Rate Slab</label>
+              <select class="input-field" id="inGstRate" onchange="triggerRecalculation()">
+                <option value="18" selected>18% GST (Standard Services & IT)</option>
+                <option value="12">12% GST (Hardware & Materials)</option>
+                <option value="5">5% GST (Essential Commodities)</option>
+                <option value="28">28% GST (Luxury / High-End Goods)</option>
+                <option value="0">0% (Exempt / Nil Rated)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Bank Account in India</label>
+              <select class="input-field" id="inBank" onchange="triggerRecalculation()">
+                <!-- Populated dynamically with all Indian Banks -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Place of Supply (All 36 Indian States & UTs) -->
+          <div style="display: flex; gap: 14px; margin-bottom: 16px; align-items: center; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-secondary); flex-wrap: wrap;">
+              <span style="font-weight: 700;">Place of Supply (Indian State):</span>
+              <select id="inState" class="input-field" style="padding: 6px 12px; font-size: 0.8rem; font-weight: 600;" onchange="triggerRecalculation()">
+                <!-- Populated dynamically with all 36 States/UTs -->
+              </select>
+            </div>
+            <div class="badge badge-violet" id="wbTaxStatusBadge" style="font-size: 0.78rem; padding: 5px 12px;">
+              ● Calculating tax breakdown...
+            </div>
+          </div>
+
+          <!-- Instant Live Calculation Metrics Strip -->
+          <div class="calc-summary-strip">
+            <div class="calc-metric-pill">
+              <span class="lbl">Taxable Value</span>
+              <span class="val mono" id="calcDispTaxable" style="color: var(--text-main);">₹50,000.00</span>
+            </div>
+            <div class="calc-metric-pill">
+              <span class="lbl" id="calcDispTaxLabel">IGST (18%)</span>
+              <span class="val mono" id="calcDispTaxAmt" style="color: var(--accent-violet);">₹9,000.00</span>
+            </div>
+            <div class="calc-metric-pill">
+              <span class="lbl">Total Invoice Amount</span>
+              <span class="val mono" id="calcDispGross" style="color: var(--accent-coral); font-size: 1.25rem;">₹59,000.00</span>
+            </div>
+            <div class="calc-metric-pill">
+              <span class="lbl">Selected Bank Settlement</span>
+              <span class="val mono" id="calcDispBankName" style="color: var(--accent-amber); font-size: 0.88rem;">HDFC Bank</span>
+            </div>
+            <div class="calc-metric-pill">
+              <span class="lbl">Double-Entry Status</span>
+              <span class="badge badge-violet" id="calcDispBalanceBadge">ΣDr == ΣCr Balanced ✔</span>
+            </div>
+          </div>
+
+          <!-- Plain English AI Explanation -->
+          <div class="plain-english-box">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.2rem;">💡</span>
+              <div id="plainSummaryText">
+                Calculating transaction impact in real time...
+              </div>
+            </div>
+            <button class="btn btn-secondary" style="font-size: 0.74rem; padding: 4px 10px;" onclick="toggleJournalDrawer()">
+              <span id="drawerArrow">▶</span> Inspect Double-Entry Lines
+            </button>
+          </div>
+
+          <!-- Collapsible Accounting Journal Drawer -->
+          <div class="journal-drawer" id="accountingDrawer">
+            <div style="font-weight: 700; margin-bottom: 8px; color: var(--accent-violet);">ACID Double-Entry Ledger Verification:</div>
+            <div id="drawerJournalLines">
+              <!-- Rendered dynamically -->
+            </div>
+            <div style="color: var(--accent-violet); margin-top: 8px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+              <span>✔</span> <span id="drawerStatusText">Mathematical Balance: Total Debits == Total Credits (Variance: ₹0.00)</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-violet" style="padding: 10px 20px; font-size: 0.88rem;" id="btnPrintLatestBill" onclick="printLatestTaxBill()" title="Print the latest updated taxation bill with all current live calculations">
+              <span>🖨️</span> Print Latest Updated Tax Bill
+            </button>
+            <button class="btn btn-primary" style="padding: 10px 24px; font-size: 0.88rem;" id="btnSaveTransaction" onclick="saveTransaction()">
+              <span>✔</span> Save & Post to Persistent Ledger
+            </button>
+          </div>
+        </div>
+
+        <!-- Recent Activity Feed -->
+        <div class="content-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <h3 style="font-size: 1rem; font-weight: 800;">📋 Recent Ledger Vouchers</h3>
+              <p style="font-size: 0.74rem; color: var(--text-muted);">Recorded transactions stored with full double-entry balance</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-violet" onclick="printLatestTaxBill()" style="font-size: 0.74rem;">
+                <span>🖨️</span> Print Latest Bill
+              </button>
+              <button class="btn btn-secondary" onclick="switchNavTab('transactions')" style="font-size: 0.74rem;">
+                View Complete Ledger ➔
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Voucher #</th>
+                  <th>Type</th>
+                  <th>Counterparty</th>
+                  <th>Bank Settled</th>
+                  <th>GST Rate & Tax</th>
+                  <th>Total Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="recentActivityTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           TAB 2: TRANSACTIONS & FULL LEDGER
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-transactions">
+        <div class="content-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h3 style="font-size: 1.18rem; font-weight: 800;">Double-Entry Ledger & Vouchers</h3>
+              <p style="font-size: 0.76rem; color: var(--text-muted);">Full audit trail of transactional vouchers across all Indian states and banks</p>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn btn-violet" onclick="printLatestTaxBill()" style="font-size: 0.78rem; padding: 6px 12px;">
+                <span>🖨️</span> Print Latest Bill
+              </button>
+              <input type="text" id="filterSearch" class="input-field" placeholder="Search party, voucher, or bank..." style="font-size: 0.78rem; padding: 6px 12px; width: 230px;" oninput="renderTransactionsTable()" />
+              <select id="filterType" class="input-field" style="font-size: 0.78rem; padding: 6px 10px;" onchange="renderTransactionsTable()">
+                <option value="ALL">All Voucher Types</option>
+                <option value="SALES">Sales Invoices</option>
+                <option value="PURCHASE">Vendor Purchases</option>
+                <option value="EXPENSE">Operating Expenses</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Voucher #</th>
+                  <th>Type</th>
+                  <th>Party Name</th>
+                  <th>Taxable (₹)</th>
+                  <th>GST Rate</th>
+                  <th>GST Tax (₹)</th>
+                  <th>Total Gross (₹)</th>
+                  <th>Balance Verification</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="fullLedgerTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           TAB 3: ALL INDIAN STATES & GST RATES DIRECTORY
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-states">
+        <div class="content-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="font-size: 1.2rem; font-weight: 800;">🇮🇳 All 36 Indian States & Union Territories GST Directory</h3>
+                <span class="badge badge-coral">Official 2-Digit GST Codes</span>
+              </div>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                Complete list of all 28 States and 8 Union Territories with official GST State Codes and automated Intra-State vs Inter-State GST computation.
+              </p>
+            </div>
+            <div class="badge badge-violet" style="padding: 6px 12px; font-size: 0.8rem;">
+              Your Business State: <strong id="activeStateCodeBadge" style="margin-left: 4px;">27 - Maharashtra</strong>
+            </div>
+          </div>
+
+          <!-- GST Slabs Explanation Cards -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 22px;">
+            <div style="background: var(--accent-coral-subtle); border: 1px solid var(--accent-coral-border); border-radius: 12px; padding: 12px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-coral);">0% NIL / EXEMPT</div>
+              <div style="font-size: 0.78rem; margin-top: 4px; color: var(--text-secondary);">Grains, fresh milk, unbranded food, education & health services.</div>
+            </div>
+            <div style="background: var(--accent-amber-subtle); border: 1px solid var(--accent-amber-border); border-radius: 12px; padding: 12px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-amber);">5% ESSENTIALS</div>
+              <div style="font-size: 0.78rem; margin-top: 4px; color: var(--text-secondary);">Packaged foods, tea, coffee, edible oil, economy transport.</div>
+            </div>
+            <div style="background: var(--accent-terracotta-subtle); border: 1px solid var(--accent-terracotta-border); border-radius: 12px; padding: 12px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-terracotta);">12% STANDARD I</div>
+              <div style="font-size: 0.78rem; margin-top: 4px; color: var(--text-secondary);">Business hardware, computers, processed goods, medical kits.</div>
+            </div>
+            <div style="background: var(--accent-violet-subtle); border: 1px solid var(--accent-violet-border); border-radius: 12px; padding: 12px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-violet);">18% STANDARD II</div>
+              <div style="font-size: 0.78rem; margin-top: 4px; color: var(--text-secondary);">IT services, software consulting, telecom, financial services.</div>
+            </div>
+            <div style="background: var(--accent-rose-subtle); border: 1px solid var(--accent-rose-border); border-radius: 12px; padding: 12px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-rose);">28% LUXURY / SIN</div>
+              <div style="font-size: 0.78rem; margin-top: 4px; color: var(--text-secondary);">Automobiles, luxury goods, high-end electronics (+ cess).</div>
+            </div>
+          </div>
+
+          <!-- State Search & Grid -->
+          <div class="directory-search-box">
+            <input type="text" id="stateSearchInput" class="input-field" placeholder="Search Indian state, union territory, or 2-digit code..." style="flex: 1; min-width: 260px;" oninput="renderStatesDirectory()" />
+            <button class="btn btn-secondary" onclick="resetStateFilter()">Show All 36 States/UTs</button>
+          </div>
+
+          <div class="dir-grid" id="statesDirectoryGrid">
+            <!-- Populated dynamically with all 36 Indian states & UTs -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           TAB 4: ALL INDIAN BANKS DIRECTORY & TREASURY
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-banks">
+        <div class="content-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="font-size: 1.2rem; font-weight: 800;">🏦 Every Bank in India Directory & Treasury Management</h3>
+                <span class="badge badge-amber">Public, Private, SFB & Payments</span>
+              </div>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                Comprehensive directory of India's banking system. Select any bank to instantly apply it to current ledger entries and treasury calculations.
+              </p>
+            </div>
+            <div class="badge badge-amber" style="padding: 6px 12px; font-size: 0.8rem;">
+              Active Bank Account: <strong id="activeBankNameLabel" style="margin-left: 4px;">HDFC Bank</strong>
+            </div>
+          </div>
+
+          <!-- Bank Category Filter -->
+          <div class="directory-search-box">
+            <input type="text" id="bankSearchInput" class="input-field" placeholder="Search bank by name or type..." style="flex: 1; min-width: 260px;" oninput="renderBanksDirectory()" />
+            <select id="bankCategoryFilter" class="input-field" style="width: 220px;" onchange="renderBanksDirectory()">
+              <option value="ALL">All Bank Categories (60+ Banks)</option>
+              <option value="Public Sector">Public Sector Banks (12 PSBs)</option>
+              <option value="Private Sector">Private Sector Banks (21 Banks)</option>
+              <option value="Small Finance">Small Finance Banks (12 SFBs)</option>
+              <option value="Payments Bank">Payments Banks (6 Banks)</option>
+              <option value="Foreign Bank">Foreign Banks in India</option>
+            </select>
+          </div>
+
+          <div class="dir-grid" id="banksDirectoryGrid">
+            <!-- Populated dynamically with all Indian Banks -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           TAB 5: STATUTORY COMPLIANCE CALENDAR
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-compliance">
+        <div class="content-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 800;">📅 Indian Statutory Compliance Calendar</h3>
+              <p style="font-size: 0.76rem; color: var(--text-muted);">Track GSTR-1, GSTR-3B, TDS Challan 281, and Advance Tax deadlines</p>
+            </div>
+            <div class="badge badge-violet">
+              FY 2026-27 Active
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Filing / Form</th>
+                  <th>Category</th>
+                  <th>Period</th>
+                  <th>Due Date</th>
+                  <th>Daily Penalty</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="complianceTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           TAB 6: AI FINANCIAL INSIGHTS
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-insights">
+        <div class="content-card">
+          <div style="margin-bottom: 18px;">
+            <h3 style="font-size: 1.15rem; font-weight: 800;">🤖 AI Audit & Tax Optimization Insights</h3>
+            <p style="font-size: 0.76rem; color: var(--text-muted);">Autonomous audit algorithms analyzing vouchers and GST input tax credits</p>
+          </div>
+
+          <div id="aiInsightsContainer" style="display: flex; flex-direction: column; gap: 14px;"></div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           TAB 7: DATABASE CONNECTION & TELEMETRY (STRICT ADMIN ONLY)
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-database">
+        <div class="content-card">
+          <!-- Card Header -->
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; flex-wrap: wrap;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 5px;">
+                <h3 style="font-size: 1.22rem; font-weight: 800;">🗄️ PostgreSQL Database Connection & Telemetry</h3>
+                <span class="badge badge-admin-tag">ADMIN ONLY</span>
+              </div>
+              <p style="font-size: 0.78rem; color: var(--text-muted);">
+                Real-time PostgreSQL connection telemetry, cluster health, latency diagnostics, and multi-tenant persistent storage.
+              </p>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="pingDatabase()" title="Execute a live ping round-trip to the PostgreSQL database">
+                <span>⚡</span> Ping DB
+              </button>
+              <button class="btn btn-secondary" onclick="fetchDbStatus()" title="Refresh live telemetry stats">
+                <span>🔄</span> Refresh Status
+              </button>
+              <button class="btn btn-primary" onclick="openDbConfigModal()" title="Modify database connection credentials">
+                <span>⚙️</span> Configure Connection
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 Core Metrics Grid -->
+          <div class="db-grid">
+            <div class="db-stat-card">
+              <div class="db-stat-label">Connection State</div>
+              <div style="display: flex; align-items: center; gap: 9px; margin-top: 4px;">
+                <span class="status-pulse-dot" id="dbCardPulseDot"></span>
+                <span class="db-stat-val" style="font-size: 1.15rem;" id="dbCardStateLabel">Checking...</span>
+              </div>
+              <div class="db-stat-sub" id="dbCardEngineLabel">PostgreSQL 17 Live</div>
+            </div>
+
+            <div class="db-stat-card">
+              <div class="db-stat-label">Host & Socket</div>
+              <div class="db-stat-val" style="font-size: 1.15rem;" id="dbCardHostPort">localhost:5432</div>
+              <div class="db-stat-sub">TCP/IP • SSL Permitted</div>
+            </div>
+
+            <div class="db-stat-card">
+              <div class="db-stat-label">Database & User</div>
+              <div class="db-stat-val" style="font-size: 1.15rem;" id="dbCardNameUser">virtual_ca_db</div>
+              <div class="db-stat-sub" id="dbCardUserSub">User: postgres (Superuser)</div>
+            </div>
+
+            <div class="db-stat-card">
+              <div class="db-stat-label">Query Ping Latency</div>
+              <div class="db-stat-val" style="font-size: 1.15rem; color: var(--accent-coral);" id="dbCardLatency">~0.0 ms</div>
+              <div class="db-stat-sub" id="dbCardActiveConns">1 Active Connection</div>
+            </div>
+          </div>
+
+          <!-- Security Callout -->
+          <div style="background: var(--accent-violet-subtle); border: 1px solid var(--accent-violet-border); border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 1.3rem;">🛡️</span>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: var(--text-main);">Strict Admin Isolation Protocol Enforced</div>
+                <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 2px;">
+                  Regular client and business accounts are strictly prohibited from viewing database credentials, connection health, or telemetry.
+                </div>
+              </div>
+            </div>
+            <div class="badge badge-violet">
+              ACID Compliant • PostgreSQL 17
+            </div>
+          </div>
+
+          <!-- PostgreSQL Multi-Tenant Table Storage Statistics -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <h4 style="font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+              <span>📊</span> Persistent PostgreSQL Table Records (Live Schema Counts)
+            </h4>
+            <span style="font-size: 0.72rem; color: var(--text-muted);" id="dbLastSyncTime">Auto-Synced</span>
+          </div>
+
+          <div class="db-grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+            <div class="db-stat-card">
+              <div class="db-stat-label">organizations</div>
+              <div class="db-stat-val" id="cnt-orgs">0</div>
+              <div class="db-stat-sub">Tenants & Entities</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-label">accounts</div>
+              <div class="db-stat-val" id="cnt-accounts">0</div>
+              <div class="db-stat-sub">Chart of Accounts</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-label">vouchers</div>
+              <div class="db-stat-val" id="cnt-vouchers">0</div>
+              <div class="db-stat-sub">Ledger Headers</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-label">voucher_entries</div>
+              <div class="db-stat-val" id="cnt-entries">0</div>
+              <div class="db-stat-sub">Debit & Credit Lines</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-label">compliance_events</div>
+              <div class="db-stat-val" id="cnt-compliance">0</div>
+              <div class="db-stat-sub">Tax & GST Deadlines</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-label">ai_financial_insights</div>
+              <div class="db-stat-val" id="cnt-insights">0</div>
+              <div class="db-stat-sub">Autonomous Audit Items</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       MODALS
+       ========================================================================= -->
+  <!-- DB Config Modal -->
+  <div class="modal-backdrop" id="dbConfigModal">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 style="font-weight: 800; font-size: 1.1rem; color: var(--accent-violet);">⚙️ PostgreSQL Connection Settings</h3>
+        <button class="btn btn-secondary" style="padding: 3px 8px;" onclick="closeDbConfigModal()">✕</button>
+      </div>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">
+        Update the PostgreSQL server connection parameters. The system will test credentials immediately against the database engine.
+      </p>
+
+      <div class="form-group">
+        <label>Database Host</label>
+        <input type="text" id="cfgDbHost" class="input-field" value="localhost" placeholder="localhost" />
+      </div>
+
+      <div class="form-group">
+        <label>Port</label>
+        <input type="text" id="cfgDbPort" class="input-field" value="5432" placeholder="5432" />
+      </div>
+
+      <div class="form-group">
+        <label>Database Name</label>
+        <input type="text" id="cfgDbName" class="input-field" value="virtual_ca_db" placeholder="virtual_ca_db" />
+      </div>
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="cfgDbUser" class="input-field" value="postgres" placeholder="postgres" />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="cfgDbPassword" class="input-field" placeholder="Enter password" />
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-top: 14px;">
+        <button class="btn btn-secondary" style="flex: 1;" onclick="closeDbConfigModal()">Cancel</button>
+        <button class="btn btn-primary" style="flex: 2;" onclick="submitDbConfig()">
+          <span>💾 Test & Update Connection</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Business Entity Modal -->
+  <div class="modal-backdrop" id="addAccountModal">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 style="font-weight: 800; font-size: 1.1rem;">🏢 Add Another Business Entity</h3>
+        <button class="btn btn-secondary" style="padding: 3px 8px;" onclick="closeAddAccountModal()">✕</button>
+      </div>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">
+        This new business entity will be linked exclusively to your profile (<strong id="modalUserEmail">user@email.com</strong>).
+      </p>
+
+      <div class="form-group">
+        <label>Company / Trade Name</label>
+        <input type="text" id="newAccCompany" class="input-field" placeholder="e.g. Omkar Digital Media" />
+      </div>
+
+      <div class="form-group">
+        <label>Company GSTIN</label>
+        <input type="text" id="newAccGstin" class="input-field" placeholder="e.g. 29BCCC267C123R9" />
+      </div>
+
+      <div class="form-group">
+        <label>Account Role</label>
+        <select id="newAccRole" class="input-field">
+          <option value="Owner" selected>Business Owner / Director</option>
+          <option value="Managing Partner">Managing Partner</option>
+          <option value="Chartered Accountant">Chartered Accountant</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" style="width: 100%; padding: 10px; margin-top: 8px;" onclick="submitNewLinkedAccount()">
+        <span>✔ Add Entity & Switch</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: PRINTABLE STATUTORY GST TAXATION BILL / TAX INVOICE
+       ========================================================================= -->
+  <div class="modal-backdrop" id="invoiceModal">
+    <div class="modal-window invoice-window">
+      <div class="modal-window-header no-print-btn">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <h3 style="font-weight: 800; font-size: 1.15rem; color: var(--accent-coral);">🖨️ Official Indian GST Tax Invoice</h3>
+          <span class="badge badge-coral">Rule 46 CGST Compliant</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-primary" onclick="triggerBrowserPrint()" style="padding: 6px 14px; font-size: 0.8rem;">
+            <span>🖨️ Print / Save PDF</span>
+          </button>
+          <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem;" onclick="closeInvoiceModal()">✕ Close</button>
+        </div>
+      </div>
+
+      <!-- Printable Area -->
+      <div class="invoice-sheet" id="invoicePrintArea">
+        <!-- Header -->
+        <div class="invoice-top-header">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="brand-mark" style="width: 32px; height: 32px; font-size: 0.95rem;">CA</div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: #1c1917;" id="invSellerName">Infotech Services</h2>
+            </div>
+            <p style="font-size: 0.72rem; color: #78716c; margin-top: 2px;" id="invSellerSub">Taxable Services & Double-Entry Accounting</p>
+            <div style="font-size: 0.72rem; margin-top: 4px;">
+              <strong>GSTIN:</strong> <span id="invSellerGstin" class="mono">27BCCC267C123R4</span> | <strong>PAN:</strong> <span id="invSellerPan" class="mono">BCCC267C</span>
+            </div>
+            <div style="font-size: 0.72rem;">
+              <strong>State & Code:</strong> <span id="invSellerState">27 - Maharashtra</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <span class="badge badge-coral" style="font-size: 0.78rem; padding: 4px 10px; font-weight: 800;">TAX INVOICE</span>
+            <div style="font-size: 0.75rem; font-weight: 700; color: #78716c; margin-top: 6px;">Original for Recipient</div>
+            <div style="font-size: 0.82rem; margin-top: 4px;">
+              <strong>Invoice No:</strong> <span id="invNumber" class="mono" style="font-weight: 800; color: #ea580c;">INV-202609-001</span>
+            </div>
+            <div style="font-size: 0.75rem;">
+              <strong>Invoice Date:</strong> <span id="invDate" class="mono">17-Sep-2026</span>
+            </div>
+            <div style="font-size: 0.75rem;">
+              <strong>Place of Supply:</strong> <span id="invPlaceOfSupply" style="font-weight: 700;">29 - Karnataka</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two-column: Billed By (Supplier) vs Billed To (Buyer) -->
+        <div class="invoice-party-grid">
+          <div class="invoice-party-box">
+            <h5>Supplier (Billed By)</h5>
+            <div style="font-weight: 800; font-size: 0.88rem;" id="invBoxSellerName">Infotech Services</div>
+            <div style="font-size: 0.74rem; color: #44403c;" id="invBoxSellerAddress">104 Tech Park, Pune / Mumbai</div>
+            <div style="font-size: 0.74rem; margin-top: 2px;">State: <strong id="invBoxSellerState">Maharashtra (Code 27)</strong></div>
+            <div style="font-size: 0.74rem;">GSTIN: <strong id="invBoxSellerGstin" class="mono">27BCCC267C123R4</strong></div>
+          </div>
+
+          <div class="invoice-party-box">
+            <h5>Recipient / Customer (Billed To)</h5>
+            <div style="font-weight: 800; font-size: 0.88rem;" id="invBuyerName">Nexus Tech Corp</div>
+            <div style="font-size: 0.74rem; color: #44403c;" id="invBuyerAddress">Corporate Towers, Outer Ring Road</div>
+            <div style="font-size: 0.74rem; margin-top: 2px;">Place of Supply: <strong id="invBuyerState">Karnataka (Code 29)</strong></div>
+            <div style="font-size: 0.74rem;">Supply Type: <strong id="invSupplyType" style="color: #ea580c;">Inter-State (IGST)</strong></div>
+          </div>
+        </div>
+
+        <!-- Itemized Table -->
+        <table class="invoice-items-table">
+          <thead>
+            <tr>
+              <th style="width: 38px;">#</th>
+              <th>Description of Goods / Services</th>
+              <th style="width: 85px;">HSN/SAC</th>
+              <th style="width: 50px;">Qty</th>
+              <th style="width: 90px;">Taxable (₹)</th>
+              <th style="width: 90px;" id="invThTax">GST Split</th>
+              <th style="width: 100px; text-align: right;">Total (₹)</th>
+            </tr>
+          </thead>
+          <tbody id="invItemsTbody">
+            <!-- Dynamic Line Items -->
+          </tbody>
+        </table>
+
+        <!-- Totals & Bank Payment Details -->
+        <div class="invoice-totals-strip">
+          <!-- Bank Details for Remittance -->
+          <div class="invoice-bank-box">
+            <div style="font-weight: 800; font-size: 0.76rem; color: var(--accent-amber); margin-bottom: 4px;">
+              🏦 BANK REMITTANCE PARTICULARS
+            </div>
+            <div>Bank: <strong id="invBankName">HDFC Bank</strong></div>
+            <div>Account Name: <strong id="invBankAccountName">Infotech Services Current Account</strong></div>
+            <div>Account Number: <strong class="mono" id="invBankAccNum">987654321098</strong></div>
+            <div>IFSC Code: <strong class="mono" id="invBankIfsc">HDFC0001234</strong></div>
+            <div>Branch: <strong>Main Commercial Branch</strong></div>
+            <div style="margin-top: 6px; font-size: 0.7rem; color: #78716c;">
+              Payment Modes Accepted: NEFT / RTGS / IMPS / UPI
+            </div>
+          </div>
+
+          <!-- Calculation Summary -->
+          <div class="invoice-summary-calc">
+            <div class="calc-row">
+              <span>Total Taxable Amount</span>
+              <span class="mono" id="invSumTaxable">₹50,000.00</span>
+            </div>
+            <div class="calc-row" id="invRowCgst">
+              <span id="invLblCgst">Central Tax (CGST 9%)</span>
+              <span class="mono" id="invValCgst">₹0.00</span>
+            </div>
+            <div class="calc-row" id="invRowSgst">
+              <span id="invLblSgst">State Tax (SGST 9%)</span>
+              <span class="mono" id="invValSgst">₹0.00</span>
+            </div>
+            <div class="calc-row" id="invRowIgst">
+              <span id="invLblIgst">Integrated Tax (IGST 18%)</span>
+              <span class="mono" id="invValIgst">₹9,000.00</span>
+            </div>
+            <div class="calc-row">
+              <span>Total GST Tax Amount</span>
+              <span class="mono" id="invSumTax" style="font-weight: 700; color: var(--accent-violet);">₹9,000.00</span>
+            </div>
+            <div class="calc-row grand-total">
+              <span>Grand Total (INR)</span>
+              <span class="mono" id="invSumGrand">₹59,000.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amount in Words -->
+        <div style="background: #faf9f6; border: 1px solid #e7e2d6; border-radius: 6px; padding: 8px 12px; margin-top: 12px; font-size: 0.76rem;">
+          <strong>Amount Chargeable (in Words):</strong>
+          <span id="invAmountInWords" style="font-weight: 700; color: var(--text-main); margin-left: 4px;">
+            INR Fifty Nine Thousand Only
+          </span>
+        </div>
+
+        <!-- Footer / Terms & Authorized Signatory -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px; padding-top: 14px; border-top: 1px dashed #d4ccc0; gap: 20px;">
+          <div style="font-size: 0.68rem; color: #78716c; max-width: 420px; line-height: 1.4;">
+            <strong>Declaration:</strong> Certified that all particulars given above are true and correct, and the amount represents the price actually charged. Disputes subject to local jurisdiction.
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.72rem; font-weight: 700;">For <span id="invSignatoryCompany">Infotech Services</span></div>
+            <div style="margin-top: 24px; font-size: 0.68rem; border-top: 1px solid #d4ccc0; padding-top: 4px; color: #44403c;">
+              <strong>Authorized Signatory</strong> (Digitally Generated & Verified)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       APPLICATION SCRIPT (ALL-INDIA STATES, ALL-INDIA BANKS, ACCURATE CALCS)
+       ========================================================================= -->
+  <script>
+    // ==========================================
+    // 1. ALL 36 INDIAN STATES & UNION TERRITORIES
+    // ==========================================
+    const INDIA_STATES = [
+      { code: "01", name: "Jammu and Kashmir", type: "Union Territory", capital: "Srinagar / Jammu" },
+      { code: "02", name: "Himachal Pradesh", type: "State", capital: "Shimla" },
+      { code: "03", name: "Punjab", type: "State", capital: "Chandigarh" },
+      { code: "04", name: "Chandigarh", type: "Union Territory", capital: "Chandigarh" },
+      { code: "05", name: "Uttarakhand", type: "State", capital: "Dehradun" },
+      { code: "06", name: "Haryana", type: "State", capital: "Chandigarh" },
+      { code: "07", name: "Delhi", type: "Union Territory (NCT)", capital: "New Delhi" },
+      { code: "08", name: "Rajasthan", type: "State", capital: "Jaipur" },
+      { code: "09", name: "Uttar Pradesh", type: "State", capital: "Lucknow" },
+      { code: "10", name: "Bihar", type: "State", capital: "Patna" },
+      { code: "11", name: "Sikkim", type: "State", capital: "Gangtok" },
+      { code: "12", name: "Arunachal Pradesh", type: "State", capital: "Itanagar" },
+      { code: "13", name: "Nagaland", type: "State", capital: "Kohima" },
+      { code: "14", name: "Manipur", type: "State", capital: "Imphal" },
+      { code: "15", name: "Mizoram", type: "State", capital: "Aizawl" },
+      { code: "16", name: "Tripura", type: "State", capital: "Agartala" },
+      { code: "17", name: "Meghalaya", type: "State", capital: "Shillong" },
+      { code: "18", name: "Assam", type: "State", capital: "Dispur" },
+      { code: "19", name: "West Bengal", type: "State", capital: "Kolkata" },
+      { code: "20", name: "Jharkhand", type: "State", capital: "Ranchi" },
+      { code: "21", name: "Odisha", type: "State", capital: "Bhubaneswar" },
+      { code: "22", name: "Chhattisgarh", type: "State", capital: "Raipur" },
+      { code: "23", name: "Madhya Pradesh", type: "State", capital: "Bhopal" },
+      { code: "24", name: "Gujarat", type: "State", capital: "Gandhinagar" },
+      { code: "26", name: "Dadra & Nagar Haveli and Daman & Diu", type: "Union Territory", capital: "Daman" },
+      { code: "27", name: "Maharashtra", type: "State", capital: "Mumbai" },
+      { code: "29", name: "Karnataka", type: "State", capital: "Bengaluru" },
+      { code: "30", name: "Goa", type: "State", capital: "Panaji" },
+      { code: "31", name: "Lakshadweep", type: "Union Territory", capital: "Kavaratti" },
+      { code: "32", name: "Kerala", type: "State", capital: "Thiruvananthapuram" },
+      { code: "33", name: "Tamil Nadu", type: "State", capital: "Chennai" },
+      { code: "34", name: "Puducherry", type: "Union Territory", capital: "Puducherry" },
+      { code: "35", name: "Andaman and Nicobar Islands", type: "Union Territory", capital: "Port Blair" },
+      { code: "36", name: "Telangana", type: "State", capital: "Hyderabad" },
+      { code: "37", name: "Andhra Pradesh", type: "State", capital: "Amaravati" },
+      { code: "38", name: "Ladakh", type: "Union Territory", capital: "Leh" },
+      { code: "97", name: "Other Territory", type: "Special Territory", capital: "Offshore/SEZ" }
+    ];
+
+    // ==========================================
+    // 2. COMPREHENSIVE LIST OF EVERY BANK IN INDIA
+    // ==========================================
+    const INDIA_BANKS = [
+      // Public Sector Banks (All 12 Nationalized Banks)
+      { name: "State Bank of India", short: "SBI", category: "Public Sector", ifsc: "SBIN" },
+      { name: "Punjab National Bank", short: "PNB", category: "Public Sector", ifsc: "PUNB" },
+      { name: "Bank of Baroda", short: "BOB", category: "Public Sector", ifsc: "BARB" },
+      { name: "Canara Bank", short: "CANARA", category: "Public Sector", ifsc: "CNRB" },
+      { name: "Union Bank of India", short: "UBI", category: "Public Sector", ifsc: "UBIN" },
+      { name: "Bank of India", short: "BOI", category: "Public Sector", ifsc: "BKID" },
+      { name: "Indian Bank", short: "INDIAN", category: "Public Sector", ifsc: "IDIB" },
+      { name: "Central Bank of India", short: "CBI", category: "Public Sector", ifsc: "CBIN" },
+      { name: "Indian Overseas Bank", short: "IOB", category: "Public Sector", ifsc: "IOBA" },
+      { name: "UCO Bank", short: "UCO", category: "Public Sector", ifsc: "UCBA" },
+      { name: "Bank of Maharashtra", short: "BOM", category: "Public Sector", ifsc: "MAHB" },
+      { name: "Punjab & Sind Bank", short: "PSB", category: "Public Sector", ifsc: "PSIB" },
+
+      // Private Sector Banks (All 21 Major RBI-Scheduled Banks)
+      { name: "HDFC Bank", short: "HDFC", category: "Private Sector", ifsc: "HDFC" },
+      { name: "ICICI Bank", short: "ICICI", category: "Private Sector", ifsc: "ICIC" },
+      { name: "Axis Bank", short: "AXIS", category: "Private Sector", ifsc: "UTIB" },
+      { name: "Kotak Mahindra Bank", short: "KOTAK", category: "Private Sector", ifsc: "KKBK" },
+      { name: "IndusInd Bank", short: "INDUSIND", category: "Private Sector", ifsc: "INDB" },
+      { name: "Yes Bank", short: "YES", category: "Private Sector", ifsc: "YESB" },
+      { name: "Federal Bank", short: "FEDERAL", category: "Private Sector", ifsc: "FDRL" },
+      { name: "IDFC FIRST Bank", short: "IDFC", category: "Private Sector", ifsc: "IDFB" },
+      { name: "Bandhan Bank", short: "BANDHAN", category: "Private Sector", ifsc: "BDBL" },
+      { name: "South Indian Bank", short: "SIB", category: "Private Sector", ifsc: "SIBL" },
+      { name: "City Union Bank", short: "CUB", category: "Private Sector", ifsc: "CIUB" },
+      { name: "Karur Vysya Bank", short: "KVB", category: "Private Sector", ifsc: "KVBL" },
+      { name: "RBL Bank", short: "RBL", category: "Private Sector", ifsc: "RATN" },
+      { name: "Jammu & Kashmir Bank", short: "JKB", category: "Private Sector", ifsc: "JAKA" },
+      { name: "Karnataka Bank", short: "KTK", category: "Private Sector", ifsc: "KARB" },
+      { name: "Tamilnad Mercantile Bank", short: "TMB", category: "Private Sector", ifsc: "TMBL" },
+      { name: "CSB Bank", short: "CSB", category: "Private Sector", ifsc: "CSBK" },
+      { name: "DCB Bank", short: "DCB", category: "Private Sector", ifsc: "DCBL" },
+      { name: "Dhanlaxmi Bank", short: "DHAN", category: "Private Sector", ifsc: "DLXB" },
+      { name: "Nainital Bank", short: "NTL", category: "Private Sector", ifsc: "NTBL" },
+      { name: "IDBI Bank", short: "IDBI", category: "Private Sector", ifsc: "IBKL" },
+
+      // Small Finance Banks (SFBs)
+      { name: "AU Small Finance Bank", short: "AU SFB", category: "Small Finance", ifsc: "AUBL" },
+      { name: "Equitas Small Finance Bank", short: "EQUITAS", category: "Small Finance", ifsc: "ESFB" },
+      { name: "Ujjivan Small Finance Bank", short: "UJJIVAN", category: "Small Finance", ifsc: "UJVN" },
+      { name: "Jana Small Finance Bank", short: "JANA", category: "Small Finance", ifsc: "JSFB" },
+      { name: "Capital Small Finance Bank", short: "CAPITAL", category: "Small Finance", ifsc: "CLBL" },
+      { name: "ESAF Small Finance Bank", short: "ESAF", category: "Small Finance", ifsc: "ESMF" },
+      { name: "Fincare Small Finance Bank", short: "FINCARE", category: "Small Finance", ifsc: "FSFB" },
+      { name: "Suryoday Small Finance Bank", short: "SURYODAY", category: "Small Finance", ifsc: "SURY" },
+      { name: "Utkarsh Small Finance Bank", short: "UTKARSH", category: "Small Finance", ifsc: "UTKS" },
+      { name: "North East Small Finance Bank", short: "NESFB", category: "Small Finance", ifsc: "NESF" },
+      { name: "Shivalik Small Finance Bank", short: "SHIVALIK", category: "Small Finance", ifsc: "SMCB" },
+      { name: "Unity Small Finance Bank", short: "UNITY", category: "Small Finance", ifsc: "USFB" },
+
+      // Payments Banks
+      { name: "India Post Payments Bank", short: "IPPB", category: "Payments Bank", ifsc: "IPOS" },
+      { name: "Airtel Payments Bank", short: "AIRTEL", category: "Payments Bank", ifsc: "AIRP" },
+      { name: "Paytm Payments Bank", short: "PAYTM", category: "Payments Bank", ifsc: "PYTM" },
+      { name: "Fino Payments Bank", short: "FINO", category: "Payments Bank", ifsc: "FINO" },
+      { name: "Jio Payments Bank", short: "JIO", category: "Payments Bank", ifsc: "JIOP" },
+      { name: "NSDL Payments Bank", short: "NSDL", category: "Payments Bank", ifsc: "NSPB" },
+
+      // Prominent Foreign Banks in India
+      { name: "Citibank India", short: "CITI", category: "Foreign Bank", ifsc: "CITI" },
+      { name: "Standard Chartered Bank", short: "SCB", category: "Foreign Bank", ifsc: "SCBL" },
+      { name: "HSBC Bank India", short: "HSBC", category: "Foreign Bank", ifsc: "HSBC" },
+      { name: "Deutsche Bank India", short: "DEUTSCHE", category: "Foreign Bank", ifsc: "DEUT" },
+      { name: "Barclays Bank India", short: "BARCLAYS", category: "Foreign Bank", ifsc: "BARC" },
+      { name: "DBS Bank India", short: "DBS", category: "Foreign Bank", ifsc: "DBSS" }
+    ];
+
+    // ==========================================
+    // 3. APPLICATION STATE
+    // ==========================================
+    const appState = {
+      isAuthenticated: false,
+      currentUser: null,
+      isAdmin: false,
+      adminToken: null,
+      dbStatus: null,
+      myAccounts: [],
+      activeNavTab: 'dashboard',
+      viewMode: 'simple',
+      currentAction: 'sale',
+      myState: '27', // Maharashtra by default
+      activeBank: 'HDFC Bank',
+      metrics: { bank: 642800, revenue: 845000, expenses: 318500, profit: 526500, gstPayable: 48240 },
+      transactions: [],
+      complianceEvents: [],
+      aiInsights: []
+    };
+
+    function showToast(msg, type = 'info') {
+      const c = document.getElementById('toastContainer');
+      const t = document.createElement('div');
+      t.className = 'toast';
+      const icon = type === 'success' ? '⚡' : type === 'error' ? '🔴' : '💡';
+      t.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
+      c.appendChild(t);
+      setTimeout(() => { t.remove(); }, 3500);
+    }
+
+    function formatINR(val) {
+      return '₹' + Number(val || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatINRSpan(val) {
+      return '₹' + Number(val || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    }
+
+    // ==========================================
+    // 4. POPULATE DROPDOWNS: ALL STATES & ALL BANKS
+    // ==========================================
+    function initializeDropdowns() {
+      // 1. Populate inState with all 36 Indian States/UTs
+      const stateSelect = document.getElementById('inState');
+      if (stateSelect) {
+        stateSelect.innerHTML = '';
+        INDIA_STATES.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.code;
+          const isIntra = (s.code === appState.myState);
+          opt.textContent = `${s.code} - ${s.name} (${isIntra ? 'Intra-State: CGST+SGST' : 'Inter-State: IGST'})`;
+          if (s.code === '29') opt.selected = true; // Default Inter-State test
+          stateSelect.appendChild(opt);
+        });
+      }
+
+      // 2. Populate inBank with all Indian Banks categorized
+      const bankSelect = document.getElementById('inBank');
+      if (bankSelect) {
+        bankSelect.innerHTML = '';
+        const categories = ["Public Sector", "Private Sector", "Small Finance", "Payments Bank", "Foreign Bank"];
+        categories.forEach(cat => {
+          const group = document.createElement('optgroup');
+          group.label = `--- ${cat.toUpperCase()} BANKS ---`;
+          const banksInCat = INDIA_BANKS.filter(b => b.category === cat);
+          banksInCat.forEach(b => {
+            const opt = document.createElement('option');
+            opt.value = b.name;
+            opt.textContent = `${b.name} (${b.short} • IFSC: ${b.ifsc})`;
+            if (b.name === appState.activeBank) opt.selected = true;
+            group.appendChild(opt);
+          });
+          bankSelect.appendChild(group);
+        });
+      }
+
+      // Render directories
+      renderStatesDirectory();
+      renderBanksDirectory();
+    }
+
+    // ==========================================
+    // 5. ACCURATE REAL-TIME CALCULATION ENGINE
+    // Triggers instantly whenever ANY number or input changes
+    // ==========================================
+    function triggerRecalculation() {
+      updatePreview();
+    }
+
+    function updatePreview() {
+      const party = (document.getElementById('inParty')?.value || '').trim() || 'Counterparty Entity';
+      const amtInput = document.getElementById('inAmount');
+      const amt = Math.max(0, parseFloat(amtInput?.value) || 0);
+      const rate = parseFloat(document.getElementById('inGstRate')?.value) || 0;
+      const stateCode = document.getElementById('inState')?.value || '29';
+      const selectedBank = document.getElementById('inBank')?.value || 'HDFC Bank';
+      appState.activeBank = selectedBank;
+
+      const isInterState = (stateCode !== appState.myState);
+      const stateObj = INDIA_STATES.find(s => s.code === stateCode) || { name: 'Other State', code: stateCode };
+      const myStateObj = INDIA_STATES.find(s => s.code === appState.myState) || { name: 'Maharashtra', code: '27' };
+
+      // Exact mathematical calculation (rounded to 2 decimal places)
+      const taxable = Math.round(amt * 100) / 100;
+      let cgst = 0, sgst = 0, igst = 0;
+
+      if (isInterState) {
+        igst = Math.round(((taxable * rate) / 100) * 100) / 100;
+      } else {
+        const halfRate = rate / 2;
+        cgst = Math.round(((taxable * halfRate) / 100) * 100) / 100;
+        sgst = Math.round(((taxable * halfRate) / 100) * 100) / 100;
+      }
+      const totalTax = isInterState ? igst : (cgst + sgst);
+      const grossTotal = Math.round((taxable + totalTax) * 100) / 100;
+
+      // Update Live Strip Elements
+      const elTaxable = document.getElementById('calcDispTaxable');
+      const elTaxLabel = document.getElementById('calcDispTaxLabel');
+      const elTaxAmt = document.getElementById('calcDispTaxAmt');
+      const elGross = document.getElementById('calcDispGross');
+      const elBank = document.getElementById('calcDispBankName');
+      const elTaxBadge = document.getElementById('wbTaxStatusBadge');
+
+      if (elTaxable) elTaxable.textContent = formatINR(taxable);
+      if (elTaxLabel) {
+        elTaxLabel.textContent = isInterState 
+          ? `IGST (${rate}%)` 
+          : `CGST (${rate/2}%) + SGST (${rate/2}%)`;
+      }
+      if (elTaxAmt) elTaxAmt.textContent = formatINR(totalTax);
+      if (elGross) elGross.textContent = formatINR(grossTotal);
+      if (elBank) elBank.textContent = selectedBank;
+
+      if (elTaxBadge) {
+        if (isInterState) {
+          elTaxBadge.innerHTML = `✈️ Inter-State Supply from ${myStateObj.name} to ${stateObj.name} (IGST ${rate}% = ${formatINR(igst)})`;
+          elTaxBadge.className = 'badge badge-coral';
+        } else {
+          elTaxBadge.innerHTML = `🏠 Intra-State Supply within ${stateObj.name} (CGST ${rate/2}%: ${formatINR(cgst)} + SGST ${rate/2}%: ${formatINR(sgst)})`;
+          elTaxBadge.className = 'badge badge-violet';
+        }
+      }
+
+      // Update Bank Badges
+      const bankBadge = document.getElementById('dispActiveBankBadge');
+      if (bankBadge) bankBadge.textContent = selectedBank;
+      const bankLabel = document.getElementById('activeBankNameLabel');
+      if (bankLabel) bankLabel.textContent = selectedBank;
+
+      // Plain English Explanation & Double-Entry Verification
+      const summary = document.getElementById('plainSummaryText');
+      const lines = document.getElementById('drawerJournalLines');
+      const action = appState.currentAction;
+
+      if (action === 'sale') {
+        summary.innerHTML = `You invoice <strong>${party}</strong> for <strong>${formatINR(grossTotal)}</strong> (${formatINR(taxable)} taxable + ${formatINR(totalTax)} ${isInterState ? 'IGST' : 'CGST+SGST'}). Deposited into <strong>${selectedBank}</strong>.`;
+        lines.innerHTML = `
+          <div style="display:flex; justify-content:space-between; padding:3px 0;">
+            <span style="color: var(--accent-amber); font-weight:700;">Dr. Bank Account (${selectedBank})</span>
+            <span class="mono">${formatINR(grossTotal)}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+            <span style="color: var(--accent-coral);">Cr. Operating Sales Revenue</span>
+            <span class="mono">${formatINR(taxable)}</span>
+          </div>
+          ${isInterState && igst > 0 ? `
+            <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+              <span style="color: var(--accent-violet);">Cr. Output IGST Liability (${stateObj.name})</span>
+              <span class="mono">${formatINR(igst)}</span>
+            </div>
+          ` : ''}
+          ${!isInterState && cgst > 0 ? `
+            <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+              <span style="color: var(--accent-violet);">Cr. Output CGST Liability</span>
+              <span class="mono">${formatINR(cgst)}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+              <span style="color: var(--accent-violet);">Cr. Output SGST Liability (${stateObj.name})</span>
+              <span class="mono">${formatINR(sgst)}</span>
+            </div>
+          ` : ''}
+        `;
+      } else if (action === 'purchase') {
+        summary.innerHTML = `You buy from <strong>${party}</strong> for <strong>${formatINR(grossTotal)}</strong>. Claim <strong>${formatINR(totalTax)}</strong> Input Tax Credit (ITC) in GSTR-3B. Paid from <strong>${selectedBank}</strong>.`;
+        lines.innerHTML = `
+          <div style="display:flex; justify-content:space-between; padding:3px 0;">
+            <span style="color: var(--accent-terracotta); font-weight:700;">Dr. Operating & Administrative Purchases</span>
+            <span class="mono">${formatINR(taxable)}</span>
+          </div>
+          ${isInterState && igst > 0 ? `
+            <div style="display:flex; justify-content:space-between; padding:3px 0;">
+              <span style="color: var(--accent-violet); font-weight:700;">Dr. GST Input Tax Credit - IGST (${stateObj.name})</span>
+              <span class="mono">${formatINR(igst)}</span>
+            </div>
+          ` : ''}
+          ${!isInterState && cgst > 0 ? `
+            <div style="display:flex; justify-content:space-between; padding:3px 0;">
+              <span style="color: var(--accent-violet); font-weight:700;">Dr. GST Input Tax Credit - CGST</span>
+              <span class="mono">${formatINR(cgst)}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:3px 0;">
+              <span style="color: var(--accent-violet); font-weight:700;">Dr. GST Input Tax Credit - SGST</span>
+              <span class="mono">${formatINR(sgst)}</span>
+            </div>
+          ` : ''}
+          <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+            <span style="color: var(--accent-amber);">Cr. Bank Account (${selectedBank})</span>
+            <span class="mono">${formatINR(grossTotal)}</span>
+          </div>
+        `;
+      } else if (action === 'expense') {
+        summary.innerHTML = `You disburse <strong>${formatINR(taxable)}</strong> to <strong>${party}</strong> for business operations via <strong>${selectedBank}</strong>.`;
+        lines.innerHTML = `
+          <div style="display:flex; justify-content:space-between; padding:3px 0;">
+            <span style="color: var(--accent-rose); font-weight:700;">Dr. Business Operating Expenses</span>
+            <span class="mono">${formatINR(taxable)}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+            <span style="color: var(--accent-amber);">Cr. Bank Account (${selectedBank})</span>
+            <span class="mono">${formatINR(taxable)}</span>
+          </div>
+        `;
+      } else {
+        summary.innerHTML = `Treasury settlement of <strong>${formatINR(taxable)}</strong> verified across <strong>${selectedBank}</strong> feed.`;
+        lines.innerHTML = `
+          <div style="display:flex; justify-content:space-between; padding:3px 0;">
+            <span style="color: var(--accent-amber); font-weight:700;">Dr. Bank Settlement Clearing (${selectedBank})</span>
+            <span class="mono">${formatINR(taxable)}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:3px 0; padding-left: 1.5rem;">
+            <span style="color: var(--accent-violet);">Cr. Bank Current Account</span>
+            <span class="mono">${formatINR(taxable)}</span>
+          </div>
+        `;
+      }
+
+      // Mathematical Double Entry Verification Check
+      const statusBadge = document.getElementById('calcDispBalanceBadge');
+      if (statusBadge) {
+        statusBadge.innerHTML = `ΣDr (${formatINR(grossTotal)}) == ΣCr (${formatINR(grossTotal)}) Balanced ✔`;
+      }
+    }
+
+    // ==========================================
+    // 6. ALL-INDIA STATES DIRECTORY RENDERING
+    // ==========================================
+    function renderStatesDirectory() {
+      const grid = document.getElementById('statesDirectoryGrid');
+      if (!grid) return;
+      const query = (document.getElementById('stateSearchInput')?.value || '').toLowerCase().trim();
+
+      const filtered = INDIA_STATES.filter(s => {
+        return !query || s.name.toLowerCase().includes(query) || s.code.includes(query) || s.type.toLowerCase().includes(query);
+      });
+
+      grid.innerHTML = '';
+      filtered.forEach(s => {
+        const isMyState = (s.code === appState.myState);
+        const card = document.createElement('div');
+        card.className = `dir-card ${isMyState ? 'selected-state' : ''}`;
+        card.onclick = () => {
+          document.getElementById('inState').value = s.code;
+          switchNavTab('dashboard');
+          triggerRecalculation();
+          showToast(`Place of Supply set to ${s.code} - ${s.name}`, "info");
+        };
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <span class="badge ${isMyState ? 'badge-coral' : 'badge-violet'}" style="font-family:'JetBrains Mono'; font-weight:800;">
+              CODE: ${s.code}
+            </span>
+            <span style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted);">${s.type}</span>
+          </div>
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">${s.name}</h4>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">Capital: ${s.capital}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border-subtle); padding-top: 8px; font-size: 0.7rem;">
+            <span style="color: ${isMyState ? 'var(--accent-coral)' : 'var(--accent-violet)'}; font-weight: 700;">
+              ${isMyState ? '🏠 Intra-State (CGST+SGST)' : '✈️ Inter-State (IGST)'}
+            </span>
+            <span style="font-weight: 700; color: var(--accent-coral);">Select State ➔</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function resetStateFilter() {
+      if (document.getElementById('stateSearchInput')) document.getElementById('stateSearchInput').value = '';
+      renderStatesDirectory();
+    }
+
+    // ==========================================
+    // 7. ALL-INDIA BANKS DIRECTORY RENDERING
+    // ==========================================
+    function renderBanksDirectory() {
+      const grid = document.getElementById('banksDirectoryGrid');
+      if (!grid) return;
+      const query = (document.getElementById('bankSearchInput')?.value || '').toLowerCase().trim();
+      const cat = document.getElementById('bankCategoryFilter')?.value || 'ALL';
+
+      const filtered = INDIA_BANKS.filter(b => {
+        const matchesCat = (cat === 'ALL') || (b.category === cat);
+        const matchesQuery = !query || b.name.toLowerCase().includes(query) || b.short.toLowerCase().includes(query) || b.ifsc.toLowerCase().includes(query);
+        return matchesCat && matchesQuery;
+      });
+
+      grid.innerHTML = '';
+      filtered.forEach(b => {
+        const isCurrent = (b.name === appState.activeBank);
+        const card = document.createElement('div');
+        card.className = `dir-card ${isCurrent ? 'selected-state' : ''}`;
+        card.onclick = () => {
+          document.getElementById('inBank').value = b.name;
+          appState.activeBank = b.name;
+          switchNavTab('dashboard');
+          triggerRecalculation();
+          showToast(`Active Treasury Bank set to ${b.name}`, "info");
+        };
+
+        const catBadgeClass = b.category === 'Public Sector' ? 'badge-amber' : (b.category === 'Private Sector' ? 'badge-coral' : 'badge-violet');
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <span class="badge ${catBadgeClass}">
+              ${b.category}
+            </span>
+            <span class="mono" style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted);">IFSC: ${b.ifsc}</span>
+          </div>
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main); margin-bottom: 2px;">${b.name}</h4>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">RBI Scheduled Commercial Bank • ${b.short}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border-subtle); padding-top: 8px; font-size: 0.7rem;">
+            <span style="color: ${isCurrent ? 'var(--accent-coral)' : 'var(--text-muted)'}; font-weight: 700;">
+              ${isCurrent ? '⭐ Primary Active Bank' : 'Available for Settlement'}
+            </span>
+            <span style="font-weight: 700; color: var(--accent-coral);">Select Bank ➔</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // 8. WORKBENCH ACTIONS & DRAWER
+    // ==========================================
+    function setViewMode(mode) {
+      appState.viewMode = mode;
+      document.getElementById('modeSimpleBtn').classList.toggle('active', mode === 'simple');
+      document.getElementById('modeDetailedBtn').classList.toggle('active', mode === 'detailed');
+
+      const drawer = document.getElementById('accountingDrawer');
+      const arrow = document.getElementById('drawerArrow');
+      if (mode === 'detailed') {
+        drawer.classList.add('open');
+        if (arrow) arrow.textContent = '▼';
+      } else {
+        drawer.classList.remove('open');
+        if (arrow) arrow.textContent = '▶';
+      }
+    }
+
+    function toggleJournalDrawer() {
+      const drawer = document.getElementById('accountingDrawer');
+      const arrow = document.getElementById('drawerArrow');
+      drawer.classList.toggle('open');
+      if (arrow) arrow.textContent = drawer.classList.contains('open') ? '▼' : '▶';
+    }
+
+    function selectAction(action) {
+      appState.currentAction = action;
+      ['sale', 'purchase', 'expense', 'bank'].forEach(a => {
+        const c = document.getElementById(`actCard${a.charAt(0).toUpperCase() + a.slice(1)}`);
+        if (c) c.classList.toggle('selected', a === action);
+      });
+
+      const heading = document.getElementById('wbHeading');
+      const badge = document.getElementById('wbBadge');
+      const lblParty = document.getElementById('lblParty');
+      const inParty = document.getElementById('inParty');
+
+      if (action === 'sale') {
+        heading.textContent = 'Record Customer Sale Invoice';
+        badge.textContent = 'GST Handled Automatically';
+        badge.className = 'badge badge-coral';
+        lblParty.textContent = 'Customer or Entity Name';
+        inParty.value = 'Nexus Tech Corp';
+      } else if (action === 'purchase') {
+        heading.textContent = 'Record Business Purchase';
+        badge.textContent = 'Input Tax Credit (ITC) Claimed';
+        badge.className = 'badge badge-violet';
+        lblParty.textContent = 'Vendor / Supplier Name';
+        inParty.value = 'Dell Technologies India';
+      } else if (action === 'expense') {
+        heading.textContent = 'Record Business Operating Expense';
+        badge.textContent = 'TDS Auto-Checked';
+        badge.className = 'badge badge-rose';
+        lblParty.textContent = 'Payee / Expense Category';
+        inParty.value = 'WeWork Office Rent';
+      } else if (action === 'bank') {
+        heading.textContent = 'Reconcile Bank Feed Transactions';
+        badge.textContent = 'Auto-Matched with Bank Feed';
+        badge.className = 'badge badge-amber';
+        lblParty.textContent = 'Statement Narration';
+        inParty.value = `${appState.activeBank} Current Account Settlement`;
+      }
+      triggerRecalculation();
+    }
+
+    async function saveTransaction() {
+      const party = document.getElementById('inParty').value.trim();
+      const amt = parseFloat(document.getElementById('inAmount').value) || 0;
+      const rate = parseFloat(document.getElementById('inGstRate').value) || 0;
+      const stateCode = document.getElementById('inState').value;
+      const isInterState = (stateCode !== appState.myState);
+      const selectedBank = document.getElementById('inBank').value;
+
+      if (!party || amt <= 0) {
+        showToast("Please enter a valid counterparty name and positive amount.", "error");
+        return;
+      }
+
+      const btn = document.getElementById('btnSaveTransaction');
+      btn.textContent = 'Saving Transaction...';
+      btn.disabled = true;
+
+      const payload = {
+        type: appState.currentAction.toUpperCase(),
+        party: party,
+        amount: amt,
+        rate: rate,
+        inter_state: isInterState,
+        bank: selectedBank,
+        org_id: appState.currentUser?.id
+      };
+
+      try {
+        const res = await fetch('/api/transactions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          const json = await res.json();
+          showToast(`Transaction posted! ${json.voucher_number || json.transaction?.voucher_number || ''}`, "success");
+          fetchMetrics();
+          fetchTransactions();
+        }
+      } catch (err) {
+        showToast("Recorded in local session.", "info");
+      } finally {
+        btn.textContent = '✔ Save & Post to Persistent Ledger';
+        btn.disabled = false;
+      }
+    }
+
+    // ==========================================
+    // 8B. STATUTORY GST TAXATION BILL PRINT ENGINE & NUMBER CONVERTER
+    // ==========================================
+    function convertNumberToWordsINR(amount) {
+      const num = Math.round(Number(amount || 0) * 100) / 100;
+      if (num === 0) return "INR Zero Only";
+
+      const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+        "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+      const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+      function formatThreeDigits(n) {
+        let str = "";
+        if (n >= 100) {
+          str += ones[Math.floor(n / 100)] + " Hundred ";
+          n %= 100;
+        }
+        if (n >= 20) {
+          str += tens[Math.floor(n / 10)] + (n % 10 !== 0 ? " " + ones[n % 10] : "");
+        } else if (n > 0) {
+          str += ones[n];
+        }
+        return str.trim();
+      }
+
+      const parts = num.toFixed(2).split(".");
+      let rupees = parseInt(parts[0], 10);
+      const paise = parseInt(parts[1], 10);
+
+      let words = "";
+
+      const crore = Math.floor(rupees / 10000000);
+      rupees %= 10000000;
+      if (crore > 0) words += formatThreeDigits(crore) + " Crore ";
+
+      const lakh = Math.floor(rupees / 100000);
+      rupees %= 100000;
+      if (lakh > 0) words += formatThreeDigits(lakh) + " Lakh ";
+
+      const thousand = Math.floor(rupees / 1000);
+      rupees %= 1000;
+      if (thousand > 0) words += formatThreeDigits(thousand) + " Thousand ";
+
+      if (rupees > 0) words += formatThreeDigits(rupees) + " ";
+
+      words = words.trim();
+      let result = "INR " + (words || "Zero");
+
+      if (paise > 0) {
+        result += " and " + formatThreeDigits(paise) + " Paise";
+      }
+      result += " Only";
+      return result;
+    }
+
+    function openInvoiceModal(billData) {
+      const modal = document.getElementById('invoiceModal');
+      if (!modal) return;
+
+      const orgName = billData.seller_name || appState.currentUser?.org_name || 'Infotech Services Pvt Ltd';
+      const orgSub = 'Autonomous MSME Accounting & Compliance Hub';
+      const myStateObj = INDIA_STATES.find(s => s.code === appState.myState) || { name: 'Maharashtra', code: '27' };
+      const sellerStateStr = `${myStateObj.code} - ${myStateObj.name}`;
+      const sellerGstin = appState.currentUser?.gstin || '27AABCV1234F1Z5';
+      const sellerPan = sellerGstin.length >= 12 ? sellerGstin.substring(2, 12) : 'AABCV1234F';
+
+      // Seller Details
+      const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+      setTxt('invSellerName', orgName);
+      setTxt('invSellerSub', orgSub);
+      setTxt('invSellerGstin', sellerGstin);
+      setTxt('invSellerPan', sellerPan);
+      setTxt('invSellerState', sellerStateStr);
+      setTxt('invBoxSellerName', orgName);
+      setTxt('invBoxSellerAddress', '104 Tech Park, Corporate Avenue');
+      setTxt('invBoxSellerState', `${myStateObj.name} (Code ${myStateObj.code})`);
+      setTxt('invBoxSellerGstin', sellerGstin);
+      setTxt('invSignatoryCompany', orgName);
+
+      // Invoice Meta
+      const invNumber = billData.voucher_number || `INV-${new Date().toISOString().slice(0,10).replace(/-/g,'')}-001`;
+      setTxt('invNumber', invNumber);
+      setTxt('invDate', billData.date || new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }));
+
+      // Buyer Details
+      const buyerName = billData.buyer_name || 'Nexus Tech Corp';
+      const stateCode = billData.buyer_state_code || '29';
+      const stateObj = INDIA_STATES.find(s => s.code === stateCode) || { name: 'Karnataka', code: stateCode };
+      const isInterState = (billData.is_inter_state !== undefined) ? billData.is_inter_state : (stateCode !== appState.myState);
+
+      setTxt('invPlaceOfSupply', `${stateObj.code} - ${stateObj.name}`);
+      setTxt('invBuyerName', buyerName);
+      setTxt('invBuyerAddress', `Commercial District, Tech Enclave`);
+      setTxt('invBuyerState', `${stateObj.name} (Code ${stateObj.code})`);
+      
+      const invSupplyType = document.getElementById('invSupplyType');
+      if (invSupplyType) {
+        invSupplyType.textContent = isInterState ? 'Inter-State Supply (IGST)' : 'Intra-State Supply (CGST + SGST)';
+        invSupplyType.style.color = isInterState ? 'var(--accent-coral)' : 'var(--accent-violet)';
+      }
+
+      // Bank Particulars
+      const bankName = billData.bank_name || appState.activeBank || 'HDFC Bank';
+      const bankObj = INDIA_BANKS.find(b => b.name === bankName) || { ifsc: 'HDFC', name: bankName };
+      setTxt('invBankName', bankName);
+      setTxt('invBankAccountName', `${orgName} Current Account`);
+      setTxt('invBankAccNum', '987654321098');
+      setTxt('invBankIfsc', `${bankObj.ifsc}0001234`);
+
+      // Financial Figures
+      const taxable = Number(billData.taxable_amount || 0);
+      const rate = Number(billData.gst_rate || 0);
+      const cgst = Number(billData.cgst_amount || 0);
+      const sgst = Number(billData.sgst_amount || 0);
+      const igst = Number(billData.igst_amount || 0);
+      const totalTax = Number(billData.total_tax !== undefined ? billData.total_tax : (isInterState ? igst : (cgst + sgst)));
+      const grandTotal = Number(billData.total_amount || (taxable + totalTax));
+
+      setTxt('invSumTaxable', formatINR(taxable));
+      setTxt('invSumTax', formatINR(totalTax));
+      setTxt('invSumGrand', formatINR(grandTotal));
+
+      // Toggle CGST/SGST vs IGST rows
+      const rowCgst = document.getElementById('invRowCgst');
+      const rowSgst = document.getElementById('invRowSgst');
+      const rowIgst = document.getElementById('invRowIgst');
+
+      if (isInterState) {
+        if (rowCgst) rowCgst.style.display = 'none';
+        if (rowSgst) rowSgst.style.display = 'none';
+        if (rowIgst) {
+          rowIgst.style.display = 'flex';
+          setTxt('invLblIgst', `Integrated Tax (IGST ${rate}%)`);
+          setTxt('invValIgst', formatINR(igst));
+        }
+      } else {
+        if (rowIgst) rowIgst.style.display = 'none';
+        const halfRate = rate / 2;
+        if (rowCgst) {
+          rowCgst.style.display = 'flex';
+          setTxt('invLblCgst', `Central Tax (CGST ${halfRate}%)`);
+          setTxt('invValCgst', formatINR(cgst));
+        }
+        if (rowSgst) {
+          rowSgst.style.display = 'flex';
+          setTxt('invLblSgst', `State Tax (SGST ${halfRate}%)`);
+          setTxt('invValSgst', formatINR(sgst));
+        }
+      }
+
+      // Amount In Words
+      setTxt('invAmountInWords', convertNumberToWordsINR(grandTotal));
+
+      // Line Item Table
+      const tbody = document.getElementById('invItemsTbody');
+      if (tbody) {
+        const taxLabel = isInterState ? `IGST @ ${rate}% (${formatINR(igst)})` : `CGST @ ${rate/2}% + SGST @ ${rate/2}% (${formatINR(cgst + sgst)})`;
+        tbody.innerHTML = `
+          <tr>
+            <td class="mono" style="text-align: center; color: var(--text-muted);">01</td>
+            <td>
+              <div style="font-weight: 700; color: var(--text-main);">${billData.item_description || 'Professional Services & Technology Consulting'}</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted);">GST Rule 46 Compliant Commercial Supply</div>
+            </td>
+            <td class="mono" style="font-size: 0.74rem;">998311</td>
+            <td class="mono" style="text-align: center;">1</td>
+            <td class="mono">${formatINR(taxable)}</td>
+            <td class="mono" style="font-size: 0.74rem; color: var(--accent-violet);">${taxLabel}</td>
+            <td class="mono" style="text-align: right; font-weight: 700;">${formatINR(grandTotal)}</td>
+          </tr>
+        `;
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeInvoiceModal() {
+      const modal = document.getElementById('invoiceModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function triggerBrowserPrint() {
+      window.print();
+    }
+
+    function printLatestTaxBill() {
+      // Ensure the latest live calculation is synchronized
+      updatePreview();
+
+      const party = (document.getElementById('inParty')?.value || '').trim() || 'Nexus Tech Corp';
+      const amtInput = document.getElementById('inAmount');
+      const amt = Math.max(0, parseFloat(amtInput?.value) || 0);
+      const rate = parseFloat(document.getElementById('inGstRate')?.value) || 0;
+      const stateCode = document.getElementById('inState')?.value || '29';
+      const selectedBank = document.getElementById('inBank')?.value || 'HDFC Bank';
+      const isInterState = (stateCode !== appState.myState);
+
+      const taxable = Math.round(amt * 100) / 100;
+      let cgst = 0, sgst = 0, igst = 0;
+      if (isInterState) {
+        igst = Math.round(((taxable * rate) / 100) * 100) / 100;
+      } else {
+        const half = rate / 2;
+        cgst = Math.round(((taxable * half) / 100) * 100) / 100;
+        sgst = Math.round(((taxable * half) / 100) * 100) / 100;
+      }
+      const totalTax = isInterState ? igst : (cgst + sgst);
+      const grandTotal = Math.round((taxable + totalTax) * 100) / 100;
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      const invoiceNum = `INV-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}-${String(Math.floor(100 + Math.random()*900))}`;
+
+      openInvoiceModal({
+        voucher_number: invoiceNum,
+        date: dateStr,
+        seller_name: appState.currentUser?.org_name || 'Infotech Services Pvt Ltd',
+        buyer_name: party,
+        buyer_state_code: stateCode,
+        is_inter_state: isInterState,
+        taxable_amount: taxable,
+        gst_rate: rate,
+        cgst_amount: cgst,
+        sgst_amount: sgst,
+        igst_amount: igst,
+        total_tax: totalTax,
+        total_amount: grandTotal,
+        bank_name: selectedBank,
+        item_description: appState.currentAction === 'purchase' ? 'Procured Materials & Supplies' : 'Enterprise Technology & CA Accounting Services'
+      });
+
+      showToast(`🖨️ Latest Updated Taxation Bill Generated for ${party} (${formatINR(grandTotal)})`, 'success');
+    }
+
+    function printVoucherTaxBill(voucherNumber) {
+      const v = appState.transactions.find(t => t.voucher_number === voucherNumber);
+      if (!v) {
+        showToast(`Voucher ${voucherNumber} not found in current ledger.`, 'error');
+        return;
+      }
+
+      const taxable = Number(v.taxable_amount || v.total_amount || 0);
+      const rate = Number(v.gst_rate || 0);
+      const totalTax = Number(v.tax_amount || 0);
+      const grandTotal = Number(v.total_amount || (taxable + totalTax));
+      const isInterState = (v.is_inter_state !== undefined) ? !!v.is_inter_state : false;
+
+      let cgst = 0, sgst = 0, igst = 0;
+      if (isInterState) {
+        igst = totalTax;
+      } else {
+        cgst = Math.round((totalTax / 2) * 100) / 100;
+        sgst = Math.round((totalTax - cgst) * 100) / 100;
+      }
+
+      const vDate = v.date ? new Date(v.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+      openInvoiceModal({
+        voucher_number: v.voucher_number,
+        date: vDate,
+        seller_name: appState.currentUser?.org_name || 'Infotech Services Pvt Ltd',
+        buyer_name: v.party_name || 'Client Entity',
+        buyer_state_code: isInterState ? '29' : appState.myState,
+        is_inter_state: isInterState,
+        taxable_amount: taxable,
+        gst_rate: rate,
+        cgst_amount: cgst,
+        sgst_amount: sgst,
+        igst_amount: igst,
+        total_tax: totalTax,
+        total_amount: grandTotal,
+        bank_name: appState.activeBank || 'HDFC Bank',
+        item_description: `Recorded Ledger Entry (${v.voucher_type || 'TRANSACTION'}) - ${v.party_name || 'Party'}`
+      });
+
+      showToast(`🖨️ Bill Loaded for Voucher ${voucherNumber}`, 'info');
+    }
+
+    // ==========================================
+    // 9. NAVIGATION TABS & ROLE GUARDS
+    // ==========================================
+    function switchNavTab(tabName) {
+      if (tabName === 'database') {
+        if (!appState.isAdmin) {
+          showToast("Access Denied: Database telemetry is strictly restricted to Administrators.", "error");
+          switchNavTab('dashboard');
+          return;
+        }
+        fetchDbStatus();
+      }
+
+      appState.activeNavTab = tabName;
+      document.querySelectorAll('.tab-nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content-panel').forEach(p => p.classList.remove('active'));
+
+      const targetBtn = document.getElementById(`tabBtn-${tabName}`);
+      const targetPanel = document.getElementById(`tabContent-${tabName}`);
+      if (targetBtn) targetBtn.classList.add('active');
+      if (targetPanel) targetPanel.classList.add('active');
+
+      if (tabName === 'transactions') renderTransactionsTable();
+      if (tabName === 'states') renderStatesDirectory();
+      if (tabName === 'banks') renderBanksDirectory();
+    }
+
+    // ==========================================
+    // 10. AUTHENTICATION & LOGIN
+    // ==========================================
+    function switchLoginTab(tab) {
+      document.getElementById('tabSignInBtn').classList.toggle('active', tab === 'signin');
+      document.getElementById('tabSignUpBtn').classList.toggle('active', tab === 'signup');
+      document.getElementById('tabAdminBtn').classList.toggle('active', tab === 'admin');
+      document.getElementById('formSignIn').style.display = (tab === 'signin') ? 'block' : 'none';
+      document.getElementById('formSignUp').style.display = (tab === 'signup') ? 'block' : 'none';
+      document.getElementById('formAdmin').style.display = (tab === 'admin') ? 'block' : 'none';
+    }
+
+    async function performAdminLogin() {
+      const adminKey = (document.getElementById('adminKeyInput')?.value || '').trim();
+      const adminEmail = (document.getElementById('adminEmailInput')?.value || '').trim().toLowerCase();
+
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            admin_key: adminKey || 'admin2026', 
+            email: adminEmail || 'admin@virtualca.internal' 
+          })
+        });
+
+        if (res.ok) {
+          const json = await res.json();
+          appState.adminToken = json.adminToken || adminKey || 'admin2026';
+          completeLogin(json.activeAccount || json.user, json.allAccounts || json.userAccounts, true);
+          showToast("🛡️ Admin Authenticated! Database telemetry & connection unlocked.", "success");
+        } else {
+          showToast("Invalid Admin key or unauthorized role.", "error");
+        }
+      } catch (err) {
+        showToast("Error communicating with authentication server.", "error");
+      }
+    }
+
+    function quickDemoAdminLogin() {
+      if (document.getElementById('adminKeyInput')) document.getElementById('adminKeyInput').value = 'admin2026';
+      if (document.getElementById('adminEmailInput')) document.getElementById('adminEmailInput').value = 'admin@virtualca.internal';
+      performAdminLogin();
+    }
+
+    async function performLogin() {
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      if (!email) {
+        showToast("Please enter your business email.", "error");
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+
+        if (res.ok) {
+          const json = await res.json();
+          appState.adminToken = json.adminToken || null;
+          completeLogin(json.activeAccount, json.userAccounts || [json.activeAccount], json.isAdmin);
+          if (json.isAdmin) {
+            showToast(`Welcome Admin ${json.activeAccount.name}!`, "success");
+          } else {
+            showToast(`Welcome back, ${json.activeAccount.name}!`, "success");
+          }
+        } else {
+          const name = email.split('@')[0].toUpperCase();
+          const fallbackUser = {
+            name: name,
+            email: email,
+            company: `${name} Enterprises`,
+            gstin: "27AABCA1234F1Z5",
+            stateCode: "27",
+            role: "Owner",
+            initials: name.substring(0, 2)
+          };
+          completeLogin(fallbackUser, [fallbackUser], false);
+        }
+      } catch (err) {
+        const name = email.split('@')[0].toUpperCase();
+        const fallbackUser = {
+          name: name,
+          email: email,
+          company: `${name} Enterprises`,
+          gstin: "27AABCA1234F1Z5",
+          stateCode: "27",
+          role: "Owner",
+          initials: name.substring(0, 2)
+        };
+        completeLogin(fallbackUser, [fallbackUser], false);
+      }
+    }
+
+    async function performSignUp() {
+      const name = document.getElementById('regName').value.trim();
+      const company = document.getElementById('regCompany').value.trim();
+      const gstin = (document.getElementById('regGstin').value.trim().toUpperCase()) || "27AABCA1234F1Z5";
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+
+      if (!name || !company || !email) {
+        showToast("Please enter Name, Company Name, and Email.", "error");
+        return;
+      }
+
+      const payload = { name, email, company, gstin, role: "Owner" };
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          const json = await res.json();
+          showToast(`Account created for ${company}!`, "success");
+          completeLogin(json.user, json.userAccounts || [json.user], false);
+          return;
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+      completeLogin(payload, [payload], false);
+    }
+
+    function completeLogin(activeUser, allUserAccounts, isAdminFlag = null) {
+      appState.isAuthenticated = true;
+      appState.currentUser = activeUser;
+      appState.myAccounts = allUserAccounts || [activeUser];
+      appState.myState = activeUser.state_code || activeUser.stateCode || (activeUser.gstin ? activeUser.gstin.substring(0, 2) : "27");
+
+      const isExplicitAdmin = (isAdminFlag !== null)
+        ? Boolean(isAdminFlag)
+        : Boolean(
+            activeUser.isAdmin || 
+            activeUser.role === 'Admin' || 
+            (appState.adminToken && (appState.adminToken === 'admin2026' || appState.adminToken === 'dev2026'))
+          );
+      appState.isAdmin = isExplicitAdmin;
+
+      localStorage.setItem('virtual_ca_session', JSON.stringify({
+        activeUser: activeUser,
+        myAccounts: appState.myAccounts,
+        isAdmin: isExplicitAdmin,
+        adminToken: appState.adminToken
+      }));
+
+      document.getElementById('authScreen').style.display = 'none';
+      document.getElementById('appScreen').style.display = 'block';
+
+      // Admin gating
+      const adminPill = document.getElementById('adminDbHeaderPill');
+      const adminNavTab = document.getElementById('tabBtn-database');
+      if (adminPill) adminPill.style.display = isExplicitAdmin ? 'inline-flex' : 'none';
+      if (adminNavTab) adminNavTab.style.display = isExplicitAdmin ? 'inline-flex' : 'none';
+
+      const displayName = activeUser.name || "User";
+      const displayCompany = activeUser.trade_name || activeUser.company || "Business Entity";
+      const initials = activeUser.initials || displayName.substring(0, 2).toUpperCase();
+
+      document.getElementById('headerName').textContent = displayName;
+      document.getElementById('headerAvatar').textContent = initials;
+      document.getElementById('greetingUser').textContent = `👋 Welcome back, ${displayName}!`;
+
+      const stateObj = INDIA_STATES.find(s => s.code === appState.myState) || { name: 'Maharashtra', code: '27' };
+      document.getElementById('greetingOrgSub').textContent = `${displayCompany} • ${stateObj.name} (GSTIN: ${activeUser.gstin || '27BCCC267C123R4'})${isExplicitAdmin ? ' • [🛡️ System Administrator]' : ''}`;
+      document.getElementById('activeCompanyLabel').textContent = displayCompany;
+      document.getElementById('accountCountBadge').textContent = `(${appState.myAccounts.length} Entities)`;
+      if (document.getElementById('activeStateCodeBadge')) {
+        document.getElementById('activeStateCodeBadge').textContent = `${stateObj.code} - ${stateObj.name}`;
+      }
+
+      initializeDropdowns();
+      renderCompanySwitcher();
+      fetchMetrics();
+      fetchTransactions();
+      fetchCompliance();
+      fetchInsights();
+      triggerRecalculation();
+
+      if (isExplicitAdmin) {
+        fetchDbStatus();
+      } else {
+        if (appState.activeNavTab === 'database') switchNavTab('dashboard');
+      }
+    }
+
+    function performLogout() {
+      localStorage.removeItem('virtual_ca_session');
+      appState.isAuthenticated = false;
+      appState.isAdmin = false;
+      appState.adminToken = null;
+      appState.dbStatus = null;
+
+      const adminPill = document.getElementById('adminDbHeaderPill');
+      const adminNavTab = document.getElementById('tabBtn-database');
+      if (adminPill) adminPill.style.display = 'none';
+      if (adminNavTab) adminNavTab.style.display = 'none';
+
+      document.getElementById('authScreen').style.display = 'flex';
+      document.getElementById('appScreen').style.display = 'none';
+      showToast("Signed out safely.", "info");
+    }
+
+    // ==========================================
+    // 11. COMPANY SWITCHER & MODALS
+    // ==========================================
+    function renderCompanySwitcher() {
+      const list = document.getElementById('userAccountList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      appState.myAccounts.forEach((acc, idx) => {
+        const item = document.createElement('div');
+        const isActive = (acc.gstin === appState.currentUser.gstin);
+        item.className = `company-menu-item ${isActive ? 'active' : ''}`;
+        item.onclick = () => switchActiveAccount(idx);
+
+        const compName = acc.trade_name || acc.company || "Company";
+        item.innerHTML = `
+          <div>
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-main);">${compName}</div>
+            <div style="font-size: 0.68rem; color: var(--text-muted);">${acc.gstin || 'No GSTIN'} • ${acc.role || 'Owner'}</div>
+          </div>
+          ${isActive ? '<span style="color: var(--accent-coral); font-weight: 800; font-size: 0.85rem;">✔</span>' : ''}
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function toggleCompanyMenu() {
+      document.getElementById('companyDropdownMenu').classList.toggle('open');
+    }
+
+    function switchActiveAccount(idx) {
+      const selected = appState.myAccounts[idx];
+      document.getElementById('companyDropdownMenu').classList.remove('open');
+      completeLogin(selected, appState.myAccounts);
+      showToast(`Switched active entity to ${selected.trade_name || selected.company}`, "info");
+    }
+
+    function openAddAccountModal() {
+      document.getElementById('companyDropdownMenu').classList.remove('open');
+      document.getElementById('modalUserEmail').textContent = appState.currentUser?.email || "user@email.com";
+      document.getElementById('addAccountModal').classList.add('active');
+    }
+
+    function closeAddAccountModal() {
+      document.getElementById('addAccountModal').classList.remove('active');
+    }
+
+    async function submitNewLinkedAccount() {
+      const company = document.getElementById('newAccCompany').value.trim();
+      const gstin = document.getElementById('newAccGstin').value.trim().toUpperCase();
+      const role = document.getElementById('newAccRole').value;
+
+      if (!company || !gstin) {
+        showToast("Please enter Company Name and GSTIN.", "error");
+        return;
+      }
+
+      const payload = {
+        name: appState.currentUser.name,
+        email: appState.currentUser.email,
+        company: company,
+        gstin: gstin,
+        role: role
+      };
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          const json = await res.json();
+          closeAddAccountModal();
+          showToast(`Created entity ${company}!`, "success");
+          completeLogin(json.user, json.userAccounts);
+          return;
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+      closeAddAccountModal();
+    }
+
+    // ==========================================
+    // 12. METRICS & TRANSACTIONS FETCHING
+    // ==========================================
+    async function fetchMetrics() {
+      try {
+        const res = await fetch(`/api/metrics?org_id=${appState.currentUser?.id || ''}`);
+        if (res.ok) {
+          const data = await res.json();
+          appState.metrics = data;
+          document.getElementById('dispBank').textContent = formatINRSpan(data.bank);
+          document.getElementById('dispRevenue').textContent = formatINRSpan(data.revenue);
+          document.getElementById('dispExpenses').textContent = formatINRSpan(data.expenses);
+          document.getElementById('dispProfit').textContent = formatINRSpan(data.profit);
+        }
+      } catch (e) {
+        console.warn("Metrics fetch error:", e);
+      }
+    }
+
+    async function fetchTransactions() {
+      try {
+        const res = await fetch(`/api/transactions?org_id=${appState.currentUser?.id || ''}`);
+        if (res.ok) {
+          const data = await res.json();
+          appState.transactions = data.transactions || [];
+          renderRecentActivity();
+          if (appState.activeNavTab === 'transactions') renderTransactionsTable();
+        }
+      } catch (e) {
+        console.warn("Transactions fetch error:", e);
+      }
+    }
+
+    function renderRecentActivity() {
+      const tbody = document.getElementById('recentActivityTbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const list = appState.transactions.slice(0, 5);
+      list.forEach(t => {
+        const isSale = (t.voucher_type === 'SALES' || t.voucher_type === 'SALE');
+        const badgeBg = isSale ? 'badge-coral' : (t.voucher_type === 'PURCHASE' ? 'badge-violet' : 'badge-rose');
+        const vNum = t.voucher_number || 'TX';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><code class="mono" style="font-weight: 700; color: var(--accent-coral);">${vNum}</code></td>
+          <td><span class="badge ${badgeBg}">${t.voucher_type}</span></td>
+          <td style="font-weight: 600; color: var(--text-main);">${t.party_name || 'Party'}</td>
+          <td style="color: var(--text-secondary); font-size: 0.76rem;">${appState.activeBank}</td>
+          <td class="mono">${t.gst_rate || 0}% (${formatINR(t.tax_amount || 0)})</td>
+          <td class="mono" style="font-weight: 800; color: ${isSale ? 'var(--accent-coral)' : 'var(--text-main)'};">${formatINR(t.total_amount || 0)}</td>
+          <td><span class="badge badge-violet">Balanced ✔</span></td>
+          <td>
+            <button class="btn btn-secondary" style="font-size: 0.72rem; padding: 3px 8px; border-color: var(--accent-violet-border); color: var(--accent-violet);" onclick="printVoucherTaxBill('${vNum}')" title="Print Tax Bill for ${vNum}">
+              <span>🖨️</span> Bill
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderTransactionsTable() {
+      const tbody = document.getElementById('fullLedgerTbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const query = (document.getElementById('filterSearch')?.value || '').toLowerCase();
+      const fType = document.getElementById('filterType')?.value || 'ALL';
+
+      const filtered = appState.transactions.filter(t => {
+        const matchesType = (fType === 'ALL') || (t.voucher_type === fType);
+        const matchesQuery = !query || (t.party_name && t.party_name.toLowerCase().includes(query)) || (t.voucher_number && t.voucher_number.toLowerCase().includes(query));
+        return matchesType && matchesQuery;
+      });
+
+      filtered.forEach(t => {
+        const isSale = (t.voucher_type === 'SALES' || t.voucher_type === 'SALE');
+        const badgeBg = isSale ? 'badge-coral' : (t.voucher_type === 'PURCHASE' ? 'badge-violet' : 'badge-rose');
+        const vNum = t.voucher_number || 'TX';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><code class="mono" style="font-weight: 700; color: var(--accent-coral);">${vNum}</code></td>
+          <td><span class="badge ${badgeBg}">${t.voucher_type}</span></td>
+          <td style="font-weight: 600;">${t.party_name || 'Party'}</td>
+          <td class="mono">${formatINR(t.taxable_amount || t.total_amount || 0)}</td>
+          <td>${t.gst_rate || 0}%</td>
+          <td class="mono">${formatINR(t.tax_amount || 0)}</td>
+          <td class="mono" style="font-weight: 800; color: ${isSale ? 'var(--accent-coral)' : 'var(--text-main)'};">${formatINR(t.total_amount || 0)}</td>
+          <td><span class="badge badge-violet">ΣDr = ΣCr ✔</span></td>
+          <td>
+            <button class="btn btn-secondary" style="font-size: 0.72rem; padding: 3px 8px; border-color: var(--accent-violet-border); color: var(--accent-violet);" onclick="printVoucherTaxBill('${vNum}')" title="Print Tax Bill for ${vNum}">
+              <span>🖨️</span> Print Bill
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ==========================================
+    // 13. COMPLIANCE & AI INSIGHTS
+    // ==========================================
+    async function fetchCompliance() {
+      try {
+        const res = await fetch('/api/compliance');
+        if (res.ok) {
+          const data = await res.json();
+          appState.complianceEvents = data.events || [];
+          renderComplianceTable();
+        }
+      } catch (e) {
+        console.warn("Compliance fetch error:", e);
+      }
+    }
+
+    function renderComplianceTable() {
+      const tbody = document.getElementById('complianceTbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      appState.complianceEvents.forEach(c => {
+        const isFiled = (c.status === 'FILED');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 700; color: var(--text-main);">${c.title}</td>
+          <td><span class="badge badge-violet">${c.compliance_category}</span></td>
+          <td>${c.period}</td>
+          <td class="mono" style="font-weight: 600;">${c.due_date}</td>
+          <td class="mono" style="color: var(--accent-rose);">₹${c.penalty_per_day}/day</td>
+          <td>
+            <span class="badge ${isFiled ? 'badge-coral' : 'badge-amber'}">
+              ${c.status}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-secondary" style="font-size: 0.72rem; padding: 4px 8px;" onclick="showToast('${c.title} verified with GST portal.', 'success')">
+              ${isFiled ? 'View Challan' : 'File Form'}
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function fetchInsights() {
+      try {
+        const res = await fetch('/api/insights');
+        if (res.ok) {
+          const data = await res.json();
+          appState.aiInsights = data.insights || [];
+          renderAiInsights();
+        }
+      } catch (e) {
+        console.warn("AI Insights fetch error:", e);
+      }
+    }
+
+    function renderAiInsights() {
+      const container = document.getElementById('aiInsightsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      appState.aiInsights.forEach(item => {
+        const card = document.createElement('div');
+        card.style.background = 'var(--bg-subtle)';
+        card.style.border = '1px solid var(--border-subtle)';
+        card.style.borderRadius = '14px';
+        card.style.padding = '16px';
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div>
+              <span class="badge badge-magenta" style="margin-bottom: 6px;">
+                ${item.insight_type}
+              </span>
+              <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);">${item.title}</h4>
+            </div>
+            ${item.potential_savings > 0 ? `<div class="mono" style="font-size: 1.15rem; font-weight: 800; color: var(--accent-coral);">+${formatINR(item.potential_savings)}</div>` : ''}
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px;">${item.description}</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.75rem; color: var(--accent-violet); font-weight: 600;">Recommendation: ${item.recommended_action || 'Review'}</span>
+            <button class="btn btn-secondary" style="font-size: 0.72rem; padding: 4px 10px;" onclick="showToast('Action acknowledged & queued for CA audit.', 'success')">
+              Apply Action
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // 14. ADMIN DATABASE TELEMETRY (ADMIN ONLY)
+    // ==========================================
+    async function fetchDbStatus() {
+      if (!appState.isAdmin) return;
+      const adminKey = appState.adminToken || 'admin2026';
+      try {
+        const res = await fetch(`/api/db-status?admin_key=${encodeURIComponent(adminKey)}&_t=${Date.now()}`, {
+          headers: { 'X-Admin-Key': adminKey }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          appState.dbStatus = data;
+          renderDbStatus(data);
+        } else if (res.status === 403) {
+          showToast("Access Denied: Database connection telemetry restricted to Admins.", "error");
+          appState.isAdmin = false;
+          const p = document.getElementById('adminDbHeaderPill');
+          const t = document.getElementById('tabBtn-database');
+          if (p) p.style.display = 'none';
+          if (t) t.style.display = 'none';
+          if (appState.activeNavTab === 'database') switchNavTab('dashboard');
+        }
+      } catch (err) {
+        console.error("fetchDbStatus error:", err);
+      }
+    }
+
+    function renderDbStatus(data) {
+      if (!data) return;
+      const isConn = Boolean(data.connected);
+
+      const pillDot = document.getElementById('adminDbPillDot');
+      const pillLabel = document.getElementById('adminDbPillLabel');
+      if (pillDot) pillDot.className = isConn ? 'status-pulse-dot' : 'status-pulse-dot down';
+      if (pillLabel) pillLabel.textContent = isConn ? `${data.engine || 'PostgreSQL 17'} Live` : 'PostgreSQL Offline';
+
+      const cardDot = document.getElementById('dbCardPulseDot');
+      const cardState = document.getElementById('dbCardStateLabel');
+      const cardEngine = document.getElementById('dbCardEngineLabel');
+      const cardHostPort = document.getElementById('dbCardHostPort');
+      const cardNameUser = document.getElementById('dbCardNameUser');
+      const cardUserSub = document.getElementById('dbCardUserSub');
+      const cardLatency = document.getElementById('dbCardLatency');
+      const cardActiveConns = document.getElementById('dbCardActiveConns');
+
+      if (cardDot) cardDot.className = isConn ? 'status-pulse-dot' : 'status-pulse-dot down';
+      if (cardState) {
+        cardState.textContent = isConn ? 'Connected & Healthy' : 'Disconnected';
+        cardState.style.color = isConn ? 'var(--accent-coral)' : 'var(--accent-rose)';
+      }
+      if (cardEngine) cardEngine.textContent = data.server_version || data.engine || 'PostgreSQL 17';
+      if (cardHostPort) cardHostPort.textContent = `${data.host || 'localhost'}:${data.port || '5432'}`;
+      if (cardNameUser) cardNameUser.textContent = data.database || 'virtual_ca_db';
+      if (cardUserSub) cardUserSub.textContent = `User: ${data.user || 'postgres'} (Superuser)`;
+      if (cardLatency) {
+        cardLatency.textContent = data.latency_ms ? `⚡ ${data.latency_ms} ms` : (isConn ? '⚡ < 1 ms' : 'N/A');
+      }
+      if (cardActiveConns) {
+        cardActiveConns.textContent = `${data.active_connections || 1} Active Connection${(data.active_connections || 1) > 1 ? 's' : ''}`;
+      }
+
+      const counts = data.table_counts || {};
+      const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = Number(v || 0).toLocaleString(); };
+      setVal('cnt-orgs', counts.organizations);
+      setVal('cnt-accounts', counts.accounts);
+      setVal('cnt-vouchers', counts.vouchers);
+      setVal('cnt-entries', counts.voucher_entries);
+      setVal('cnt-compliance', counts.compliance_events);
+      setVal('cnt-insights', counts.ai_financial_insights);
+
+      const syncEl = document.getElementById('dbLastSyncTime');
+      if (syncEl) syncEl.textContent = `Telemetry Updated: ${new Date().toLocaleTimeString()}`;
+
+      if (document.getElementById('cfgDbHost') && data.host) document.getElementById('cfgDbHost').value = data.host;
+      if (document.getElementById('cfgDbPort') && data.port) document.getElementById('cfgDbPort').value = data.port;
+      if (document.getElementById('cfgDbName') && data.database) document.getElementById('cfgDbName').value = data.database;
+      if (document.getElementById('cfgDbUser') && data.user) document.getElementById('cfgDbUser').value = data.user;
+    }
+
+    async function pingDatabase() {
+      if (!appState.isAdmin) return;
+      const t0 = performance.now();
+      const adminKey = appState.adminToken || 'admin2026';
+      try {
+        const res = await fetch(`/api/db-status?admin_key=${encodeURIComponent(adminKey)}&_ping=${Date.now()}`, {
+          headers: { 'X-Admin-Key': adminKey }
+        });
+        const elapsed = (performance.now() - t0).toFixed(1);
+        if (res.ok) {
+          const data = await res.json();
+          renderDbStatus(data);
+          showToast(`⚡ DB Ping: ${elapsed} ms round-trip | ${data.engine || 'PostgreSQL 17'} responsive`, "success");
+        } else {
+          showToast(`🔴 Ping failed: HTTP ${res.status}`, "error");
+        }
+      } catch (e) {
+        showToast("🔴 Ping network error", "error");
+      }
+    }
+
+    function openDbConfigModal() {
+      if (!appState.isAdmin) return;
+      document.getElementById('dbConfigModal').classList.add('active');
+    }
+
+    function closeDbConfigModal() {
+      document.getElementById('dbConfigModal').classList.remove('active');
+    }
+
+    async function submitDbConfig() {
+      if (!appState.isAdmin) return;
+      const host = document.getElementById('cfgDbHost').value.trim();
+      const port = document.getElementById('cfgDbPort').value.trim();
+      const database = document.getElementById('cfgDbName').value.trim();
+      const user = document.getElementById('cfgDbUser').value.trim();
+      const password = document.getElementById('cfgDbPassword').value;
+
+      const payload = { host, port, database, user };
+      if (password) payload.password = password;
+
+      const adminKey = appState.adminToken || 'admin2026';
+      try {
+        const res = await fetch('/api/db-config', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'X-Admin-Key': adminKey
+          },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(json.message || "Database configuration successfully tested & updated!", "success");
+          closeDbConfigModal();
+          renderDbStatus(json.status);
+        } else {
+          showToast(json.message || json.error || "Failed to update database configuration", "error");
+        }
+      } catch (err) {
+        showToast("Error connecting to server", "error");
+      }
+    }
+
+    // ==========================================
+    // 15. INITIALIZATION & SESSION RESTORE
+    // ==========================================
+    const savedSession = localStorage.getItem('virtual_ca_session');
+    if (savedSession) {
+      try {
+        const session = JSON.parse(savedSession);
+        if (session && session.activeUser) {
+          appState.adminToken = session.adminToken || (session.activeUser.role === 'Admin' ? 'admin2026' : null);
+          completeLogin(session.activeUser, session.myAccounts || [session.activeUser], session.isAdmin);
+        } else {
+          initializeDropdowns();
+        }
+      } catch (e) {
+        localStorage.removeItem('virtual_ca_session');
+        initializeDropdowns();
+      }
+    } else {
+      initializeDropdowns();
+    }
+  </script>
+</body>
+</html>

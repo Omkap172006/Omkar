@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual CA System — Programming Languages & Technology Stack Deep Dive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #090d16;
+      --bg-surface: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.65);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(99, 102, 241, 0.35);
+      --brand-indigo: #6366f1;
+      --brand-indigo-light: #818cf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-cyan: #06b6d4;
+      --accent-rose: #f43f5e;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 24px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border-accent);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-left h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #ffffff, #c7d2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .header-left p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+    }
+
+    .grid-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .lang-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lang-card:hover {
+      border-color: var(--brand-indigo-light);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -10px rgba(99, 102, 241, 0.25);
+    }
+
+    .lang-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .lang-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-java { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-sql { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-js { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-html { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+    .badge-css { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge-py { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-md { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+    .files-pill {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      word-break: break-all;
+    }
+
+    .lang-card p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin-bottom: 12px;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-top: auto;
+    }
+
+    .features-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .features-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--brand-indigo-light);
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin: 40px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.9);
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    td {
+      padding: 14px 18px;
+      font-size: 13.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>Virtual CA System — Language Architecture</h1>
+        <p>Comprehensive technical deep dive into every programming language and its role in the platform.</p>
+      </div>
+      <div class="header-actions">
+        <a href="Virtual_CA_Technology_Stack_and_Languages.pdf" download class="btn-action">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF Specification
+        </a>
+      </div>
+    </header>
+
+    <div class="grid-matrix">
+      <!-- Java -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">☕ Java</span>
+          <span class="badge badge-java">Backend Engine</span>
+        </div>
+        <div class="files-pill">backend/.../DoubleEntryEngineService.java<br/>backend/.../GstCalculationService.java</div>
+        <p>Enforces zero-drift accounting logic, atomic double-entry balance, and statutory Indian GST calculations.</p>
+        <ul class="features-list">
+          <li><b>Type:</b> Java 17/21 LTS + Spring Boot 3.x</li>
+          <li><b>Strict Math:</b> <code>BigDecimal</code> with <code>RoundingMode.HALF_UP</code> eliminates float rounding issues.</li>
+          <li><b>ACID Safety:</b> <code>@Transactional(isolation = Isolation.SERIALIZABLE)</code> guarantees ledger integrity.</li>
+          <li><b>Modern Constructs:</b> Immutable Records (<code>JournalLine</code>, <code>GstBreakup</code>) and Enums.</li>
+        </ul>
+      </div>
+
+      <!-- SQL -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">🗄️ SQL (PostgreSQL)</span>
+          <span class="badge badge-sql">Persistence Layer</span>
+        </div>
+        <div class="files-pill">database/schema.sql</div>
+        <p>Production relational schema modeling multi-tenant accounts, immutable vouchers, invoices, and compliance.</p>
+        <ul class="features-list">
+          <li><b>Precision:</b> <code>NUMERIC(15,2)</code> for exact Indian Rupee and Paisa representation.</li>
+          <li><b>Integrity:</b> Check constraints (<code>entry_type IN ('DEBIT', 'CREDIT')</code>) and foreign keys with cascade.</li>
+          <li><b>Multi-Tenancy:</b> Organization-scoped compound unique keys (<code>UNIQUE(org_id, account_code)</code>).</li>
+          <li><b>Statutory Schema:</b> Dedicated compliance events and AI financial insight anomaly tables.</li>
+        </ul>
+      </div>
+
+      <!-- JavaScript -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">⚡ JavaScript (ES6+)</span>
+          <span class="badge badge-js">Reactive Client</span>
+        </div>
+        <div class="files-pill">frontend/index.html (Client Script)</div>
+        <p>Powers client-side business logic, dynamic GST recalculations, and real-time double-entry journal preview.</p>
+        <ul class="features-list">
+          <li><b>Instant Feedback:</b> In-memory double-entry balancing updates without waiting for network roundtrips.</li>
+          <li><b>Dynamic Tax Rules:</b> Reactive Place of Supply comparison auto-switches CGST+SGST to IGST.</li>
+          <li><b>Financial Statements:</b> Live balance sheet and P&L aggregation on voucher postings.</li>
+          <li><b>Zero Build Step:</b> Native ES6+ runs seamlessly in all browsers with no bundler overhead.</li>
+        </ul>
+      </div>
+
+      <!-- HTML5 -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">🌐 HTML5</span>
+          <span class="badge badge-html">Markup & Structure</span>
+        </div>
+        <div class="files-pill">frontend/index.html<br/>Virtual_CA_System_Blueprint.html</div>
+        <p>Semantic document tree providing accessible accounting forms, tabular ledgers, and executive blueprints.</p>
+        <ul class="features-list">
+          <li><b>Semantic Tags:</b> Structured using <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, and <code>&lt;section&gt;</code>.</li>
+          <li><b>Strict Forms:</b> Input types with numeric step constraints and tax identifier patterns (GSTIN/PAN).</li>
+          <li><b>Accounting Grids:</b> Tabular balance sheets and journals with formal header, body, and footer tags.</li>
+        </ul>
+      </div>
+
+      <!-- CSS3 -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">🎨 CSS3</span>
+          <span class="badge badge-css">Design & Print</span>
+        </div>
+        <div class="files-pill">Embedded Design System & Media Queries</div>
+        <p>Modern Glassmorphism UI tokens, responsive split-screen layouts, and dedicated print stylesheets.</p>
+        <ul class="features-list">
+          <li><b>Design Tokens:</b> CSS Custom Properties for standardized dark/light financial theme palettes.</li>
+          <li><b>Glassmorphism:</b> Backdrop blur filters (<code>backdrop-filter: blur(12px)</code>) for a sleek SaaS visual.</li>
+          <li><b>Responsive Layouts:</b> CSS Grid and Flexbox for simultaneous input and ledger review panes.</li>
+          <li><b>Print Queries:</b> <code>@media print</code> formats invoices and ledgers into clean physical documents.</li>
+        </ul>
+      </div>
+
+      <!-- Python -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">🐍 Python</span>
+          <span class="badge badge-py">PDF & Analytics</span>
+        </div>
+        <div class="files-pill">generate_pdf.py<br/>generate_languages_pdf.py</div>
+        <p>High-resolution vector PDF synthesis, dynamic two-pass pagination, and future AI/OCR data ingestion.</p>
+        <ul class="features-list">
+          <li><b>ReportLab Engine:</b> Generates vector-quality financial reports without browser overhead.</li>
+          <li><b>Two-Pass NumberedCanvas:</b> Dynamically tracks and writes exact page numbers and running headers.</li>
+          <li><b>ML/AI Readiness:</b> Foundation for future OCR line-item extraction (PyPDF, Tesseract) and anomaly detection.</li>
+        </ul>
+      </div>
+
+      <!-- Markdown -->
+      <div class="lang-card">
+        <div class="lang-header">
+          <span class="lang-title">📝 Markdown</span>
+          <span class="badge badge-md">Documentation</span>
+        </div>
+        <div class="files-pill">README.md</div>
+        <p>Version-controlled developer runbook, architectural specifications, and mathematical formulas.</p>
+        <ul class="features-list">
+          <li><b>Version Controlled:</b> Tracks system evolution alongside source code in Git repositories.</li>
+          <li><b>Formula Support:</b> Documents accounting equations (&Sigma; Dr = &Sigma; Cr) and GST calculation rules.</li>
+          <li><b>Dev Onboarding:</b> Quick-start guides for running local previews and PostgreSQL database migrations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">End-to-End Invoice Processing Flow Across All Languages</div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Languages Involved</th>
+            <th>Operational Execution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>1. Transaction Input</b></td>
+            <td><code>HTML5</code> + <code>CSS3</code></td>
+            <td>User enters customer name, taxable value, GST rate, and state codes into the responsive dashboard.</td>
+          </tr>
+          <tr>
+            <td><b>2. Real-Time Balance</b></td>
+            <td><code>JavaScript (ES6+)</code></td>
+            <td>Instantly verifies double-entry equality (&Sigma; Dr = &Sigma; Cr) and computes CGST+SGST vs IGST split.</td>
+          </tr>
+          <tr>
+            <td><b>3. Business Logic</b></td>
+            <td><code>Java 17/21</code></td>
+            <td>Calculates exact tax with <code>BigDecimal</code>, constructs immutable records, and enforces transactional safety.</td>
+          </tr>
+          <tr>
+            <td><b>4. ACID Persistence</b></td>
+            <td><code>PostgreSQL (SQL)</code></td>
+            <td>Performs atomic inserts into <code>vouchers</code> and <code>voucher_entries</code> with referential constraints.</td>
+          </tr>
+          <tr>
+            <td><b>5. Audit & PDF Export</b></td>
+            <td><code>Python 3.13</code></td>
+            <td>Compiles certified financial statements and statutory tax summaries into vector PDF documents.</td>
+          </tr>
+          <tr>
+            <td><b>6. Knowledge Base</b></td>
+            <td><code>Markdown</code></td>
+            <td>Maintains system architecture specifications, developer onboarding, and operational guidelines.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
