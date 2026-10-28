@@ -28,3 +28,14 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
+
+# Resilient Database files
+*.mv.db
+*.trace.db
+
+# Maven build artifacts
+target/
+**/target/
+*.class
+*.jar
+
