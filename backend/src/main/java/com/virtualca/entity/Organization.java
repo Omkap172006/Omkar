@@ -47,6 +47,38 @@ public class Organization {
     @Column(length = 20)
     private String phone;
 
+    @Column(name = "country", length = 50)
+    @JsonProperty("country")
+    private String country = "India";
+
+    @Column(name = "business_category", length = 100)
+    @JsonProperty("business_category")
+    private String businessCategory = "Retail & E-commerce";
+
+    @Column(name = "business_subcategory", length = 100)
+    @JsonProperty("business_subcategory")
+    private String businessSubcategory = "General retail";
+
+    @Column(name = "currency_code", length = 10)
+    @JsonProperty("currency_code")
+    private String currencyCode = "INR";
+
+    @Column(name = "currency_symbol", length = 5)
+    @JsonProperty("currency_symbol")
+    private String currencySymbol = "₹";
+
+    @Column(name = "locale", length = 20)
+    @JsonProperty("locale")
+    private String locale = "mr-IN";
+
+    @Column(name = "language", length = 10)
+    @JsonProperty("language")
+    private String language = "mr";
+
+    @Column(name = "tax_system", length = 50)
+    @JsonProperty("tax_system")
+    private String taxSystem = "Indian GST";
+
     @Column(name = "financial_year_start", nullable = false)
     @JsonProperty("financial_year_start")
     private LocalDate financialYearStart = LocalDate.of(2026, 4, 1);
@@ -71,6 +103,14 @@ public class Organization {
         this.email = email;
         this.role = (role != null && !role.isBlank()) ? role : "Owner";
         this.initials = (initials != null && !initials.isBlank()) ? initials : "US";
+        this.country = "India";
+        this.businessCategory = "Retail & E-commerce";
+        this.businessSubcategory = "General retail";
+        this.currencyCode = "INR";
+        this.currencySymbol = "₹";
+        this.locale = "mr-IN";
+        this.language = "mr";
+        this.taxSystem = "Indian GST";
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }
@@ -119,6 +159,45 @@ public class Organization {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public String getBusinessCategory() { return businessCategory; }
+    public void setBusinessCategory(String businessCategory) { this.businessCategory = businessCategory; }
+
+    @JsonProperty("businessCategory")
+    public String getBusinessCategoryCamel() { return businessCategory; }
+
+    public String getBusinessSubcategory() { return businessSubcategory; }
+    public void setBusinessSubcategory(String businessSubcategory) { this.businessSubcategory = businessSubcategory; }
+
+    @JsonProperty("businessSubcategory")
+    public String getBusinessSubcategoryCamel() { return businessSubcategory; }
+
+    public String getCurrencyCode() { return currencyCode; }
+    public void setCurrencyCode(String currencyCode) { this.currencyCode = currencyCode; }
+
+    @JsonProperty("currencyCode")
+    public String getCurrencyCodeCamel() { return currencyCode; }
+
+    public String getCurrencySymbol() { return currencySymbol; }
+    public void setCurrencySymbol(String currencySymbol) { this.currencySymbol = currencySymbol; }
+
+    @JsonProperty("currencySymbol")
+    public String getCurrencySymbolCamel() { return currencySymbol; }
+
+    public String getLocale() { return locale; }
+    public void setLocale(String locale) { this.locale = locale; }
+
+    public String getLanguage() { return language; }
+    public void setLanguage(String language) { this.language = language; }
+
+    public String getTaxSystem() { return taxSystem; }
+    public void setTaxSystem(String taxSystem) { this.taxSystem = taxSystem; }
+
+    @JsonProperty("taxSystem")
+    public String getTaxSystemCamel() { return taxSystem; }
 
     public LocalDate getFinancialYearStart() { return financialYearStart; }
     public void setFinancialYearStart(LocalDate financialYearStart) { this.financialYearStart = financialYearStart; }

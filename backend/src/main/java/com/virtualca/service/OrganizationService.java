@@ -1,5 +1,6 @@
 package com.virtualca.service;
 
+import com.virtualca.dto.OrgSettingsRequest;
 import com.virtualca.dto.RegisterRequest;
 import com.virtualca.entity.Account;
 import com.virtualca.entity.Organization;
@@ -8,6 +9,7 @@ import com.virtualca.repository.OrganizationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.*;
 
 @Service
@@ -98,9 +100,100 @@ public class OrganizationService {
             org = new Organization(name, company, gstin, pan, stateCode, stateName, email, role, initials);
         }
 
+        if (req.getBusinessCategory() != null && !req.getBusinessCategory().isBlank()) {
+            org.setBusinessCategory(req.getBusinessCategory());
+        }
+        if (req.getBusinessSubcategory() != null && !req.getBusinessSubcategory().isBlank()) {
+            org.setBusinessSubcategory(req.getBusinessSubcategory());
+        }
+        if (req.getCountry() != null && !req.getCountry().isBlank()) {
+            org.setCountry(req.getCountry());
+        }
+        if (req.getLanguage() != null && !req.getLanguage().isBlank()) {
+            org.setLanguage(req.getLanguage());
+        }
+        if (req.getCurrencyCode() != null && !req.getCurrencyCode().isBlank()) {
+            org.setCurrencyCode(req.getCurrencyCode());
+        }
+        if (req.getCurrencySymbol() != null && !req.getCurrencySymbol().isBlank()) {
+            org.setCurrencySymbol(req.getCurrencySymbol());
+        }
+        if (req.getLocale() != null && !req.getLocale().isBlank()) {
+            org.setLocale(req.getLocale());
+        }
+        if (req.getTaxSystem() != null && !req.getTaxSystem().isBlank()) {
+            org.setTaxSystem(req.getTaxSystem());
+        }
+        org.setUpdatedAt(Instant.now());
+
         Organization saved = organizationRepository.save(org);
         initializeStandardAccounts(saved.getId());
         return saved;
+    }
+
+    @Transactional
+    public Organization updateOrganizationSettings(UUID orgId, OrgSettingsRequest req) {
+        if (orgId == null) {
+            throw new IllegalArgumentException("Organization ID must not be null");
+        }
+        Organization org = organizationRepository.findById(orgId)
+                .orElseThrow(() -> new NoSuchElementException("Organization not found with ID: " + orgId));
+
+        if (req.getBusinessCategory() != null && !req.getBusinessCategory().isBlank()) {
+            org.setBusinessCategory(req.getBusinessCategory());
+        }
+        if (req.getBusinessSubcategory() != null && !req.getBusinessSubcategory().isBlank()) {
+            org.setBusinessSubcategory(req.getBusinessSubcategory());
+        }
+        if (req.getCountry() != null && !req.getCountry().isBlank()) {
+            org.setCountry(req.getCountry());
+        }
+        if (req.getLanguage() != null && !req.getLanguage().isBlank()) {
+            org.setLanguage(req.getLanguage());
+        }
+        if (req.getCurrencyCode() != null && !req.getCurrencyCode().isBlank()) {
+            org.setCurrencyCode(req.getCurrencyCode());
+        }
+        if (req.getCurrencySymbol() != null && !req.getCurrencySymbol().isBlank()) {
+            org.setCurrencySymbol(req.getCurrencySymbol());
+        }
+        if (req.getLocale() != null && !req.getLocale().isBlank()) {
+            org.setLocale(req.getLocale());
+        }
+        if (req.getTaxSystem() != null && !req.getTaxSystem().isBlank()) {
+            org.setTaxSystem(req.getTaxSystem());
+        }
+        org.setUpdatedAt(Instant.now());
+        return organizationRepository.save(org);
+    }
+
+    @Transactional
+    public Organization updateLanguagePreference(UUID orgId, String email, String language) {
+        String lang = (language != null && !language.isBlank()) ? language.trim().toLowerCase() : "mr";
+        Organization target = null;
+        if (orgId != null) {
+            Optional<Organization> opt = organizationRepository.findById(orgId);
+            if (opt.isPresent()) {
+                target = opt.get();
+                target.setLanguage(lang);
+                target.setUpdatedAt(Instant.now());
+                organizationRepository.save(target);
+            }
+        }
+        if (email != null && !email.isBlank()) {
+            List<Organization> orgs = organizationRepository.findByEmailIgnoreCaseOrderByCreatedAtDesc(email.trim());
+            for (Organization o : orgs) {
+                if (target == null || !o.getId().equals(target.getId())) {
+                    o.setLanguage(lang);
+                    o.setUpdatedAt(Instant.now());
+                    organizationRepository.save(o);
+                }
+            }
+            if (target == null && !orgs.isEmpty()) {
+                target = orgs.get(0);
+            }
+        }
+        return target;
     }
 
     @Transactional

@@ -14,6 +14,14 @@ public class RegisterRequest {
     private String company;
     private String gstin;
     private String role;
+    private String businessCategory = "Retail & E-commerce";
+    private String businessSubcategory = "General retail";
+    private String country = "India";
+    private String language = "mr";
+    private String currencyCode = "INR";
+    private String currencySymbol = "₹";
+    private String locale = "mr-IN";
+    private String taxSystem = "Indian GST";
 
     public RegisterRequest() {}
 
@@ -31,5 +39,29 @@ public class RegisterRequest {
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
+
+    public String getBusinessCategory() { return businessCategory; }
+    public void setBusinessCategory(String businessCategory) { this.businessCategory = businessCategory; }
+
+    public String getBusinessSubcategory() { return businessSubcategory; }
+    public void setBusinessSubcategory(String businessSubcategory) { this.businessSubcategory = businessSubcategory; }
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public String getLanguage() { return language; }
+    public void setLanguage(String language) { this.language = language; }
+
+    public String getCurrencyCode() { return currencyCode; }
+    public void setCurrencyCode(String currencyCode) { this.currencyCode = currencyCode; }
+
+    public String getCurrencySymbol() { return currencySymbol; }
+    public void setCurrencySymbol(String currencySymbol) { this.currencySymbol = currencySymbol; }
+
+    public String getLocale() { return locale; }
+    public void setLocale(String locale) { this.locale = locale; }
+
+    public String getTaxSystem() { return taxSystem; }
+    public void setTaxSystem(String taxSystem) { this.taxSystem = taxSystem; }
 }
 

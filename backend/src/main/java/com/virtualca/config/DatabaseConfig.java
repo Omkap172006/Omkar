@@ -34,9 +34,23 @@ public class DatabaseConfig {
     @Value("${DB_PASSWORD:Atharva06}")
     private String dbPassword;
 
+    @Value("${spring.datasource.url:}")
+    private String explicitUrl;
+
     @Bean
     @Primary
     public DataSource dataSource() {
+        if (explicitUrl != null && !explicitUrl.isBlank() && explicitUrl.contains("h2")) {
+            log.info("Detected explicit H2 test datasource ({}). Using in-memory database...", explicitUrl);
+            HikariConfig testConfig = new HikariConfig();
+            testConfig.setJdbcUrl(explicitUrl);
+            testConfig.setDriverClassName("org.h2.Driver");
+            testConfig.setUsername("sa");
+            testConfig.setPassword("");
+            testConfig.setMaximumPoolSize(5);
+            return new HikariDataSource(testConfig);
+        }
+
         boolean pgAvailable = isPortOpen(dbHost, dbPort, 1500);
 
         if (pgAvailable) {

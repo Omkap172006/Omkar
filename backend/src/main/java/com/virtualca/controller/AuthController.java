@@ -1,7 +1,9 @@
 package com.virtualca.controller;
 
 import com.virtualca.dto.LoginRequest;
+import com.virtualca.dto.OrgSettingsRequest;
 import com.virtualca.dto.RegisterRequest;
+import com.virtualca.dto.UserPreferenceRequest;
 import com.virtualca.entity.Organization;
 import com.virtualca.service.AdminService;
 import com.virtualca.service.OrganizationService;
@@ -129,6 +131,42 @@ public class AuthController {
             resp.put("message", "Authentication required");
             return ResponseEntity.ok(resp);
         }
+    }
+
+    @PostMapping("/api/user/preferences")
+    public ResponseEntity<Map<String, Object>> updateUserPreferences(@RequestBody UserPreferenceRequest req) {
+        Organization updated = organizationService.updateLanguagePreference(req.getOrgId(), req.getEmail(), req.getLanguage());
+        Map<String, Object> resp = new LinkedHashMap<>();
+        resp.put("status", "success");
+        resp.put("language", req.getLanguage());
+        resp.put("organization", updated);
+        return ResponseEntity.ok(resp);
+    }
+
+    @PostMapping({"/api/organizations/settings", "/api/organizations/setup"})
+    public ResponseEntity<Map<String, Object>> updateOrgSettings(@RequestBody OrgSettingsRequest req) {
+        Organization updated = organizationService.updateOrganizationSettings(req.getOrgId(), req);
+        Map<String, Object> resp = new LinkedHashMap<>();
+        resp.put("status", "success");
+        resp.put("organization", updated);
+        return ResponseEntity.ok(resp);
+    }
+
+    @PutMapping("/api/organizations/settings")
+    public ResponseEntity<Map<String, Object>> updateOrgSettingsPut(@RequestBody OrgSettingsRequest req) {
+        return updateOrgSettings(req);
+    }
+
+    @GetMapping("/api/organizations/settings")
+    public ResponseEntity<Map<String, Object>> getOrgSettings(@RequestParam("org_id") UUID orgId) {
+        Organization org = organizationService.getById(orgId).orElse(null);
+        if (org == null) {
+            return ResponseEntity.notFound().build();
+        }
+        Map<String, Object> resp = new LinkedHashMap<>();
+        resp.put("status", "success");
+        resp.put("organization", org);
+        return ResponseEntity.ok(resp);
     }
 }
 

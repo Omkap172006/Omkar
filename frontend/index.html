@@ -7,7 +7,7 @@
   <meta name="description" content="Intelligent MSME Accounting, GST Invoicing, All-India States & Banks Directory." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
 /* ========================================================================
    ORANGE FINANCIAL SAAS DESIGN SYSTEM — NO BLUE
@@ -103,7 +103,7 @@
 body {
   background-color: var(--bg-body);
   color: var(--text-main);
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -1337,9 +1337,18 @@ table.data-table tr:last-child td {
       </div>
 
       <div class="auth-form-side">
-        <div>
-          <h3 style="font-size: 1.25rem; font-weight: 800;">Account Access</h3>
-          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Sign in to access your business ledger.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800;" data-i18n="auth_signin_title">Account Access</h3>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" data-i18n="auth_signin_sub">Sign in to access your business ledger.</p>
+          </div>
+          <div class="lang-switcher-pill" style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; border: 1.5px solid var(--accent-coral-border); padding: 3px 8px; border-radius: 9999px;">
+            <span style="font-size: 0.75rem;">🌐</span>
+            <select class="langSelectInput" onchange="changeLanguage(this.value)" style="border: none; background: transparent; font-size: 0.72rem; font-weight: 700; color: var(--accent-coral-hover); cursor: pointer; outline: none; font-family: inherit;">
+              <option value="mr">मराठी (MR)</option>
+              <option value="en">English (EN)</option>
+            </select>
+          </div>
         </div>
 
         <div class="auth-tabs" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px;">
@@ -1370,23 +1379,49 @@ table.data-table tr:last-child td {
         <!-- Sign Up Form -->
         <div id="formSignUp" style="display: none;">
           <div class="form-group">
-            <label>Your Full Name</label>
+            <label data-i18n="auth_name">Your Full Name</label>
             <input type="text" id="regName" class="input-field" placeholder="e.g. Omkar Patrikar" />
           </div>
           <div class="form-group">
-            <label>Business / Company Name</label>
+            <label data-i18n="auth_company">Business / Company Name</label>
             <input type="text" id="regCompany" class="input-field" placeholder="e.g. Infotech Services" />
           </div>
           <div class="form-group">
-            <label>Company GSTIN (15 Digits)</label>
+            <label data-i18n="auth_gstin">Company GSTIN (15 Digits)</label>
             <input type="text" id="regGstin" class="input-field" placeholder="e.g. 27BCCC267C123R4" />
           </div>
           <div class="form-group">
-            <label>Business Email</label>
+            <label data-i18n="auth_email">Business Email</label>
             <input type="email" id="regEmail" class="input-field" placeholder="e.g. omkarpatrikar@gmail.com" />
           </div>
+          <div class="form-group">
+            <label data-i18n="settings_category">Business Category</label>
+            <input type="text" id="regCategory" class="input-field" value="Retail & E-commerce" readonly style="background: var(--bg-subtle); font-weight: 700; color: var(--accent-coral-hover);" />
+          </div>
+          <div class="form-group">
+            <label data-i18n="settings_subcategory">Retail Subcategory</label>
+            <select id="regSubcategory" class="input-field" style="font-weight: 600;">
+              <option value="Grocery and convenience stores">1. Grocery and convenience stores (किराणा आणि सोयीची दुकाने)</option>
+              <option value="Clothing and fashion">2. Clothing and fashion (कपडे आणि फॅशन)</option>
+              <option value="Electronics and appliances">3. Electronics and appliances (इलेक्ट्रॉनिक्स आणि उपकरणे)</option>
+              <option value="Furniture and home goods">4. Furniture and home goods (फर्निचर आणि गृहपयोगी वस्तू)</option>
+              <option value="Beauty and personal care">5. Beauty and personal care (सौंदर्य प्रसाधने)</option>
+              <option value="Wholesale and distribution">6. Wholesale and distribution (घाऊक आणि वितरण)</option>
+              <option value="Online stores and marketplaces">7. Online stores and marketplaces (ऑनलाइन स्टोअर्स)</option>
+              <option value="General retail" selected>8. General retail (सर्वसाधारण किरकोळ विक्री)</option>
+              <option value="Import and export retail businesses">9. Import and export retail businesses (आयात आणि निर्यात)</option>
+              <option value="Other retail businesses">10. Other retail businesses (इतर किरकोळ व्यवसाय)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="settings_language">Default Language</label>
+            <select id="regLanguage" class="input-field" style="font-weight: 600;">
+              <option value="mr" selected>मराठी - Marathi (mr)</option>
+              <option value="en">English (en)</option>
+            </select>
+          </div>
           <button class="btn btn-primary" style="width: 100%; padding: 11px; margin-top: 8px;" onclick="performSignUp()">
-            <span>Create Entity & Start</span> <span>➔</span>
+            <span data-i18n="auth_btn_signup">Create Entity & Start</span> <span>➔</span>
           </button>
         </div>
 
@@ -1468,10 +1503,19 @@ table.data-table tr:last-child td {
         </div>
 
         <div class="nav-right">
+          <!-- Language Selector (मराठी / English) -->
+          <div class="lang-switcher-pill" style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; border: 1.5px solid var(--accent-coral-border); padding: 4px 10px; border-radius: 9999px; box-shadow: var(--shadow-xs);">
+            <span style="font-size: 0.82rem;">🌐</span>
+            <select class="langSelectInput" onchange="changeLanguage(this.value)" style="border: none; background: transparent; font-size: 0.76rem; font-weight: 700; color: var(--accent-coral-hover); cursor: pointer; outline: none; font-family: inherit;">
+              <option value="mr">मराठी (MR)</option>
+              <option value="en">English (EN)</option>
+            </select>
+          </div>
+
           <!-- View Mode Pill -->
           <div class="mode-pill">
-            <button class="mode-btn active" id="modeSimpleBtn" onclick="setViewMode('simple')">Simple View</button>
-            <button class="mode-btn" id="modeDetailedBtn" onclick="setViewMode('detailed')">Detailed CA</button>
+            <button class="mode-btn active" id="modeSimpleBtn" onclick="setViewMode('simple')" data-i18n="view_mode_simple">Simple View</button>
+            <button class="mode-btn" id="modeDetailedBtn" onclick="setViewMode('detailed')" data-i18n="view_mode_detailed">Detailed CA</button>
           </div>
 
           <!-- User Badge -->
@@ -1482,12 +1526,12 @@ table.data-table tr:last-child td {
 
           <!-- Downloads -->
           <a href="/downloads.html" class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.74rem;" title="Download source code and documentation PDFs">
-            <span>📦</span> Downloads
+            <span>📦</span> <span data-i18n="btn_downloads">Downloads</span>
           </a>
 
           <!-- Print Latest Tax Bill -->
           <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.74rem; color: var(--accent-coral); border-color: var(--accent-coral-border);" onclick="printLatestTaxBill()" title="Print the latest updated taxation bill">
-            <span>🖨️</span> Print Tax Bill
+            <span>🖨️</span> <span data-i18n="btn_print_tax_bill">Print Tax Bill</span>
           </button>
 
           <!-- Sign Out -->
@@ -1502,26 +1546,30 @@ table.data-table tr:last-child td {
     <div class="subnav-bar">
       <div class="subnav-container">
         <button class="tab-nav-btn active" id="tabBtn-dashboard" onclick="switchNavTab('dashboard')">
-          <span>📊</span> Overview & Workbench
+          <span>📊</span> <span data-i18n="nav_dashboard">Overview & Workbench</span>
         </button>
         <button class="tab-nav-btn" id="tabBtn-transactions" onclick="switchNavTab('transactions')">
-          <span>🧾</span> Transactions & Ledger
+          <span>🧾</span> <span data-i18n="nav_transactions">Transactions & Ledger</span>
         </button>
         <button class="tab-nav-btn" id="tabBtn-states" onclick="switchNavTab('states')">
-          <span>🇮🇳</span> All States & GST Rates
+          <span>🇮🇳</span> <span data-i18n="nav_states">All States & GST Rates</span>
         </button>
         <button class="tab-nav-btn" id="tabBtn-banks" onclick="switchNavTab('banks')">
-          <span>🏦</span> All Indian Banks Directory
+          <span>🏦</span> <span data-i18n="nav_banks">All Indian Banks Directory</span>
         </button>
         <button class="tab-nav-btn" id="tabBtn-compliance" onclick="switchNavTab('compliance')">
-          <span>📅</span> Statutory Compliance
+          <span>📅</span> <span data-i18n="nav_compliance">Statutory Compliance</span>
         </button>
         <button class="tab-nav-btn" id="tabBtn-insights" onclick="switchNavTab('insights')">
-          <span>🤖</span> AI Tax Insights
+          <span>🤖</span> <span data-i18n="nav_insights">AI Tax Insights</span>
+        </button>
+        <!-- RETAIL & E-COMMERCE BUSINESS CONFIGURATION TAB -->
+        <button class="tab-nav-btn" id="tabBtn-settings" onclick="switchNavTab('settings')">
+          <span>🏪</span> <span data-i18n="nav_settings">Retail & Business Config</span>
         </button>
         <!-- STRICT ADMIN ONLY: DATABASE CONNECTION TAB -->
         <button class="tab-nav-btn" id="tabBtn-database" onclick="switchNavTab('database')" style="display: none; border-color: var(--accent-violet-border); background: var(--accent-violet-subtle);">
-          <span>🗄️</span> Database Connection <span class="badge badge-admin-tag" style="margin-left: 5px;">ADMIN</span>
+          <span>🗄️</span> <span data-i18n="nav_database">Database Connection</span> <span class="badge badge-admin-tag" style="margin-left: 5px;">ADMIN</span>
         </button>
       </div>
     </div>
@@ -2083,6 +2131,132 @@ table.data-table tr:last-child td {
           </div>
         </div>
       </div>
+
+      <!-- ===================================================================
+           TAB 8: RETAIL & E-COMMERCE BUSINESS CONFIGURATION
+           =================================================================== -->
+      <div class="tab-content-panel" id="tabContent-settings">
+        <!-- Banner -->
+        <div class="header-banner">
+          <div>
+            <h2 data-i18n="settings_title">🏪 Retail & E-commerce व्यवसाय कॉन्फिगरेशन</h2>
+            <p data-i18n="settings_sub">भारतीय MSME किरकोळ स्टोअर्स आणि ई-कॉमर्स प्लॅटफॉर्मसाठी सेटिंग्ज • GST आणि बहुभाषिक प्रणाली</p>
+          </div>
+          <div class="badge badge-coral" style="padding: 6px 14px; font-size: 0.78rem;">
+            <span>🇮🇳</span> <span id="settingsOrgHeaderBadge">Infotech Services • Retail & E-commerce • mr-IN</span>
+          </div>
+        </div>
+
+        <!-- 2 Column Configuration Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 24px;">
+          <!-- Card 1: Business Classification & Retail Subcategory -->
+          <div class="table-card" style="padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                <span>🛍️</span> <span data-i18n="settings_cat_header">व्यवसाय स्वरूप आणि किरकोळ वर्गवारी</span>
+              </h3>
+              <span class="badge badge-coral">सक्रिय / Active</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label data-i18n="settings_country">देश (Country)</label>
+              <div style="display: flex; align-items: center; gap: 10px; background: var(--bg-subtle); padding: 9px 13px; border-radius: var(--radius-md); border: 1.5px solid var(--border-subtle);">
+                <span style="font-size: 1.25rem;">🇮🇳</span>
+                <span style="font-weight: 700; color: var(--text-main);">India (भारत)</span>
+                <span class="badge badge-violet" style="margin-left: auto;">Indian MSME Hub</span>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label data-i18n="settings_category">व्यवसाय श्रेणी (Business Category)</label>
+              <div style="display: flex; align-items: center; gap: 10px; background: var(--accent-coral-subtle); padding: 9px 13px; border-radius: var(--radius-md); border: 1.5px solid var(--accent-coral-border);">
+                <span style="font-size: 1.15rem; color: var(--accent-coral-hover);">🛒</span>
+                <span style="font-weight: 800; color: var(--accent-coral-hover);">Retail & E-commerce (किरकोळ आणि ई-कॉमर्स)</span>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="cfgSubcategorySelect" data-i18n="settings_subcategory">किरकोळ उपवर्गवारी (Retail Subcategory)</label>
+              <select id="cfgSubcategorySelect" class="input-field" style="width: 100%; font-weight: 600;" onchange="handleSubcategoryChange(this.value)">
+                <option value="Grocery and convenience stores">1. Grocery and convenience stores (किराणा आणि सोयीची दुकाने)</option>
+                <option value="Clothing and fashion">2. Clothing and fashion (कपडे आणि फॅशन)</option>
+                <option value="Electronics and appliances">3. Electronics and appliances (इलेक्ट्रॉनिक्स आणि उपकरणे)</option>
+                <option value="Furniture and home goods">4. Furniture and home goods (फर्निचर आणि गृहपयोगी वस्तू)</option>
+                <option value="Beauty and personal care">5. Beauty and personal care (सौंदर्य प्रसाधने आणि काळजी)</option>
+                <option value="Wholesale and distribution">6. Wholesale and distribution (घाऊक आणि वितरण)</option>
+                <option value="Online stores and marketplaces">7. Online stores and marketplaces (ऑनलाइन स्टोअर्स आणि ई-कॉमर्स)</option>
+                <option value="General retail" selected>8. General retail (सर्वसाधारण किरकोळ विक्री)</option>
+                <option value="Import and export retail businesses">9. Import and export retail businesses (आयात आणि निर्यात)</option>
+                <option value="Other retail businesses">10. Other retail businesses (इतर किरकोळ व्यवसाय)</option>
+              </select>
+            </div>
+
+            <div id="subcategoryNotice" style="background: var(--bg-subtle); border-left: 3px solid var(--accent-coral); padding: 12px 14px; border-radius: 6px; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45;">
+              <strong>ℹ️ किरकोळ वर्गवारी माहिती:</strong> सर्वसाधारण किरकोळ व्यवसायांसाठी GST इनव्हॉइसिंग, स्टॉक ट्रॅकिंग आणि स्थानिक आंतरराज्यीय कर हाताळणी स्वयंचलित आहे.
+            </div>
+          </div>
+
+          <!-- Card 2: Localization, Currency & Tax System -->
+          <div class="table-card" style="padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                <span>🌐</span> <span data-i18n="settings_loc_header">स्थानिकीकरण, चलन आणि कर प्रणाली</span>
+              </h3>
+              <span class="badge badge-magenta">mr-IN Standard</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="cfgLanguageSelect" data-i18n="settings_language">इंटरफेस भाषा (Interface Language)</label>
+              <select id="cfgLanguageSelect" class="input-field" style="width: 100%; font-weight: 600;" onchange="changeLanguage(this.value)">
+                <option value="mr" selected>मराठी - Marathi (mr) [डीफॉल्ट]</option>
+                <option value="en">English (en)</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label data-i18n="settings_currency">डीफॉल्ट चलन आणि चिन्ह (Currency)</label>
+              <div style="display: flex; align-items: center; gap: 10px; background: var(--bg-subtle); padding: 9px 13px; border-radius: var(--radius-md); border: 1.5px solid var(--border-subtle);">
+                <span style="font-size: 1.2rem; font-weight: 800; color: var(--accent-coral);">₹</span>
+                <span style="font-weight: 700; color: var(--text-main);">Indian Rupee (INR - ₹)</span>
+                <span class="mono" style="margin-left: auto; font-size: 0.76rem; font-weight: 700; color: var(--text-muted);">mr-IN</span>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label data-i18n="settings_tax_system">कर प्रणाली (Tax System)</label>
+              <div style="display: flex; align-items: center; gap: 10px; background: var(--accent-magenta-subtle); padding: 9px 13px; border-radius: var(--radius-md); border: 1.5px solid var(--accent-magenta-border);">
+                <span style="font-size: 1rem; color: var(--accent-magenta);">⚖️</span>
+                <span style="font-weight: 800; color: var(--accent-magenta);">Indian GST (CGST, SGST, IGST)</span>
+                <span class="badge badge-magenta" style="margin-left: auto;">Dual GST Engine</span>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-body); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px; margin-top: 10px;">
+              <div style="font-size: 0.74rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">
+                📊 लाइव्ह फॉरमॅट पूर्वावलोकन (Preview)
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+                <span style="color: var(--text-muted);">चलन स्वरूप (Currency):</span>
+                <strong class="mono" id="cfgPreviewCurrency" style="color: var(--accent-coral-hover);">₹ १,२५,०००.००</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-top: 4px;">
+                <span style="color: var(--text-muted);">कर रचना (Tax Split):</span>
+                <strong style="color: var(--text-main);">CGST (9%) + SGST (9%) / IGST (18%)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button Strip -->
+        <div style="display: flex; justify-content: flex-end; gap: 12px; align-items: center; background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 16px 20px; box-shadow: var(--shadow-sm);">
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-right: auto;" id="cfgLastSavedStatus">
+            PostgreSQL मध्ये थेट जतन होते.
+          </div>
+          <button class="btn btn-primary" style="padding: 10px 24px; font-size: 0.88rem; font-weight: 700;" onclick="saveBusinessSettings()">
+            <span>💾</span> <span data-i18n="settings_save_btn">कॉन्फिगरेशन सेव्ह करा (Save)</span>
+          </button>
+        </div>
+      </div>
     </main>
   </div>
 
@@ -2447,6 +2621,155 @@ table.data-table tr:last-child td {
     ];
 
     // ==========================================
+    // 2. I18N LOCALIZATION DICTIONARY (MARATHI & ENGLISH)
+    // ==========================================
+    const I18N = {
+      mr: {
+        app_title: "Virtual CA",
+        app_subtitle: "स्वायत्त भारतीय MSME लेखा व कर अनुपालन प्रणाली",
+        nav_dashboard: "डॅशबोर्ड व वर्कबेंच",
+        nav_transactions: "व्यवहार आणि लेजर",
+        nav_states: "सर्व राज्ये आणि GST दर",
+        nav_banks: "भारतीय बँकांची निर्देशिका",
+        nav_compliance: "वैधानिक अनुपालन",
+        nav_insights: "AI कर अंतर्दृष्टी",
+        nav_settings: "व्यवसाय कॉन्फिगरेशन",
+        nav_database: "डेटाबेस कनेक्शन",
+        sync_balanced: "द्विनोंद लेजर संतुलित",
+        view_mode_simple: "साधे दृश्य",
+        view_mode_detailed: "तपशीलवार CA",
+        btn_downloads: "डाउनलोड्स",
+        btn_print_tax_bill: "कर बिल मुद्रित करा",
+        btn_sign_out: "लॉग आउट",
+        metric_bank: "बँक शिल्लक",
+        metric_revenue: "एकूण महसूल",
+        metric_expenses: "एकूण खर्च",
+        metric_profit: "निव्वळ नफा",
+        metric_gst: "जीएसटी देयता",
+        action_sale: "विक्री बीजक (Sale)",
+        action_purchase: "खरेदी व्हाऊचर (Purchase)",
+        action_bank: "बँक भरणा / उचल",
+        action_expense: "खर्च व्हाउचर (Expense)",
+        lbl_customer_party: "ग्राहक / पुरवठादार नाव",
+        lbl_taxable_amt: "करपात्र रक्कम (₹)",
+        lbl_gst_slab: "जीएसटी कर दर",
+        lbl_state: "पुरवठ्याचे ठिकाण (राज्य)",
+        lbl_bank: "पेमेंट बँक खाते",
+        lbl_narration: "व्यवहार तपशील / नरेशन",
+        btn_submit_entry: "नोंद पोस्ट करा आणि कर बीजक तयार करा",
+        auth_signin_title: "खात्यात प्रवेश करा",
+        auth_signin_sub: "तुमच्या व्यावसायिक लेजरमध्ये प्रवेश करण्यासाठी साइन इन करा.",
+        auth_name: "तुमचे पूर्ण नाव",
+        auth_company: "कंपनी / दुकानाचे नाव",
+        auth_gstin: "कंपनी GSTIN (15 अंक)",
+        auth_email: "व्यावसायिक ईमेल",
+        auth_password: "पासवर्ड",
+        auth_btn_signin: "लेजरमध्ये प्रवेश करा",
+        auth_btn_signup: "नवीन व्यवसाय सुरू करा",
+        settings_title: "🏪 Retail & E-commerce व्यवसाय कॉन्फिगरेशन",
+        settings_sub: "भारतीय MSME किरकोळ स्टोअर्स आणि ई-कॉमर्स प्लॅटफॉर्मसाठी सेटिंग्ज • GST आणि बहुभाषिक प्रणाली",
+        settings_cat_header: "व्यवसाय स्वरूप आणि किरकोळ वर्गवारी",
+        settings_loc_header: "स्थानिकीकरण, चलन आणि कर प्रणाली",
+        settings_country: "देश (Country)",
+        settings_category: "व्यवसाय श्रेणी (Business Category)",
+        settings_subcategory: "किरकोळ उपवर्गवारी (Retail Subcategory)",
+        settings_language: "डीफॉल्ट इंटरफेस भाषा",
+        settings_currency: "डीफॉल्ट चलन आणि चिन्ह (Currency)",
+        settings_locale: "डीफॉल्ट लोकेल (Locale)",
+        settings_tax_system: "कर प्रणाली (Tax System)",
+        settings_save_btn: "कॉन्फिगरेशन सेव्ह करा (Save)",
+        th_date: "तारीख",
+        th_ref: "संदर्भ क्र.",
+        th_type: "प्रकार",
+        th_party: "पक्ष / तपशील",
+        th_bank: "बँक खाते",
+        th_taxable: "करपात्र (₹)",
+        th_tax: "GST कर (₹)",
+        th_total: "एकूण रक्कम (₹)",
+        th_status: "स्थिती",
+        th_actions: "क्रिया"
+      },
+      en: {
+        app_title: "Virtual CA",
+        app_subtitle: "Intelligent Autonomous MSME Accounting & GST Compliance Engine",
+        nav_dashboard: "Overview & Workbench",
+        nav_transactions: "Transactions & Ledger",
+        nav_states: "All States & GST Rates",
+        nav_banks: "All Indian Banks Directory",
+        nav_compliance: "Statutory Compliance",
+        nav_insights: "AI Tax Insights",
+        nav_settings: "Retail & Business Config",
+        nav_database: "Database Connection",
+        sync_balanced: "Ledger Balanced",
+        view_mode_simple: "Simple View",
+        view_mode_detailed: "Detailed CA",
+        btn_downloads: "Downloads",
+        btn_print_tax_bill: "Print Tax Bill",
+        btn_sign_out: "Sign Out",
+        metric_bank: "Bank Balance",
+        metric_revenue: "Operating Revenue",
+        metric_expenses: "Operating Expenses",
+        metric_profit: "Net Operating Profit",
+        metric_gst: "GST Payable",
+        action_sale: "Tax Invoice (Sale)",
+        action_purchase: "Vendor Purchase",
+        action_bank: "Bank Deposit / Transfer",
+        action_expense: "Direct Expense",
+        lbl_customer_party: "Counterparty / Customer Name",
+        lbl_taxable_amt: "Taxable Amount (₹)",
+        lbl_gst_slab: "GST Tax Slab",
+        lbl_state: "Place of Supply (State)",
+        lbl_bank: "Settlement Bank Account",
+        lbl_narration: "Narration / Reference",
+        btn_submit_entry: "Post Double-Entry & Generate Invoice",
+        auth_signin_title: "Account Access",
+        auth_signin_sub: "Sign in to access your business ledger.",
+        auth_name: "Your Full Name",
+        auth_company: "Business / Company Name",
+        auth_gstin: "Company GSTIN (15 Digits)",
+        auth_email: "Business Email",
+        auth_password: "Password",
+        auth_btn_signin: "Sign In to Books",
+        auth_btn_signup: "Create Entity & Start",
+        settings_title: "🏪 Retail & E-commerce Business Configuration",
+        settings_sub: "Configuration profile for Indian MSME retail stores and e-commerce platforms • GST & Dual Locale",
+        settings_cat_header: "Business Category & Retail Classification",
+        settings_loc_header: "Localization, Currency & Tax System",
+        settings_country: "Country",
+        settings_category: "Business Category",
+        settings_subcategory: "Retail Subcategory",
+        settings_language: "Default Interface Language",
+        settings_currency: "Default Currency & Symbol",
+        settings_locale: "Default Locale",
+        settings_tax_system: "Tax System",
+        settings_save_btn: "Save Configuration",
+        th_date: "Date",
+        th_ref: "Reference #",
+        th_type: "Type",
+        th_party: "Party / Particulars",
+        th_bank: "Settlement Bank",
+        th_taxable: "Taxable (₹)",
+        th_tax: "GST (₹)",
+        th_total: "Total (₹)",
+        th_status: "Status",
+        th_actions: "Actions"
+      }
+    };
+
+    const SUBCATEGORY_NOTICES = {
+      "Grocery and convenience stores": "किराणा आणि सोयीची दुकाने: दैनंदिन वस्तू, पॅकबंद किराणा माल, FMCG वस्तू. GST दर: ०%, ५%, १२%, १८%.",
+      "Clothing and fashion": "कपडे आणि फॅशन: तयार कपडे, वस्त्रोद्योग आणि पादत्राणे. ₹१,००० च्या आतील कपड्यांवर ५%, वरील कपड्यांवर १२%.",
+      "Electronics and appliances": "इलेक्ट्रॉनिक्स आणि घरगुती उपकरणे: मोबाईल, लॅपटॉप, टीव्ही, पंखे, रेफ्रिजरेटर. GST दर: १८% आणि २८%. HSN कोड आवश्यक.",
+      "Furniture and home goods": "फर्निचर आणि गृहपयोगी वस्तू: लाकडी व स्टील फर्निचर, पडदे, सजावट साहित्य. GST दर: १२% व १८%.",
+      "Beauty and personal care": "सौंदर्य प्रसाधने आणि वैयक्तिक काळजी: स्किनकेअर, हेअरकेअर, सौंदर्य प्रसाधने आणि साबण. GST दर: १८% व २८%.",
+      "Wholesale and distribution": "घाऊक आणि वितरण: B2B मोठ्या प्रमाणातील पुरवठा. ई-वे बिल आणि B2B GSTIN पडताळणी अनिवार्य.",
+      "Online stores and marketplaces": "ऑनलाइन स्टोअर्स आणि ई-कॉमर्स बाजारपेठा: डिजिटल ऑर्डर्स, TCS कलम ५२ अंतर्गत १% कर कपात आणि डिजिटल पेमेंट.",
+      "General retail": "सर्वसाधारण किरकोळ विक्री: सर्व प्रकारच्या किरकोळ वस्तूंची विक्री. सुलभ बिलिंग, त्वरित कर पावती आणि रोख/UPI व्यवहार.",
+      "Import and export retail businesses": "आयात आणि निर्यात किरकोळ व्यवसाय: आयात शुल्क, IGST, निर्यात बिल ऑफ एक्स्पोर्ट आणि LUT/बाँड प्रक्रिया.",
+      "Other retail businesses": "इतर किरकोळ व्यवसाय: इतर सर्व विशिष्ट किरकोळ सेवा आणि उत्पादने. द्विनोंद लेजर आणि नियमित GST रिटर्न."
+    };
+
+    // ==========================================
     // 3. APPLICATION STATE
     // ==========================================
     const appState = {
@@ -2461,6 +2784,14 @@ table.data-table tr:last-child td {
       currentAction: 'sale',
       myState: '27', // Maharashtra by default
       activeBank: 'HDFC Bank',
+      language: 'mr', // Default interface language: Marathi (mr)
+      locale: 'mr-IN', // Default locale: mr-IN
+      currency: 'INR', // Default currency: INR
+      currencySymbol: '₹', // Currency symbol: ₹
+      businessCategory: 'Retail & E-commerce',
+      businessSubcategory: 'General retail',
+      country: 'India',
+      taxSystem: 'Indian GST',
       metrics: { bank: 642800, revenue: 845000, expenses: 318500, profit: 526500, gstPayable: 48240 },
       transactions: [],
       complianceEvents: [],
@@ -2494,12 +2825,241 @@ table.data-table tr:last-child td {
       }
     }
 
-    function formatINR(val) {
-      return '₹' + Number(val || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function formatINR(val, forceLocale = null) {
+      const activeLocale = forceLocale || appState.locale || (appState.language === 'mr' ? 'mr-IN' : 'en-IN');
+      return '₹' + Number(val || 0).toLocaleString(activeLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    function formatINRSpan(val) {
-      return '₹' + Number(val || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    function formatINRSpan(val, forceLocale = null) {
+      const activeLocale = forceLocale || appState.locale || (appState.language === 'mr' ? 'mr-IN' : 'en-IN');
+      return '₹' + Number(val || 0).toLocaleString(activeLocale, { maximumFractionDigits: 0 });
+    }
+
+    function setLanguage(lang) {
+      if (!lang || !I18N[lang]) lang = 'mr';
+      appState.language = lang;
+      appState.locale = lang === 'mr' ? 'mr-IN' : 'en-IN';
+      localStorage.setItem('virtualca_lang', lang);
+
+      // Update all language select dropdowns
+      document.querySelectorAll('.langSelectInput').forEach(sel => {
+        sel.value = lang;
+      });
+      const cfgLangSel = document.getElementById('cfgLanguageSelect');
+      if (cfgLangSel) cfgLangSel.value = lang;
+
+      // Update data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key]) {
+          el.textContent = I18N[lang][key];
+        }
+      });
+
+      // Update data-i18n-placeholder elements
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (I18N[lang] && I18N[lang][key]) {
+          el.placeholder = I18N[lang][key];
+        }
+      });
+
+      const isMr = (lang === 'mr');
+
+      // Top Status Pill
+      const syncPill = document.querySelector('.sync-status-pill span:last-child');
+      if (syncPill) syncPill.textContent = isMr ? 'द्विनोंद लेजर संतुलित' : 'Ledger Balanced';
+
+      // Greeting Banner
+      const greetingUser = document.getElementById('greetingUser');
+      if (greetingUser && appState.currentUser) {
+        const dName = appState.currentUser.name || 'User';
+        greetingUser.textContent = (isMr ? '👋 स्वागत आहे, ' : '👋 Welcome back, ') + dName + '!';
+      }
+
+      // Action Cards text
+      const actSale = document.querySelector('#actCardSale .action-card-text');
+      if (actSale) {
+        const h = actSale.querySelector('h4');
+        const p = actSale.querySelector('p');
+        if (h) h.textContent = isMr ? 'विक्री बीजक (Sale)' : 'Customer Sale';
+        if (p) p.textContent = isMr ? 'बीजक आणि आउटपुट GST बिलिंग' : 'Invoice & output GST billing';
+      }
+      const actPurch = document.querySelector('#actCardPurchase .action-card-text');
+      if (actPurch) {
+        const h = actPurch.querySelector('h4');
+        const p = actPurch.querySelector('p');
+        if (h) h.textContent = isMr ? 'खरेदी व्हाऊचर (Purchase)' : 'Vendor Purchase';
+        if (p) p.textContent = isMr ? 'खरेदी आणि इनपुट टॅक्स क्रेडिट' : 'Asset & claim GST Input Credit';
+      }
+      const actExp = document.querySelector('#actCardExpense .action-card-text');
+      if (actExp) {
+        const h = actExp.querySelector('h4');
+        const p = actExp.querySelector('p');
+        if (h) h.textContent = isMr ? 'खर्च व्हाउचर (Expense)' : 'Business Expense';
+        if (p) p.textContent = isMr ? 'भाडे, वीज, स्टेशनरी व TDS' : 'Rent, utilities & vendor TDS';
+      }
+      const actBank = document.querySelector('#actCardBank .action-card-text');
+      if (actBank) {
+        const h = actBank.querySelector('h4');
+        const p = actBank.querySelector('p');
+        if (h) h.textContent = isMr ? 'बँक भरणा / उचल' : 'Bank Treasury Sync';
+        if (p) p.textContent = isMr ? 'थेट बँक खात्यात व्यवहार' : 'Direct bank account settlement';
+      }
+
+      // Metrics titles
+      const bankCardTitle = document.querySelector('.metric-card-bank .metric-title span:first-child');
+      if (bankCardTitle) bankCardTitle.textContent = isMr ? '🏦 बँक शिल्लक (Treasury)' : '🏦 Active Bank Treasury';
+      const revCardTitle = document.querySelector('.metric-card-rev .metric-title span:first-child');
+      if (revCardTitle) revCardTitle.textContent = isMr ? '📈 एकूण महसूल (Revenue)' : '📈 Operating Revenue';
+      const expCardTitle = document.querySelector('.metric-card-exp .metric-title span:first-child');
+      if (expCardTitle) expCardTitle.textContent = isMr ? '📉 एकूण खर्च (Expenses)' : '📉 Operating Expenses';
+      const profCardTitle = document.querySelector('.metric-card-profit .metric-title span:first-child');
+      if (profCardTitle) profCardTitle.textContent = isMr ? '💰 निव्वळ नफा (Profit)' : '💰 Net Operating Profit';
+
+      // Workbench heading & submit button
+      const wbHead = document.getElementById('wbHeading');
+      if (wbHead) {
+        if (appState.currentAction === 'sale') wbHead.textContent = isMr ? 'ग्राहकासाठी विक्री बीजक तयार करा' : 'Record Customer Sale Invoice';
+        else if (appState.currentAction === 'purchase') wbHead.textContent = isMr ? 'पुरवठादार खरेदी व्हाउचर नोंदवा' : 'Record Vendor Purchase Voucher';
+        else if (appState.currentAction === 'expense') wbHead.textContent = isMr ? 'थेट व्यावसायिक खर्च व्हाउचर नोंदवा' : 'Record Direct Business Expense';
+        else if (appState.currentAction === 'bank') wbHead.textContent = isMr ? 'बँक निधी हस्तांतरण / भरणा नोंदवा' : 'Record Bank Treasury Transfer';
+      }
+      const btnPost = document.getElementById('btnSubmitWorkbench');
+      if (btnPost) {
+        btnPost.innerHTML = isMr ? '<span>✔ नोंद पोस्ट करा आणि कर बीजक तयार करा</span> <span>➔</span>' : '<span>✔ Post Double-Entry & Generate Invoice</span> <span>➔</span>';
+      }
+
+      // Settings badge
+      const headerBadge = document.getElementById('settingsOrgHeaderBadge');
+      if (headerBadge) {
+        const compName = appState.currentUser?.trade_name || appState.currentUser?.company || "Infotech Services";
+        const subCat = document.getElementById('cfgSubcategorySelect')?.value || appState.currentUser?.business_subcategory || "General retail";
+        headerBadge.textContent = `${compName} • ${subCat} • India • ${isMr ? 'mr-IN' : 'en-IN'}`;
+      }
+
+      // Update preview currency string in settings card
+      const previewEl = document.getElementById('cfgPreviewCurrency');
+      if (previewEl) {
+        previewEl.textContent = formatINR(125000);
+      }
+
+      // Re-trigger calculation update for localized numbers
+      if (typeof updatePreview === 'function') {
+        updatePreview();
+      }
+
+      // If user is authenticated, persist preference to PostgreSQL
+      if (appState.currentUser && appState.currentUser.id) {
+        fetch('/api/user/preferences', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            org_id: appState.currentUser.id,
+            user_id: appState.currentUser.user_id,
+            email: appState.currentUser.email,
+            language: lang
+          })
+        }).catch(e => console.warn("Failed persisting user language preference:", e));
+      }
+    }
+
+    function changeLanguage(lang) {
+      setLanguage(lang);
+      showToast(lang === 'mr' ? 'भाषा: मराठी (mr) निवडली आहे' : 'Language changed to English (en)', 'info');
+    }
+
+    function handleSubcategoryChange(val) {
+      const noticeEl = document.getElementById('subcategoryNotice');
+      if (noticeEl) {
+        const text = SUBCATEGORY_NOTICES[val] || SUBCATEGORY_NOTICES["General retail"];
+        noticeEl.innerHTML = `<strong>ℹ️ किरकोळ वर्गवारी माहिती:</strong> ${text}`;
+      }
+      const headerBadge = document.getElementById('settingsOrgHeaderBadge');
+      if (headerBadge) {
+        const compName = appState.currentUser?.trade_name || appState.currentUser?.company || "Infotech Services";
+        headerBadge.textContent = `${compName} • ${val} • India • ${appState.locale || 'mr-IN'}`;
+      }
+    }
+
+    async function loadOrgSettings(orgId) {
+      if (!orgId) return;
+      try {
+        const res = await fetch(`/api/organizations/settings?org_id=${orgId}`);
+        if (res.ok) {
+          const data = await res.json();
+          const org = data.organization || data;
+          if (org) {
+            if (org.business_subcategory) {
+              const sel = document.getElementById('cfgSubcategorySelect');
+              if (sel) {
+                sel.value = org.business_subcategory;
+                handleSubcategoryChange(org.business_subcategory);
+              }
+            }
+            if (org.language) {
+              setLanguage(org.language);
+            }
+            const headerBadge = document.getElementById('settingsOrgHeaderBadge');
+            if (headerBadge) {
+              const compName = org.trade_name || org.legal_name || org.name || "Infotech Services";
+              headerBadge.textContent = `${compName} • ${org.business_subcategory || 'General retail'} • India • ${org.locale || 'mr-IN'}`;
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Could not load organization settings from PostgreSQL:", err);
+      }
+    }
+
+    async function saveBusinessSettings() {
+      const subcategory = document.getElementById('cfgSubcategorySelect')?.value || 'General retail';
+      const lang = document.getElementById('cfgLanguageSelect')?.value || 'mr';
+      const orgId = appState.currentUser?.id;
+
+      const payload = {
+        org_id: orgId,
+        business_category: "Retail & E-commerce",
+        business_subcategory: subcategory,
+        country: "India",
+        currency_code: "INR",
+        currency_symbol: "₹",
+        locale: lang === 'mr' ? 'mr-IN' : 'en-IN',
+        language: lang,
+        tax_system: "Indian GST"
+      };
+
+      try {
+        const res = await fetch('/api/organizations/settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (appState.currentUser) {
+            appState.currentUser.business_category = payload.business_category;
+            appState.currentUser.business_subcategory = payload.business_subcategory;
+            appState.currentUser.country = payload.country;
+            appState.currentUser.language = payload.language;
+            appState.currentUser.locale = payload.locale;
+            appState.currentUser.currency_code = payload.currency_code;
+            appState.currentUser.currency_symbol = payload.currency_symbol;
+            appState.currentUser.tax_system = payload.tax_system;
+          }
+          const statusEl = document.getElementById('cfgLastSavedStatus');
+          if (statusEl) {
+            statusEl.innerHTML = `<span style="color: var(--accent-magenta); font-weight:700;">✔ PostgreSQL मध्ये थेट जतन झाले (${new Date().toLocaleTimeString()})</span>`;
+          }
+          showToast(lang === 'mr' ? "व्यवसाय कॉन्फिगरेशन PostgreSQL मध्ये यशस्वीरित्या सेव्ह केले!" : "Business configuration saved successfully to PostgreSQL!", "success");
+          setLanguage(lang);
+          return;
+        }
+      } catch (err) {
+        console.warn("Error saving settings to PostgreSQL:", err);
+      }
+      showToast(lang === 'mr' ? "स्थानिक पातळीवर जतन केले." : "Saved locally.", "info");
     }
 
     // ==========================================
@@ -2619,8 +3179,11 @@ table.data-table tr:last-child td {
       const lines = document.getElementById('drawerJournalLines');
       const action = appState.currentAction;
 
+      const isMr = (appState.language === 'mr');
       if (action === 'sale') {
-        summary.innerHTML = `You invoice <strong>${party}</strong> for <strong>${formatINR(grossTotal)}</strong> (${formatINR(taxable)} taxable + ${formatINR(totalTax)} ${isInterState ? 'IGST' : 'CGST+SGST'}). Deposited into <strong>${selectedBank}</strong>.`;
+        summary.innerHTML = isMr
+          ? `तुम्ही <strong>${party}</strong> यांना <strong>${formatINR(grossTotal)}</strong> चे कर बीजक दिले (${formatINR(taxable)} करपात्र + ${formatINR(totalTax)} ${isInterState ? 'IGST' : 'CGST+SGST'}). रक्कम <strong>${selectedBank}</strong> खात्यात जमा झाली.`
+          : `You invoice <strong>${party}</strong> for <strong>${formatINR(grossTotal)}</strong> (${formatINR(taxable)} taxable + ${formatINR(totalTax)} ${isInterState ? 'IGST' : 'CGST+SGST'}). Deposited into <strong>${selectedBank}</strong>.`;
         lines.innerHTML = `
           <div style="display:flex; justify-content:space-between; padding:3px 0;">
             <span style="color: var(--accent-amber); font-weight:700;">Dr. Bank Account (${selectedBank})</span>
@@ -2648,7 +3211,9 @@ table.data-table tr:last-child td {
           ` : ''}
         `;
       } else if (action === 'purchase') {
-        summary.innerHTML = `You buy from <strong>${party}</strong> for <strong>${formatINR(grossTotal)}</strong>. Claim <strong>${formatINR(totalTax)}</strong> Input Tax Credit (ITC) in GSTR-3B. Paid from <strong>${selectedBank}</strong>.`;
+        summary.innerHTML = isMr
+          ? `तुम्ही <strong>${party}</strong> कडून <strong>${formatINR(grossTotal)}</strong> ची खरेदी केली. GSTR-3B मध्ये <strong>${formatINR(totalTax)}</strong> चे इनपुट टॅक्स क्रेडिट (ITC) दावा केला. <strong>${selectedBank}</strong> खात्यातून पैसे अदा केले.`
+          : `You buy from <strong>${party}</strong> for <strong>${formatINR(grossTotal)}</strong>. Claim <strong>${formatINR(totalTax)}</strong> Input Tax Credit (ITC) in GSTR-3B. Paid from <strong>${selectedBank}</strong>.`;
         lines.innerHTML = `
           <div style="display:flex; justify-content:space-between; padding:3px 0;">
             <span style="color: var(--accent-terracotta); font-weight:700;">Dr. Operating & Administrative Purchases</span>
@@ -2676,7 +3241,9 @@ table.data-table tr:last-child td {
           </div>
         `;
       } else if (action === 'expense') {
-        summary.innerHTML = `You disburse <strong>${formatINR(taxable)}</strong> to <strong>${party}</strong> for business operations via <strong>${selectedBank}</strong>.`;
+        summary.innerHTML = isMr
+          ? `तुम्ही व्यावसायिक खर्चासाठी <strong>${party}</strong> यांना <strong>${formatINR(taxable)}</strong> <strong>${selectedBank}</strong> द्वारे अदा केले.`
+          : `You disburse <strong>${formatINR(taxable)}</strong> to <strong>${party}</strong> for business operations via <strong>${selectedBank}</strong>.`;
         lines.innerHTML = `
           <div style="display:flex; justify-content:space-between; padding:3px 0;">
             <span style="color: var(--accent-rose); font-weight:700;">Dr. Business Operating Expenses</span>
@@ -2688,7 +3255,9 @@ table.data-table tr:last-child td {
           </div>
         `;
       } else {
-        summary.innerHTML = `Treasury settlement of <strong>${formatINR(taxable)}</strong> verified across <strong>${selectedBank}</strong> feed.`;
+        summary.innerHTML = isMr
+          ? `<strong>${selectedBank}</strong> खात्यातून <strong>${formatINR(taxable)}</strong> ची तिजोरी तडजोड आणि बँक पडताळणी पूर्ण झाली.`
+          : `Treasury settlement of <strong>${formatINR(taxable)}</strong> verified across <strong>${selectedBank}</strong> feed.`;
         lines.innerHTML = `
           <div style="display:flex; justify-content:space-between; padding:3px 0;">
             <span style="color: var(--accent-amber); font-weight:700;">Dr. Bank Settlement Clearing (${selectedBank})</span>
@@ -2845,29 +3414,30 @@ table.data-table tr:last-child td {
       const lblParty = document.getElementById('lblParty');
       const inParty = document.getElementById('inParty');
 
+      const isMr = (appState.language === 'mr');
       if (action === 'sale') {
-        heading.textContent = 'Record Customer Sale Invoice';
-        badge.textContent = 'GST Handled Automatically';
+        heading.textContent = isMr ? 'ग्राहकासाठी विक्री बीजक तयार करा' : 'Record Customer Sale Invoice';
+        badge.textContent = isMr ? 'GST स्वयंचलित मोजला जातो' : 'GST Handled Automatically';
         badge.className = 'badge badge-coral';
-        lblParty.textContent = 'Customer or Entity Name';
+        lblParty.textContent = isMr ? 'ग्राहक / कंपनीचे नाव' : 'Customer or Entity Name';
         inParty.value = 'Nexus Tech Corp';
       } else if (action === 'purchase') {
-        heading.textContent = 'Record Business Purchase';
-        badge.textContent = 'Input Tax Credit (ITC) Claimed';
+        heading.textContent = isMr ? 'पुरवठादार खरेदी व्हाउचर नोंदवा' : 'Record Business Purchase';
+        badge.textContent = isMr ? 'इनपुट टॅक्स क्रेडिट (ITC) दावा केला' : 'Input Tax Credit (ITC) Claimed';
         badge.className = 'badge badge-violet';
-        lblParty.textContent = 'Vendor / Supplier Name';
+        lblParty.textContent = isMr ? 'पुरवठादार / विक्रेता नाव' : 'Vendor / Supplier Name';
         inParty.value = 'Dell Technologies India';
       } else if (action === 'expense') {
-        heading.textContent = 'Record Business Operating Expense';
-        badge.textContent = 'TDS Auto-Checked';
+        heading.textContent = isMr ? 'थेट व्यावसायिक खर्च व्हाउचर नोंदवा' : 'Record Business Operating Expense';
+        badge.textContent = isMr ? 'खर्च लेजरमध्ये नोंदवला' : 'TDS Auto-Checked';
         badge.className = 'badge badge-rose';
-        lblParty.textContent = 'Payee / Expense Category';
+        lblParty.textContent = isMr ? 'खर्च तपशील / देयक नाव' : 'Payee / Expense Category';
         inParty.value = 'WeWork Office Rent';
       } else if (action === 'bank') {
-        heading.textContent = 'Reconcile Bank Feed Transactions';
-        badge.textContent = 'Auto-Matched with Bank Feed';
+        heading.textContent = isMr ? 'बँक निधी हस्तांतरण / भरणा नोंदवा' : 'Reconcile Bank Feed Transactions';
+        badge.textContent = isMr ? 'थेट बँक खातं प्रभावित' : 'Auto-Matched with Bank Feed';
         badge.className = 'badge badge-amber';
-        lblParty.textContent = 'Statement Narration';
+        lblParty.textContent = isMr ? 'हस्तांतरण तपशील / बँक शाखा' : 'Statement Narration';
         inParty.value = `${appState.activeBank} Current Account Settlement`;
       }
       triggerRecalculation();
@@ -3333,7 +3903,22 @@ table.data-table tr:last-child td {
         return;
       }
 
-      const payload = { name, email, company, gstin, role: "Owner" };
+      const subcategory = document.getElementById('regSubcategory')?.value || 'General retail';
+      const lang = document.getElementById('regLanguage')?.value || 'mr';
+      const payload = { 
+        name, 
+        email, 
+        company, 
+        gstin, 
+        role: "Owner",
+        businessCategory: "Retail & E-commerce",
+        businessSubcategory: subcategory,
+        country: "India",
+        currencyCode: "INR",
+        locale: lang === 'mr' ? 'mr-IN' : 'en-IN',
+        language: lang,
+        taxSystem: "Indian GST"
+      };
 
       try {
         const res = await fetch('/api/register', {
@@ -3391,7 +3976,13 @@ table.data-table tr:last-child td {
 
       document.getElementById('headerName').textContent = displayName;
       document.getElementById('headerAvatar').textContent = initials;
-      document.getElementById('greetingUser').textContent = `👋 Welcome back, ${displayName}!`;
+      // Localization & Organization Setup
+      const initialLang = activeUser.language || localStorage.getItem('virtualca_lang') || 'mr';
+      setLanguage(initialLang);
+      loadOrgSettings(activeUser.id || activeUser.org_id);
+
+      const welcomePrefix = (appState.language === 'mr') ? '👋 स्वागत आहे, ' : '👋 Welcome back, ';
+      document.getElementById('greetingUser').textContent = `${welcomePrefix}${displayName}!`;
 
       const stateObj = INDIA_STATES.find(s => s.code === appState.myState) || { name: 'Maharashtra', code: '27' };
       document.getElementById('greetingOrgSub').textContent = `${displayCompany} • ${stateObj.name} (GSTIN: ${activeUser.gstin || '27BCCC267C123R4'})${isExplicitAdmin ? ' • [🛡️ System Administrator]' : ''}`;
@@ -3858,6 +4449,9 @@ table.data-table tr:last-child td {
     // ==========================================
     // 15. INITIALIZATION & SESSION RESTORE
     // ==========================================
+    const initLang = localStorage.getItem('virtualca_lang') || 'mr';
+    setLanguage(initLang);
+
     const savedSession = localStorage.getItem('virtual_ca_session');
     if (savedSession) {
       try {
